@@ -53,31 +53,35 @@ Template: Given **\_**, when **\_\_**, then **\_\_**.
 
 # Route Planning
 
+MVD = \*
+
 ```
 Resource: recipes
 
-B: GET /recipes
+*B: GET /recipes
   - Every single master recipe
-R: GET /recipes/:id
-  - specific recipe tree
+*R: GET /recipes/:id
+  - specific recipe tree, See "versions"
 E: POST /recipes/:id/edit
   -
-A: POST /recipes
-D: POST /recipes/:id/delete
+*A: POST /recipes
+D: POST /recipes/:id/delete (archive/make inactive?)
 ```
+
+---
 
 ```
 Resource: versions
 Prepend recipes/:id/
 
-B: GET recipes/:recipeId
-R: GET recipes/:recipeId/:id
+*B: GET recipes/:recipeId
+*R: GET recipes/:recipeId/:id
   - version of a recipe
 E: POST recipes/:recipeId/:id/edit
-  - edit a recipe version
-A: POST recipes/recipeId
-  - create a recipe version
-D: POST recipes/recipeId/:id/delete
+  - edit a recipe version - do not use, defeats purpose
+*A: POST recipes/recipeId
+  - create a recipe version / FORKING a recipe
+*D: POST recipes/recipeId/:id/delete (archive/inactive?)
 ```
 
 ---
@@ -87,7 +91,7 @@ Resource: users
 
 B: GET /users
   - All users
-R: GET /users/:id
+*R: GET /users/:id
   - Single users
 E: POST /users/:id/edit
   - Edit user info
@@ -103,13 +107,13 @@ D: POST /users/:id/delete
 Resource: comments
 Prepend recipes/:id/
 
-B: GET /comments
+*B: GET /comments
   - All comments of a recipe version
 R: GET /comments/:id
   - Single comments
 E: POST /comments/:id/edit
   - Edit comment
-A: POST /comments
+*A: POST /comments
   - Create a comment
 D: POST /comments/:id/delete
   - Delete a comment
@@ -121,15 +125,15 @@ D: POST /comments/:id/delete
 Resource: ratings
 Prepend recipes/:id/
 
-B: GET /ratings
-  - All ratings of a recipe version
-R: GET /ratings/:id
+*B: GET /ratings
+  - Average rating for a recipe
+*R: GET /ratings/:id
   - Single ratings
-E: POST /ratings/:id/edit
+*E: POST /ratings/:id/edit
   - Edit rating
-A: POST /ratings
+*A: POST /ratings
   - rate a recipe version
-D: POST /ratings/:id/delete
+*D: POST /ratings/:id/delete
   - Delete a rating
 ```
 
