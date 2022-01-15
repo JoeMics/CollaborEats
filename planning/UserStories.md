@@ -4,7 +4,7 @@
 
 As a **\_\_**, I want to **\_\_**, because **\_\_**.
 
-## Accounts
+## Accounts - Low priority
 
 - As a user I want to sign up for an account, because I want to use the application.
 - As a user I want to log in to my account, because I want to use the application.
@@ -13,16 +13,21 @@ As a **\_\_**, I want to **\_\_**, because **\_\_**.
 
 ## Recipes
 
+### High priority
+
+- As a User, I want to “create”(fork) new versions for a recipe, because I want to develop someone elses or my recipe.
 - As a User, I want to create recipes, because I want to store my recipes.
-- As a User, I want to “create”(fork) new versions for a recipe, because I want to develope someone elses or my recipe.
 - As a User, I want to see all the versions for a recipe, because I want to see all the version in a tree diagram.
 - As a User, I want to browse all recipes, because see the available recipes.
+
+### Low priority
+
 - As a user, I want to browse my recipes, because I only care about my recipes.
 - As a User, I want to search for recipes by name, because I want to find a specific recipe.
 - As a User, I want to search for recipes by tags, because I want to find what is most relevant to me
 - ~~As a user I want to delete/archive my recipes because I don't want them to be seen~~
 
-## User Interaction
+## User Interaction - Low priority
 
 - As a user, I want to comment on a recipe, because i want to give feedback
 - As a user, I want to rate a recipe, because I want to show that I like a recipe
@@ -125,22 +130,22 @@ D: POST /comments/:id/delete
 Resource: ratings
 Prepend recipes/:id/
 
-*B: GET /ratings
+B: GET /ratings
   - Average rating for a recipe
-*R: GET /ratings/:id
+R: GET /ratings/:id
   - Single ratings
-*E: POST /ratings/:id/edit
+E: POST /ratings/:id/edit
   - Edit rating
-*A: POST /ratings
+A: POST /ratings
   - rate a recipe version
-*D: POST /ratings/:id/delete
+D: POST /ratings/:id/delete
   - Delete a rating
 ```
 
 ---
 
 ```
-Resource: tags ????????????????????????????????????
+Resource: tags
 Prepend recipes/
 
 B: GET /tags
@@ -157,4 +162,7 @@ D: POST /tags/:id/delete
 
 MASTER RECIPE: THE WHOLE TREE
 
+```
+url example:
 https://www.collaboreats.api/recipes/3432/23232
+```
