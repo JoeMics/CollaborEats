@@ -9,7 +9,7 @@ router.get('/', async (req,res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const recipe = await Recipe.find( {_id: req.params.id})
+  const recipe = await Recipe.findOne( {_id: req.params.id})
   const recipeTree = await Recipe.find( {path: req.params.id })
   res.send({recipe, recipeTree});
 });
