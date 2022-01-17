@@ -13,6 +13,10 @@ const morgan = require('morgan');
 import recipeRoutes from './routes/recipe'
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use('/recipe', recipeRoutes);
 
 import User from './models/user';
