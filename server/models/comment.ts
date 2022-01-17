@@ -9,6 +9,7 @@ interface Comment {
 }
 
 const commentSchema = new Schema<Comment>({
+  _id: String,
   ownerId: { type: String, required: true },
   recipeId: { type: String, required: true },
   content: { type: String, required: true },
