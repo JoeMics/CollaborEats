@@ -15,7 +15,6 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req,res) => {
-  console.log(req.body);
   const {ownerId, title, description, ingredients, instructions} = req.body;
   const recipe = new Recipe({
     path: [],
