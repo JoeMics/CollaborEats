@@ -9,7 +9,9 @@ import express from 'express';
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
-// Routes
+//Routes
+import userRoutes from './routes/userRoutes'
+import commentRoutes from './routes/commentRoutes'
 import recipeRoutes from './routes/recipe'
 
 const app = express();
@@ -18,6 +20,9 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use('/recipe', recipeRoutes);
+app.use('/user', userRoutes);
+app.use('/comment', commentRoutes);
+
 
 import User from './models/user';
 import Recipe from './models/recipe';
