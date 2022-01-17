@@ -1,25 +1,30 @@
 import express from 'express';
 import Recipe from '../models/recipe';
 const versionsRoutes = express.Router({ mergeParams: true });
-const recipesRoutes = express.Router();
 
-versionsRoutes.use('recipes/:recipeId/versions/', recipesRoutes);
-// Resource: versions
-// Prepend recipes/:id/
-
-// *R: GET recipes/:recipeId/versions/:versionId
-//   - version of a recipe
 versionsRoutes.get('/:versionId', async (req, res) => {
   const { versionId } = req.params;
   const recipe = await Recipe.findOne({ _id: versionId });
-
   res.send(recipe);
 });
 
-// *A: POST recipes/:recipeId/versions/:versionId
-//   - create a recipe version / FORKING a recipe
-versionsRoutes.post('/:versionId', (req, res) => {
-  res.send(`Hello from post ${req.params.versionId}`);
+versionsRoutes.post('/:versionId', async (req, res) => {
+  // TS does not know recipeId exists
+  // @ts-ignore:next-line
+  const { ownerId, title, description, ingredients, instructions, recipeId } = req.body;
+  const parentRecipe = await Recipe.findOne({ _id: recipeId });
+  const recipe = new Recipe({
+    path: [...parentRecipe!.path, recipeId],
+    parent: recipeId,
+    ownerId,
+    title,
+    description,
+    ingredients,
+    instructions,
+  });
+
+  recipe.save();
+  res.send(recipe);
 });
 
 export default versionsRoutes;
