@@ -1,6 +1,6 @@
 import express from 'express';
 import Recipe from '../models/recipe';
-import versionsRoute from './versions';
+import versionsRoute from './version';
 import commentsRoute from './comment';
 const router = express.Router();
 
