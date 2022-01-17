@@ -10,8 +10,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 //Routes
-import userRoutes from './routes/userRoutes'
-import commentRoutes from './routes/commentRoutes'
+import userRoutes from './routes/user'
+import commentRoutes from './routes/comment'
 import recipeRoutes from './routes/recipe'
 
 const app = express();
