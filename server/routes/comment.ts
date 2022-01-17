@@ -9,19 +9,19 @@ router.get('/', async (req, res) => {
   // @ts-ignore:next-line
   const { recipeId } = req.params;
   const comments = await Comment.find({ recipeId });
-  console.log(comments);
   res.send(comments);
 });
 
-router.post('/create', async (req, res) => {
+router.post('/', async (req, res) => {
+  const { recipeId, ownerId, content } = req.body;
+
   const comment = new Comment({
-    recipeId: req.body.recipeId,
-    ownerId: req.body.ownerId,
-    content: req.body.content,
+    recipeId,
+    ownerId,
+    content,
   });
-  console.log(comment);
   comment.save();
-  res.send('Route Works');
+  res.send(comment);
 });
 
 export default router;
