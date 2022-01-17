@@ -8,17 +8,17 @@ const PORT = process.env.PORT || 8080;
 import express from 'express';
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 
 //Routes
 import userRoutes from './routes/userRoutes'
 import commentRoutes from './routes/commentRoutes'
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended:true}))
 
+app.use(express.json());
+app.use(express.urlencoded());
 app.use('/user', userRoutes);
-app.use('/comment', commentRoutes)
+app.use('/comment', commentRoutes);
 
 
 import User from './models/user';
