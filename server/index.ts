@@ -10,19 +10,20 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 
 //Routes
-import userRoutes from './routes/user'
-import commentRoutes from './routes/comment'
-import recipeRoutes from './routes/recipe'
+import userRoutes from './routes/user';
+import commentRoutes from './routes/comment';
+import recipeRoutes from './routes/recipe';
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 app.use('/recipe', recipeRoutes);
 app.use('/user', userRoutes);
 app.use('/comment', commentRoutes);
-
 
 import User from './models/user';
 import Recipe from './models/recipe';
