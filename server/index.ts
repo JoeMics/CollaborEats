@@ -11,9 +11,11 @@ const morgan = require('morgan');
 
 //Routes
 import userRoutes from './routes/userRoutes'
+import commentRoutes from './routes/commentRoutes'
 
 const app = express();
 app.use('/user', userRoutes);
+app.use('/comment', commentRoutes)
 
 import User from './models/user';
 import Recipe from './models/recipe';
