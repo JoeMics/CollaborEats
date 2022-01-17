@@ -14,8 +14,8 @@ router.post('/create', async (req,res) => {
   //   ownerId: req.body.ownerId,
   //   content: req.body.content
   // })
-  
-  res.send('Test')
+  console.log(req.body)
+  res.send('Route Works')
 })
 
 export default router;
