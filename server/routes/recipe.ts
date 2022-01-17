@@ -1,9 +1,11 @@
 import express from 'express';
 import Recipe from '../models/recipe';
-import versionsRoutes from './versions';
+import versionsRoute from './versions';
+import commentsRoute from './comment';
 const router = express.Router();
 
-router.use('/:recipeId/versions/', versionsRoutes);
+router.use('/:recipeId/versions/', versionsRoute);
+router.use('/:recipeId/comments/', commentsRoute);
 
 router.get('/', async (req, res) => {
   const recipes = await Recipe.find({ parent: null });

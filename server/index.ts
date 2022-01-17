@@ -31,7 +31,6 @@ app.use(
 //Routes
 app.use('/recipes', recipeRoutes);
 app.use('/users', userRoutes);
-app.use('/comments', commentRoutes);
 
 // connect to db
 mongoose

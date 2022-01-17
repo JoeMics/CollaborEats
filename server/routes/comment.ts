@@ -1,12 +1,16 @@
 import express from 'express';
 import Comment from '../models/comment';
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.get('/all/:recipeId', async (req, res) => {
-  const comments = await Comment.find({ recipeId: req.params.recipeId });
+// recipes/:recipeId/comments
+router.get('/', async (req, res) => {
+  // TS does not know recipeId exists
+  // @ts-ignore:next-line
+  const { recipeId } = req.params;
+  const comments = await Comment.find({ recipeId });
   console.log(comments);
-  res.send('Route Works');
+  res.send(comments);
 });
 
 router.post('/create', async (req, res) => {
