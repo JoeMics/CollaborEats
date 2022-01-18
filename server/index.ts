@@ -11,6 +11,7 @@ import recipeRoutes from './routes/recipe';
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const cookieParser = require('cookieParser');
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -26,6 +27,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cookieParser);
 
 //Routes
 app.use('/recipes', recipeRoutes);
