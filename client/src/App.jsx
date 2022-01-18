@@ -6,9 +6,11 @@ import Dashboard from './pages/Dashboard';
 import Recipe from './pages/Recipe';
 import Versions from './pages/Versions';
 import Navbar from './components/Navbar';
+
 function App() {
   return (
     <Router>
+      <Navbar />
       <Switch>
         <Route path={ROUTES.HOME} component={Home} exact />
         <Route path={ROUTES.DASHBOARD} component={Dashboard} exact />
