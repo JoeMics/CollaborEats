@@ -4,16 +4,16 @@ export default function Instructions(props) {
   // intructions = getIntructions()
   // descriptions = getDescriptions()
   return (
-    <div className="flex w-1/3 flex-col ml-4">
-      <h3>Description Header</h3>
-      <p>
+    <div className="flex w-1/3 flex-col ml-4 bg-red-500">
+      <h3 className="ml-4 mt-4">Description</h3>
+      <p className="m-4">
         {/* {descriptions} */}
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo sed aperiam nihil placeat,
         vero natus repellat eum, ex nemo maxime quos ab. Nulla, tempore qui sunt quia hic ad nam?
       </p>
 
-      <h1>Instructions Header</h1>
-      <p>
+      <h1 className="ml-4">Instructions</h1>
+      <p className="m-4">
         {/* {instructions} */}
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt sed, consequuntur quam
         cumque deleniti numquam mollitia blanditiis aliquam deserunt ad dolorum recusandae doloribus

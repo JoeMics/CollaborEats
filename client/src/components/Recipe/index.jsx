@@ -4,7 +4,7 @@ import Instructions from './Instructions';
 
 export default function RecipeComponent(props) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center bg-green-500">
       <Ingredients />
       <Instructions />
     </div>
