@@ -1,6 +1,6 @@
 const Comment = () => {
   return (
-    <article className="border-2 px-5 py-2 flex">
+    <article className="px-5 py-2 flex">
       <div>
         <img src="https://source.unsplash.com/random/40x40" alt="" />
       </div>
