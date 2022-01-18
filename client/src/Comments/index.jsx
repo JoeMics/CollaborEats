@@ -1,11 +1,12 @@
+import Comment from './Comment';
 import Form from './Form';
 
 const Comments = () => {
   return (
-    <section className="container">
+    <section className="container mt-10 mx-auto">
       <h2 className="text-4xl">Comments</h2>
       <Form />
-      <h1>fjdsklfj</h1>
+      <Comment />
     </section>
   );
 };
