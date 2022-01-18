@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
     ownerId,
     title,
     description,
-    ingredients,
+    ingredients: JSON.parse(ingredients),
     instructions,
   });
   recipe.save();
