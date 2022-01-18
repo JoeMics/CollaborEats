@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import RecipeComponent from '../components/Recipe/index';
 
 const Recipe = () => {
-  return ( <div>I AM RECIPE</div> );
-}
- 
+  useEffect(() => {
+    document.title = `Recipes - CollaborEats`;
+  });
+
+  return (
+    <div>
+      <RecipeComponent />
+    </div>
+  );
+};
+
 export default Recipe;
