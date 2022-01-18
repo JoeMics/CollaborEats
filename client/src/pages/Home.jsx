@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import LandingPage from '../components/Home';
+import Footer from '../components/Footer';
 
 const Home = () => {
+  useEffect(() => {
+    document.title = 'Home - CollaborEats';
+  },[])
+  
   return ( 
-  <div>I AM HOME PAGE
-    {/* Navbar */}
-    {/* Hero  */}
-    {/* json.map => Jumbotrons {} */}
-    {/* Footer  */}
+  <div>
+    <LandingPage />
+    <Footer />
   </div> );
 }
  

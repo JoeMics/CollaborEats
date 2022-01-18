@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "direction": "flex-row",
+    "imgSrc": "https://source.unsplash.com/random/600x600",
+    "description": "Create and share recipes with everyone",
+    "background": "bg-gray-700"
+  },
+  {
+    "id": 2,
+    "direction": "flex-row-reverse",
+    "imgSrc": "https://source.unsplash.com/random/600x600",
+    "description": "Make it better, make a new one, by FORKING it",
+    "background": "bg-white"
+  },
+  {
+    "id": 3,
+    "direction": "flex-row",
+    "imgSrc": "https://source.unsplash.com/random/600x600",
+    "description": "View all your creations in one place",
+    "background": "bg-gray-700"
+  },
+  {
+    "id": 4,
+    "direction": "flex-row-reverse",
+    "imgSrc": "https://source.unsplash.com/random/600x600",
+    "description": "Cooking is a team sport, let others help you, collaborate with others",
+    "background": "bg-white"
+  }
+]
