@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 const Home = () => {
   useEffect(() => {
-    document.title = `'Home - CollaborEats'`;
+    document.title = 'Home - CollaborEats';
   },[])
   
   return ( 
