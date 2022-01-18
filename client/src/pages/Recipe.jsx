@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Comments from '../Comments';
 import RecipeComponent from '../components/Recipe/index';
 
 const Recipe = () => {
@@ -9,6 +10,7 @@ const Recipe = () => {
   return (
     <div>
       <RecipeComponent />
+      <Comments />
     </div>
   );
 };
