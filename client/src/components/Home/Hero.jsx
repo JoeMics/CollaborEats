@@ -2,10 +2,10 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <div className="py-24 flex px-32 h-screen justify-between w-full tracking-widest">
-      <div>
+    <div className="py-24 flex px-32 space-x-4 h-screen justify-between w-full tracking-widest">
+      <div className="w-1/2">
         <p className="text-green-300 text-lg font-bold uppercase">Create Your First Recipe Now</p>
-        <h1 className="text-5xl w-96 font-bold text-green-700 mb-8">
+        <h1 className="text-7xl w-96 font-bold text-green-700 mb-8">
           CollaborEat With Chefs and Make The Perfect Recipe
         </h1>
         <button className="flex items-center px-4 py-2 bg-blue-300 rounded text-white">
@@ -25,6 +25,9 @@ const Hero = () => {
           </svg>
           Fork it Now
         </button>
+      </div>
+      <div className='w-1/2 min-h-full'>
+        <img className="object-fit" src="https://source.unsplash.com/random/600x600" alt="hero" />
       </div>
     </div>
   );
