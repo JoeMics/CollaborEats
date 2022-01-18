@@ -3,7 +3,7 @@ import * as ROUTES from '../constants/routes';
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-neutral-700 p-2">
+    <nav className="flex items-center justify-between flex-wrap text-white bg-neutral-700 p-2">
       <div className="flex">
         <h1 className="text-2xl">
           <Link to={ROUTES.HOME}>CollaborEats</Link>
@@ -21,8 +21,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div>
-        <button className="rounded-full mx-3 px-2 bg-gray-300 text-sm">Login</button>
-        <button className="rounded-full px-2 bg-gray-300 text-sm">Sign Up</button>
+        <button className="rounded-full mx-3 px-2 bg-gray-300 text-sm text-green-700">Login</button>
+        <button className="rounded-full px-2 bg-gray-300 text-sm text-green-700">Sign Up</button>
       </div>
     </nav>
   );
