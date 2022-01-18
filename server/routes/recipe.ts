@@ -1,31 +1,35 @@
-import express from 'express'
+import express from 'express';
 import Recipe from '../models/recipe';
+import versionsRoute from './version';
+import commentsRoute from './comment';
 const router = express.Router();
 
+router.use('/:recipeId/versions/', versionsRoute);
+router.use('/:recipeId/comments/', commentsRoute);
 
-router.get('/', async (req,res) => {
-  const recipes = await Recipe.find( {parent: null});
+router.get('/', async (req, res) => {
+  const recipes = await Recipe.find({ parent: null });
   res.send(recipes);
 });
 
 router.get('/:id', async (req, res) => {
-  const recipe = await Recipe.findOne( {_id: req.params.id})
-  const recipeTree = await Recipe.find( {path: req.params.id })
-  res.send({recipe, recipeTree});
+  const recipe = await Recipe.findOne({ _id: req.params.id });
+  const recipeTree = await Recipe.find({ path: req.params.id });
+  res.send({ recipe, recipeTree });
 });
 
-router.post('/', async (req,res) => {
-  const {ownerId, title, description, ingredients, instructions} = req.body;
+router.post('/', async (req, res) => {
+  const { ownerId, title, description, ingredients, instructions } = req.body;
   const recipe = new Recipe({
     path: [],
     parent: null,
     ownerId,
     title,
     description,
-    ingredients,
+    ingredients: JSON.parse(ingredients),
     instructions,
   });
-  recipe.save()
+  recipe.save();
   res.send(recipe);
 });
 

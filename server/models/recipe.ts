@@ -20,7 +20,6 @@ interface Recipe {
 }
 
 const recipeSchema = new Schema<Recipe>({
-  _id: String,
   path: { type: [String], required: true },
   parent: { type: String },
   ownerId: { type: String, required: true },

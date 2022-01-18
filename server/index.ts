@@ -1,35 +1,35 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Constants
-const PORT = process.env.PORT || 8080;
-
-// Server
 import express from 'express';
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-
-//Routes
-import userRoutes from './routes/user'
-import commentRoutes from './routes/comment'
-import recipeRoutes from './routes/recipe'
-
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
-app.use('/recipe', recipeRoutes);
-app.use('/user', userRoutes);
-app.use('/comment', commentRoutes);
-
 
 import User from './models/user';
 import Recipe from './models/recipe';
 import Comment from './models/comment';
+import userRoutes from './routes/user';
+import recipeRoutes from './routes/recipe';
+
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+
+// Constants
+const PORT = process.env.PORT || 8080;
+
+// Server
+const app = express();
 
 // Middleware
 app.use(morgan('tiny'));
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+//Routes
+app.use('/recipes', recipeRoutes);
+app.use('/users', userRoutes);
 
 // connect to db
 mongoose
@@ -47,26 +47,6 @@ app.get('/', async (req, res) => {
   const comments = await Comment.find();
   const recipes = await Recipe.find();
   res.send({ users, comments, recipes });
-});
-
-// Get all users
-app.get('/users', async (req, res) => {
-  const users = await User.find();
-  res.send(users);
-});
-
-// Add a user
-app.get('/add-user', async (req, res) => {
-  await User.deleteMany({});
-
-  const newUser = await User.create({
-    _id: '2a',
-    email: 'JoeBics@example.com',
-    password: 'password',
-    avatar: 'https://avatars.githubusercontent.com/u/46177831?v=4',
-  });
-
-  res.send(newUser);
 });
 
 app.listen(PORT, () => console.log(`API server running on port: ${PORT}`));
