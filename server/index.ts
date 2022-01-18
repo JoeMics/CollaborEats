@@ -7,7 +7,6 @@ import User from './models/user';
 import Recipe from './models/recipe';
 import Comment from './models/comment';
 import userRoutes from './routes/user';
-import commentRoutes from './routes/comment';
 import recipeRoutes from './routes/recipe';
 
 const mongoose = require('mongoose');
