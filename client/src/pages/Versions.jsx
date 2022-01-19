@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import VersionComponent from '../components/Versions/index';
 
 const Versions = () => {
-  return <div>I AM VERSIONS</div>;
+  useEffect(() => {
+    document.title = `Version - CollaborEats`;
+  });
+  return (
+    <div>
+      <VersionComponent />
+    </div>
+  );
 };
 
 export default Versions;
