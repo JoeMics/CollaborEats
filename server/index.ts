@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import cors from 'cors';
 
 import User from './models/user';
 import Recipe from './models/recipe';
@@ -11,7 +12,7 @@ import recipeRoutes from './routes/recipe';
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const cookieParser = require('cookieParser');
+// const cookieParser = require('cookieParser');
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -27,7 +28,8 @@ app.use(
     extended: true,
   })
 );
-app.use(cookieParser);
+// app.use(cookieParser);
+app.use(cors());
 
 //Routes
 app.use('/recipes', recipeRoutes);
