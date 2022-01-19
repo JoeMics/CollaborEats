@@ -11,15 +11,7 @@ const Comments = () => {
       <h2 className="text-4xl">Comments</h2>
       <Form userId={USERID} recipeId={RECIPEID} />
       {/* comments to mapped over */}
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
+      <Comment name={'Jamie'} content={'new comment'} createdAt={'yes'} />
     </section>
   );
 };
