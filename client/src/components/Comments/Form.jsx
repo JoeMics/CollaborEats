@@ -1,21 +1,4 @@
-import { useState } from 'react';
-import { addComment } from '../../services/api';
-
-const Form = ({ userId, recipeId }) => {
-  const [input, setInput] = useState('');
-
-  const handleSubmit = async (e) => {
-    // TODO: add validations/sanitizations
-    e.preventDefault();
-
-    try {
-      await addComment(userId, recipeId, input);
-    } catch (error) {
-      console.log(error);
-    }
-    setInput('');
-  };
-
+const Form = ({ handleSubmit, input, setInput }) => {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
