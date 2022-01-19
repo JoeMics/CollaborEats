@@ -10,7 +10,7 @@ const Navbar = () => {
         </h1>
         <ul className="flex">
           <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+            <Link to={ROUTES.DASHBOARD}>Home</Link>
           </li>
           <li className="text-sm px-2 mx-1 my-auto">
             <Link to={ROUTES.RECIPE}>Recipe</Link>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Comments from '../Comments';
+import Comments from '../components/Comments';
 import RecipeComponent from '../components/Recipe/index';
 
 const Recipe = () => {
