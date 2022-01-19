@@ -1,6 +1,12 @@
 import axios from '../lib/api';
 
 export async function fetchData() {
-  const response = await axios.get('/');
-  return response;
+  return await axios.get('/');
+}
+
+export async function addComment(ownerId, recipeId, content) {
+  return await axios.post(`/recipes/${recipeId}/comments`, {
+    ownerId,
+    content,
+  });
 }
