@@ -10,3 +10,7 @@ export async function addComment(ownerId, recipeId, content) {
     content,
   });
 }
+
+export async function fetchComments(recipeId) {
+  return await axios.get(`/recipes/${recipeId}/comments`);
+}
