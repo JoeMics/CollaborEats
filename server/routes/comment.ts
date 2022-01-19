@@ -13,7 +13,10 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { recipeId, ownerId, content } = req.body;
+  const { ownerId, content } = req.body;
+  // TS does not know recipeId exists
+  // @ts-ignore:next-line
+  const { recipeId } = req.params;
 
   const comment = new Comment({
     recipeId,
