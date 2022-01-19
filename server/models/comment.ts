@@ -8,10 +8,13 @@ interface Comment {
   content: String;
 }
 
-const commentSchema = new Schema<Comment>({
-  ownerId: { type: String, required: true },
-  recipeId: { type: String, required: true },
-  content: { type: String, required: true },
-});
+const commentSchema = new Schema<Comment>(
+  {
+    ownerId: { type: String, required: true },
+    recipeId: { type: String, required: true },
+    content: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model('Comment', commentSchema);
