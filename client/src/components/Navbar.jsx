@@ -21,15 +21,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex">
-        <div class="pt-2 px-2 relative mx-auto text-gray-600">
+        <div className="pt-2 px-2 relative mx-auto text-gray-600">
           <input
-            class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none mr-4"
+            className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none mr-4"
             type="search"
-            autocomplete="off"
+            autoComplete="off"
             name="search"
             placeholder="Search"
           />
-          <button type="button" class="absolute right-0 top-0 mt-5 mr-8">
+          <button type="button" className="absolute right-0 top-0 mt-5 mr-8">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="text-gray-600 h-4 w-4"
