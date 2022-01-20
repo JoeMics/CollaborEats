@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListComponent from './ListComponent';
 
-export default function List({ ingredients, edit }) {
-  const [ingredientList, setIngredientList] = useState([]);
-
+export default function List({ ingredients, edit, ingredientList, setIngredientList }) {
   // initial render, shows fills ingredients if existing
   // Adds an "index" property for accessing place in component
   useEffect(() => {
