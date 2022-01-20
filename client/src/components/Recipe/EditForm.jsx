@@ -17,8 +17,12 @@ export default function EditFormComponent({ recipe }) {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         id="title"
@@ -48,11 +52,12 @@ export default function EditFormComponent({ recipe }) {
       <label>Ingredients</label>
       <List ingredients={ingredients} edit={true} />
       <br></br>
-      <input
+      <button
         type="submit"
-        value="Submit"
         className="border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
-      ></input>
+      >
+        Submit
+      </button>
     </form>
   );
 }
