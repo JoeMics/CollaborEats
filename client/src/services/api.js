@@ -16,8 +16,7 @@ export async function fetchComments(recipeId) {
 }
 
 export async function getRecipe() {
-  const response = await axios.get('/recipes/61e607f0311d699fd35f509e');
-  return response;
+  return await axios.get('/recipes/61e607f0311d699fd35f509e');
 }
 // export async function createRecipe() {}
 // await axios.get('/asdasdasdas');

@@ -1,43 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import ListComponent from './ListComponent';
-import { v4 as uuidv4 } from 'uuid';
 
-export default function List({ ingredients, edit }) {
-  const [ingredientList, setIngredientList] = useState([]);
-
+export default function List({ ingredients, edit, ingredientList, setIngredientList }) {
+  // initial render, shows fills ingredients if existing
+  // Adds an "index" property for accessing place in component
   useEffect(() => {
-    setIngredientList([...ingredients]);
-  }, [ingredients]);
+    const formattedIngredients = ingredients.map((ingredient, index) => {
+      return {
+        ...ingredient,
+        index,
+      };
+    });
 
-  //ADD NEW INGREDIENT we have no id. we will use state then
-  //REFRESHED THE PAGE. will have id.
-  // ADD TO LIST
+    setIngredientList(formattedIngredients);
+  }, [ingredients]);
 
   const onAddBtnClick = () => {
     const ingredient = {
       ingredient: null,
       amount: null,
       unitOfMeasure: null,
+      index: ingredientList.length,
     };
 
     setIngredientList([...ingredientList, ingredient]);
   };
 
-  const onRemoveBtnClick = (uuid) => {
-    const filteredList = ingredientList.filter((item) => {
-      return item.listId !== uuid;
+  const onRemoveBtnClick = (index) => {
+    // removes targeted ingredient
+    const filteredList = ingredientList.filter((ingredient) => {
+      return ingredient.index !== index;
     });
-    setIngredientList(filteredList);
+
+    // Resets in indices of the ingredients
+    const updatedList = filteredList.map((ingredient, index) => {
+      return {
+        ...ingredient,
+        index,
+      };
+    });
+    setIngredientList(updatedList);
+  };
+
+  // Allows ListComponent to update THIS component's state on change
+  const addIngredient = (inputData) => {
+    setIngredientList((prev) => {
+      const newList = [...prev];
+      newList[inputData.index] = inputData.ingredient;
+      return newList;
+    });
   };
 
   return (
     <div>
       {edit &&
-        ingredientList.map((ingredient) => {
-          const uuid = uuidv4();
-          ingredient['listId'] = uuid;
+        ingredientList.map((ingredient, index) => {
           return (
-            <ListComponent key={uuid} item={ingredient} remove={() => onRemoveBtnClick(uuid)} />
+            <ListComponent
+              index={index}
+              key={index}
+              item={ingredient}
+              remove={() => onRemoveBtnClick(index)}
+              addIngredient={addIngredient}
+            />
           );
         })}
       <button type="button" onClick={onAddBtnClick}>
