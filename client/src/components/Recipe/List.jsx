@@ -4,13 +4,18 @@ import ListComponent from './ListComponent';
 export default function List({ ingredients, edit }) {
   const [ingredientList, setIngredientList] = useState([]);
 
+  // initial render, shows fills ingredients if existing
+  // Adds an "index" property for accessing place in component
   useEffect(() => {
-    setIngredientList([...ingredients]);
-  }, [ingredients]);
+    const formattedIngredients = ingredients.map((ingredient, index) => {
+      return {
+        ...ingredient,
+        index,
+      };
+    });
 
-  //ADD NEW INGREDIENT we have no id. we will use state then
-  //REFRESHED THE PAGE. will have id.
-  // ADD TO LIST
+    setIngredientList(formattedIngredients);
+  }, [ingredients]);
 
   const onAddBtnClick = () => {
     const ingredient = {
@@ -23,20 +28,28 @@ export default function List({ ingredients, edit }) {
     setIngredientList([...ingredientList, ingredient]);
   };
 
-  // fuck the filter
   const onRemoveBtnClick = (index) => {
-    const filteredList = ingredientList.filter((item, aIndex) => {
-      return aIndex !== index;
+    // removes targeted ingredient
+    const filteredList = ingredientList.filter((ingredient) => {
+      return ingredient.index !== index;
     });
-    setIngredientList(filteredList);
+
+    // Resets in indices of the ingredients
+    const updatedList = filteredList.map((ingredient, index) => {
+      return {
+        ...ingredient,
+        index,
+      };
+    });
+    setIngredientList(updatedList);
   };
 
+  // Allows ListComponent to update THIS component's state on change
   const addIngredient = (inputData) => {
-    console.log(inputData);
     setIngredientList((prev) => {
-      prev[inputData.index] = inputData.ingredient;
-      console.log(prev);
-      return prev;
+      const newList = [...prev];
+      newList[inputData.index] = inputData.ingredient;
+      return newList;
     });
   };
 
