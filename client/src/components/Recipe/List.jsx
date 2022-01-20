@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ListComponent from './IngredientInputTemplate';
+import ListComponent from './ListComponent';
 
 export default function List(props) {
   const Input = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import List from './IngredientList';
+import List from './List';
 
 export default function CreateFormComponent(props) {
   return (
