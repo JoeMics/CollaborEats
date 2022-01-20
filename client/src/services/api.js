@@ -1,7 +1,7 @@
 import axios from '../lib/api';
 
 export async function fetchData() {
-  return await axios.get('/');
+  return await axios.get('/recipes/61e607f0311d699fd35f509e');
 }
 
 export async function addComment(ownerId, recipeId, content) {
