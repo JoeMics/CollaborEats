@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree';
 import treeFormatter from '../../helpers/treeFormatter';
+import { useCenteredTree } from '../../helpers/centerTree';
 import { fetchData } from '../../services/api';
 
 export default function OrgChartTree() {
   const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [translate, containerRef] = useCenteredTree();
 
   useEffect(() => {
     async function getAllData() {
@@ -29,10 +31,10 @@ export default function OrgChartTree() {
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
     <>
-      {loading && <div>Loading!!!</div>};
+      {loading && <div>Loading!!!</div>}
       {!loading && (
-        <div id="treeWrapper" style={{ width: '80vw', height: '75vh' }}>
-          <Tree data={treeData} orientation={'vertical'} />
+        <div id="treeWrapper" style={{ width: '80vw', height: '75vh' }} ref={containerRef}>
+          <Tree data={treeData} translate={translate} orientation={'vertical'} />
         </div>
       )}
     </>
