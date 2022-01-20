@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { Schema } from 'mongoose';
+import User from './user';
 
 interface Comment {
   _id?: String;
@@ -10,7 +11,7 @@ interface Comment {
 
 const commentSchema = new Schema<Comment>(
   {
-    ownerId: { type: String, required: true },
+    ownerId: { type: Schema.Types.ObjectId, ref: User, required: true },
     recipeId: { type: String, required: true },
     content: { type: String, required: true },
   },

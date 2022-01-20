@@ -25,18 +25,16 @@ const Comments = () => {
     e.preventDefault();
 
     try {
-      await addComment(USERID, RECIPEID, input);
+      const newComment = await addComment(USERID, RECIPEID, input);
+      setComments((prev) => [...prev, newComment.data]);
+      setInput('');
     } catch (error) {
       console.log(error);
     }
-
-    const now = new Date().toString();
-    setComments((prev) => [...prev, { ownerId: USERID, content: input, createdAt: now }]);
-    setInput('');
   };
 
   const commentComponents = comments.map(({ _id, ownerId, content, createdAt }, index) => (
-    <Comment key={_id || index} name={ownerId} content={content} createdAt={createdAt} />
+    <Comment key={_id || index} name={ownerId.email} content={content} createdAt={createdAt} />
   ));
 
   return (
