@@ -30,10 +30,14 @@ export default function RecipeComponent(props) {
         <div className="flex-row mx-auto container pt-8">
           {!toggleForm ? (
             <>
-              <div className="flex content-start space-x-6 bg-green-500">
-                <h3>{recipe.title}</h3>
-                <button onClick={() => setToggleForm(!toggleForm)}>Fork</button>
-                <button>Other Forks</button>
+              <div className="flex justify-between content-start space-x-6 bg-green-500">
+                <h3 className="pl-2">{recipe.title}</h3>
+                <div className="space-x-6 pr-2">
+                  <button className="bg-red-500" onClick={() => setToggleForm(!toggleForm)}>
+                    Fork
+                  </button>
+                  <button className="bg-red-500">Other Forks</button>
+                </div>
               </div>
               <div className="flex container bg-yellow-500">
                 <Ingredients ingredients={recipe.ingredients} />
