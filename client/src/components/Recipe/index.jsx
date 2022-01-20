@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Ingredients from './Ingredients';
 import Instructions from './Instructions';
 import CreateFormComponent from './CreateForm';
+import EditFormComponent from './EditForm';
+import { getRecipeData } from '../../services/api';
 
 export default function RecipeComponent(props) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getAllData() {
+      const dbData = getRecipeData();
+
+      const root = {
+        name: dbData.data.recipe.title,
+        id: dbData.data.recipe._id,
+        children: [],
+      };
+      setTreeData(formattedAnswer);
+      setLoading(false);
+    }
+    setLoading(true);
+    getRecipeData();
+  }, []);
+
   return (
     <div className="flex-row mx-auto container pt-8">
       {/* <div className="flex content-start space-x-6 bg-green-500">
@@ -16,7 +35,9 @@ export default function RecipeComponent(props) {
         <Ingredients />
         <Instructions />
       </div> */}
-      <CreateFormComponent />
+      <EditFormComponent />
     </div>
   );
 }
+
+//61e607f0311d699fd35f509e

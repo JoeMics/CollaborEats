@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import List from './IngredientList';
 
 export default function CreateFormComponent(props) {
