@@ -15,8 +15,8 @@ export default function RecipeComponent(props) {
       setLoading(true);
       const dbData = await getRecipe();
       setLoading(false);
-      console.log('edit form data:, ', dbData.data[0]);
-      setRecipe(dbData.data[0]);
+      console.log('edit form data:, ', dbData.data.recipe);
+      setRecipe(dbData.data.recipe);
     }
     getRecipeData();
   }, []);

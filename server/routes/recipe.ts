@@ -12,10 +12,11 @@ router.get('/', async (req, res) => {
   res.send(recipes);
 });
 
-router.get('/:ownerId', async (req, res) => {
-  const recipes = await Recipe.find({ parent: null, ownerId: req.params.ownerId });
-  res.send(recipes);
-});
+// THIS NEEDS TO BE NOT HERE!!!!
+// router.get('/:ownerId', async (req, res) => {
+//   const recipes = await Recipe.find({ parent: null, ownerId: req.params.ownerId });
+//   res.send(recipes);
+// });
 
 router.get('/:id', async (req, res) => {
   const recipe = await Recipe.findOne({ _id: req.params.id });
