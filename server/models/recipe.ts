@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { Schema, Types } from 'mongoose';
+import User from './user';
 
 interface Ingredient {
   ingredient: String;
@@ -22,7 +23,7 @@ interface Recipe {
 const recipeSchema = new Schema<Recipe>({
   path: { type: [String], required: true },
   parent: { type: String },
-  ownerId: { type: String, required: true },
+  ownerId: { type: Schema.Types.ObjectId, ref: User, required: true },
   title: { type: String, required: true },
   description: { type: String, required: true },
   ingredients: {
