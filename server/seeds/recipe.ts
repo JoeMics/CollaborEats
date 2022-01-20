@@ -68,7 +68,7 @@ export default [
     _id: '61e6097228a24ac228581007',
     path: [],
     parent: null,
-    ownerId: '61e607f0311d699fd35f509e',
+    ownerId: '61e608607f04825b4c4cd517',
     title: 'Eggy Omelettes',
     description: 'Simple and quick recipe for a moe moe omelette!',
     ingredients: [
