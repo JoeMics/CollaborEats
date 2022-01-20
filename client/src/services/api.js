@@ -15,6 +15,10 @@ export async function fetchComments(recipeId) {
   return await axios.get(`/recipes/${recipeId}/comments`);
 }
 
+export async function fetchMasterRecipes() {
+  return await axios.get('/recipes');
+}
+
 export async function getRecipe() {
   return await axios.get('/recipes/61e60945bda713dc8a3f7427');
 }
