@@ -12,7 +12,9 @@ const Dashboard = () => {
     async function getRecipeData() {
       const dbData = await fetchMasterRecipes();
       setRecipes(dbData.data);
-      setLoading(false);
+      // it loads too fast to see at the moment, so this will be removed in
+      //real app and we just have setLoading(false);
+      setTimeout(() => setLoading(false), 1000);
     }
     setLoading(true);
     getRecipeData();
@@ -23,7 +25,7 @@ const Dashboard = () => {
       {loading ? (
         <div>
           <Skeleton
-            count={6}
+            count={2}
             width={340}
             height={500}
             className="border-2 p-5 mx-14 my-4 rounded"

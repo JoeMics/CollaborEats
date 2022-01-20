@@ -12,7 +12,9 @@ const RecipeMaster = () => {
     async function getRecipeData() {
       const dbData = await fetchMasterRecipes();
       setRecipes(dbData.data);
-      setLoading(false);
+      // it loads too fast to see at the moment, so this will be removed in
+      //real app and we just have setLoading(false);
+      setTimeout(() => setLoading(false), 1000);
     }
     setLoading(true);
     getRecipeData();
