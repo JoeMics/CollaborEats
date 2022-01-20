@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import List from './List';
 
 export default function EditFormComponent({ recipe }) {
-  const { title, description, instructions, ingredients } = recipe;
+  const { title, description, instructions, ingredients, _id, path } = recipe;
   const [recipeForm, setRecipeForm] = useState({
+    parent: _id,
+    path,
     title,
     description,
     instructions,
