@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import List from './List';
 
 export default function EditFormComponent({ recipe }) {
-  const { title, description, instructions, ingredients, _id, path } = recipe;
+  const { title, description, instructions, ingredients } = recipe;
   const [recipeForm, setRecipeForm] = useState({
-    parent: _id,
-    path: [...path, _id],
+    // parent: _id,
+    // path: [...path, _id],
     title,
     description,
     instructions,
   });
 
   const [ingredientList, setIngredientList] = useState([...ingredients]);
+  const { user } = useContext(AuthContext);
 
   const editInput = (e) => {
     setRecipeForm({
