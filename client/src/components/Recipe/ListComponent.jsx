@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function ListComponent({ item, remove }) {
+export default function ListComponent({ item, remove, addIngredient, index }) {
   const { amount, ingredient, unitOfMeasure } = item;
   const [state, setState] = useState({
     amount,
@@ -13,6 +13,10 @@ export default function ListComponent({ item, remove }) {
       ...state,
       [e.target.name]: e.target.value,
     });
+
+    const ingredient = state;
+
+    addIngredient({ ingredient, index });
   };
 
   return (

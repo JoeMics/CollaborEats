@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ListComponent from './ListComponent';
-import { v4 as uuidv4 } from 'uuid';
 
 export default function List({ ingredients, edit }) {
   const [ingredientList, setIngredientList] = useState([]);
@@ -18,26 +17,41 @@ export default function List({ ingredients, edit }) {
       ingredient: null,
       amount: null,
       unitOfMeasure: null,
+      index: ingredientList.length,
     };
 
     setIngredientList([...ingredientList, ingredient]);
   };
 
-  const onRemoveBtnClick = (uuid) => {
-    const filteredList = ingredientList.filter((item) => {
-      return item.listId !== uuid;
+  // fuck the filter
+  const onRemoveBtnClick = (index) => {
+    const filteredList = ingredientList.filter((item, aIndex) => {
+      return aIndex !== index;
     });
     setIngredientList(filteredList);
+  };
+
+  const addIngredient = (inputData) => {
+    console.log(inputData);
+    setIngredientList((prev) => {
+      prev[inputData.index] = inputData.ingredient;
+      console.log(prev);
+      return prev;
+    });
   };
 
   return (
     <div>
       {edit &&
-        ingredientList.map((ingredient) => {
-          const uuid = uuidv4();
-          ingredient['listId'] = uuid;
+        ingredientList.map((ingredient, index) => {
           return (
-            <ListComponent key={uuid} item={ingredient} remove={() => onRemoveBtnClick(uuid)} />
+            <ListComponent
+              index={index}
+              key={index}
+              item={ingredient}
+              remove={() => onRemoveBtnClick(index)}
+              addIngredient={addIngredient}
+            />
           );
         })}
       <button type="button" onClick={onAddBtnClick}>
