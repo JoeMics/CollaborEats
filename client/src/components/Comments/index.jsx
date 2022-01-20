@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import { addComment, fetchComments } from '../../services/api';
 import Comment from './Comment';
 import Form from './Form';
 
 // DEBUGGING
 const RECIPEID = '61e608607f04825b4c4cd517';
-const USERID = '61e608607f04825b4c4cd517';
 
 const Comments = () => {
   const [comments, setComments] = useState([]);
   const [input, setInput] = useState('');
+  const { userId } = useContext(AuthContext);
 
   // Inital render for comments
   useEffect(() => {
@@ -25,7 +26,7 @@ const Comments = () => {
     e.preventDefault();
 
     try {
-      const newComment = await addComment(USERID, RECIPEID, input);
+      const newComment = await addComment(userId, RECIPEID, input);
       setComments((prev) => [...prev, newComment.data]);
       setInput('');
     } catch (error) {
