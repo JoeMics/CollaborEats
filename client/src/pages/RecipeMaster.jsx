@@ -4,7 +4,7 @@ import { fetchMasterRecipes } from '../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const Dashboard = () => {
+const RecipeMaster = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,7 +25,7 @@ const Dashboard = () => {
       {loading ? (
         <div>
           <Skeleton
-            count={2}
+            count={6}
             width={340}
             height={500}
             className="border-2 p-5 mx-14 my-4 rounded"
@@ -39,4 +39,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default RecipeMaster;
