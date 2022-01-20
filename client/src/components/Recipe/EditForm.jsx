@@ -5,7 +5,7 @@ export default function EditFormComponent({ recipe }) {
   const { title, description, instructions, ingredients, _id, path } = recipe;
   const [recipeForm, setRecipeForm] = useState({
     parent: _id,
-    path,
+    path: [...path, _id],
     title,
     description,
     instructions,
