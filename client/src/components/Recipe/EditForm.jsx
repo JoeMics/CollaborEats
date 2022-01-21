@@ -61,7 +61,7 @@ export default function EditFormComponent({ recipe }) {
       <button
         type="submit"
         value="Submit"
-        className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
+        className="block items-center px-4 py-2 mt-4 bg-blue-300 rounded text-white"
       >
         Submit
       </button>
