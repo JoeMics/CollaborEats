@@ -45,7 +45,6 @@ export default function CreateFormComponent(props) {
           value={recipeForm.title}
           onChange={editInput}
         ></input>
-        <br></br>
         <textarea
           name="description"
           className="w-full h-32 px-4 py-3 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400"
@@ -53,7 +52,6 @@ export default function CreateFormComponent(props) {
           value={recipeForm.description}
           onChange={editInput}
         ></textarea>
-        <br></br>
         <textarea
           name="instructions"
           className="w-full h-32 px-4 py-3 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400"
@@ -61,15 +59,15 @@ export default function CreateFormComponent(props) {
           value={recipeForm.instructions}
           onChange={editInput}
         ></textarea>
-        <br></br>
         <label>Ingredients</label>
         <List ingredientList={ingredientList} setIngredientList={setIngredientList} edit={true} />
-        <br></br>
-        <input
+        <button
           type="submit"
           value="Submit"
-          className="border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
-        ></input>
+          className="block items-center px-4 py-2 my-4 bg-blue-300 rounded text-white"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -65,7 +65,11 @@ export default function List({ edit, ingredientList, setIngredientList }) {
             />
           );
         })}
-      <button type="button" onClick={onAddBtnClick}>
+      <button
+        className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
+        type="button"
+        onClick={onAddBtnClick}
+      >
         Add an ingredient
       </button>
     </div>

@@ -30,12 +30,12 @@ export default function ListComponent({ item, remove, addIngredient, index }) {
   };
 
   return (
-    <div>
+    <div className="flex justify-between">
       <input
         type="text"
         name="ingredient"
         placeholder="Ingredient"
-        className="w-1/3 px-4 py-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
+        className="w-80 x-4 my-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
         onChange={editInput}
         value={!ingredient.ingredient ? '' : ingredient.ingredient}
       ></input>
@@ -43,7 +43,7 @@ export default function ListComponent({ item, remove, addIngredient, index }) {
         type="text"
         name="amount"
         placeholder="Amount"
-        className="w-1/3 px-4 py-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
+        className="w-80 x-4 my-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
         onChange={editInput}
         value={!ingredient.amount ? '' : ingredient.amount}
       ></input>
@@ -51,11 +51,15 @@ export default function ListComponent({ item, remove, addIngredient, index }) {
         type="text"
         name="unitOfMeasure"
         placeholder="Unit of Measure"
-        className="w-1/3 px-4 py-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
+        className="w-80 x-4 my-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
         onChange={editInput}
         value={!ingredient.unitOfMeasure ? '' : ingredient.unitOfMeasure}
       ></input>
-      <button type="button" onClick={remove}>
+      <button
+        className="block items-center px-4 py-1 my-2 bg-red-500 rounded text-white"
+        type="button"
+        onClick={remove}
+      >
         DELETE
       </button>
     </div>
