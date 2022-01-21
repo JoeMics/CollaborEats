@@ -19,6 +19,10 @@ export async function fetchMasterRecipes() {
   return await axios.get('/recipes');
 }
 
+export async function fetchUserRecipes(ownerId) {
+  return await axios.get(`/recipes/user/${ownerId}`);
+}
+
 export async function getRecipe(recipeId) {
   return await axios.get(`/recipes/${recipeId}`);
 }

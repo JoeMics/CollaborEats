@@ -4,8 +4,10 @@ import Instructions from './Instructions';
 import CreateFormComponent from './CreateForm';
 import EditFormComponent from './EditForm';
 import { getRecipe } from '../../services/api';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
-export default function RecipeComponent(props) {
+export default function RecipeComponent({ recipeId }) {
   const [recipe, setRecipe] = useState(true);
   const [loading, setLoading] = useState(true);
   const [toggleForm, setToggleForm] = useState(false);
@@ -13,9 +15,9 @@ export default function RecipeComponent(props) {
   useEffect(() => {
     async function getRecipeData() {
       setLoading(true);
-      const dbData = await getRecipe('61e607f0311d699fd35f509e');
+      //const dbData = await getRecipe('61e607f0311d699fd35f509e');
+      const dbData = await getRecipe(recipeId);
       setLoading(false);
-      console.log('edit form data:, ', dbData.data.recipe);
       setRecipe(dbData.data.recipe);
     }
     getRecipeData();
@@ -36,7 +38,13 @@ export default function RecipeComponent(props) {
                   <button className="bg-red-500" onClick={() => setToggleForm(!toggleForm)}>
                     Fork
                   </button>
-                  <button className="bg-red-500">Other Forks</button>
+                  {recipe.path && (
+                    <span className="bg-red-500">
+                      <Link to={`${ROUTES.VERSIONS}/${recipe.path ? recipe.path[0] : recipe._id}`}>
+                        Other Forks
+                      </Link>
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="flex container bg-yellow-500">
