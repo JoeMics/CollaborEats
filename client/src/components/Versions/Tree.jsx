@@ -3,6 +3,8 @@ import Tree from 'react-d3-tree';
 import treeFormatter from '../../helpers/treeFormatter';
 import { useCenteredTree } from '../../helpers/centerTree';
 import { getRecipe } from '../../services/api';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
 export default function OrgChartTree({ treeId }) {
   const [treeData, setTreeData] = useState(null);
@@ -11,9 +13,7 @@ export default function OrgChartTree({ treeId }) {
 
   useEffect(() => {
     async function getAllData() {
-      console.log('ACTUAL TREE DATA ID:', treeId);
       const dbData = await getRecipe(treeId);
-      console.log('the tree data: ', dbData.data);
       const root = {
         name: dbData.data.recipe.title,
         id: dbData.data.recipe._id,
@@ -30,7 +30,7 @@ export default function OrgChartTree({ treeId }) {
     getAllData();
   }, []);
 
-  const nodeSize = { x: 400, y: 300 };
+  const nodeSize = { x: 450, y: 300 };
   const foreignObjectProps = {
     width: nodeSize.x,
     height: nodeSize.y,
@@ -42,8 +42,6 @@ export default function OrgChartTree({ treeId }) {
   // This is made possible by `foreignObject`, which wraps the HTML tags to
   // allow for them to be injected into the SVG namespace.
   const renderForeignObjectNode = ({ nodeDatum, toggleNode, foreignObjectProps }) => {
-    console.log(nodeDatum);
-
     return (
       <g>
         <circle r={20} fill={'pink'}></circle>
@@ -65,7 +63,9 @@ export default function OrgChartTree({ treeId }) {
                 </span>
 
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  <button>Find the recipe here!</button>
+                  <button>
+                    <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>Find the recipe here!</Link>
+                  </button>
                 </span>
               </div>
             </div>
