@@ -29,6 +29,14 @@ export async function addFork(ownerId, parentId, content) {
     ...content,
   });
 }
+
+export async function addRecipe(ownerId, content) {
+  return await axios.post(`/recipes`, {
+    ownerId,
+    ...content,
+  });
+}
+
 // export async function createRecipe() {}
 // await axios.get('/asdasdasdas');
 
