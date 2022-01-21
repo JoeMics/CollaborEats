@@ -11,7 +11,7 @@ const Recipe = () => {
   });
 
   return (
-    <div>
+    <div className="container w-3/5">
       <RecipeComponent recipeId={id} />
       <Comments />
     </div>
