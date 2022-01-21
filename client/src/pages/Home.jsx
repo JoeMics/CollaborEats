@@ -13,6 +13,7 @@ const Home = () => {
   useEffect(() => {
     async function getAllData() {
       const dbData = await fetchData();
+      console.log('dbData: ', dbData.data);
       setData(dbData.data);
       console.log(data);
     }

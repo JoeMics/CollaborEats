@@ -1,6 +1,6 @@
 import CardList from '../components/CardList/index';
 import React, { useState, useEffect } from 'react';
-import { fetchUserRecipes } from '../services/api';
+import { fetchMasterRecipes } from '../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     async function getRecipeData() {
-      const dbData = await fetchUserRecipes('61e607f0311d699fd35f509e');
+      const dbData = await fetchMasterRecipes();
       setRecipes(dbData.data);
       // it loads too fast to see at the moment, so this will be removed in
       //real app and we just have setLoading(false);

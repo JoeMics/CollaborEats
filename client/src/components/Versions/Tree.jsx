@@ -4,7 +4,7 @@ import treeFormatter from '../../helpers/treeFormatter';
 import { useCenteredTree } from '../../helpers/centerTree';
 import { fetchData } from '../../services/api';
 
-export default function OrgChartTree({ id }) {
+export default function OrgChartTree() {
   const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [translate, containerRef] = useCenteredTree();
@@ -12,7 +12,7 @@ export default function OrgChartTree({ id }) {
   useEffect(() => {
     async function getAllData() {
       const dbData = await fetchData();
-      console.log('the tree data: ', dbData.data);
+
       const root = {
         name: dbData.data.recipe.title,
         id: dbData.data.recipe._id,
