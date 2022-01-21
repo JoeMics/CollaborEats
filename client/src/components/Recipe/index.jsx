@@ -52,8 +52,13 @@ export default function RecipeComponent({ recipeId }) {
             </>
           ) : (
             <>
-              <div className="flex content-start space-x-6 bg-green-500">
-                <button onClick={() => setToggleForm(!toggleForm)}>Back</button>
+              <div className="flex w-full justify-end space-x-6">
+                <button
+                  className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
+                  onClick={() => setToggleForm(!toggleForm)}
+                >
+                  Back
+                </button>
               </div>
               <EditFormComponent recipe={recipe} />
             </>
