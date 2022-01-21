@@ -19,8 +19,15 @@ export async function fetchMasterRecipes() {
   return await axios.get('/recipes');
 }
 
-export async function getRecipe() {
-  return await axios.get('/recipes/61e60945bda713dc8a3f7427');
+export async function getRecipe(recipeId) {
+  return await axios.get(`/recipes/${recipeId}`);
+}
+
+export async function addFork(ownerId, parentId, content) {
+  return await axios.post(`/recipes/${parentId}/versions/`, {
+    ownerId,
+    ...content,
+  });
 }
 // export async function createRecipe() {}
 // await axios.get('/asdasdasdas');

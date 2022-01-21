@@ -21,6 +21,7 @@ export default function ListComponent({ item, remove, addIngredient, index }) {
         [e.target.name]: e.target.value,
       };
 
+      // TODO: Refactor to suppress errors
       // Updates List (parent) Component's state
       addIngredient({ ingredient, index });
 

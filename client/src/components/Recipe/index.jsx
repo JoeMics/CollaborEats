@@ -13,7 +13,7 @@ export default function RecipeComponent(props) {
   useEffect(() => {
     async function getRecipeData() {
       setLoading(true);
-      const dbData = await getRecipe();
+      const dbData = await getRecipe('61e607f0311d699fd35f509e');
       setLoading(false);
       console.log('edit form data:, ', dbData.data.recipe);
       setRecipe(dbData.data.recipe);
@@ -25,7 +25,7 @@ export default function RecipeComponent(props) {
   // const handleFork = () => {}
   return (
     <>
-      {loading && <div>Loading!!!</div>}
+      ={loading && <div>Loading!!!</div>}
       {!loading && (
         <div className="flex-row mx-auto container pt-8">
           {!toggleForm ? (
@@ -57,4 +57,3 @@ export default function RecipeComponent(props) {
     </>
   );
 }
-//as,djasdlk
