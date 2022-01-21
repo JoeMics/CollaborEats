@@ -3,8 +3,8 @@ import Comments from '../components/Comments';
 import RecipeComponent from '../components/Recipe/index';
 import { useParams } from 'react-router-dom';
 const Recipe = () => {
-const { id } =useParams();
-console.log(id);  
+  const { id } = useParams();
+  console.log(id);
 
   useEffect(() => {
     document.title = `Recipes - CollaborEats`;
@@ -12,7 +12,7 @@ console.log(id);
 
   return (
     <div>
-      <RecipeComponent />
+      <RecipeComponent recipeId={id} />
       <Comments />
     </div>
   );
