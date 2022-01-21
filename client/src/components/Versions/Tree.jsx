@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree';
 import treeFormatter from '../../helpers/treeFormatter';
 import { useCenteredTree } from '../../helpers/centerTree';
-import { fetchData } from '../../services/api';
+import { getRecipe } from '../../services/api';
 
-export default function OrgChartTree({ id }) {
+export default function OrgChartTree({ treeId }) {
   const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [translate, containerRef] = useCenteredTree();
 
   useEffect(() => {
     async function getAllData() {
-      const dbData = await fetchData();
+      console.log('ACTUAL TREE DATA ID:', treeId);
+      const dbData = await getRecipe(treeId);
       console.log('the tree data: ', dbData.data);
       const root = {
         name: dbData.data.recipe.title,

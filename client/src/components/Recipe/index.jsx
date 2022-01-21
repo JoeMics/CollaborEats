@@ -15,12 +15,9 @@ export default function RecipeComponent({ recipeId }) {
   useEffect(() => {
     async function getRecipeData() {
       setLoading(true);
-      console.log('the prop id:', recipeId);
       //const dbData = await getRecipe('61e607f0311d699fd35f509e');
       const dbData = await getRecipe(recipeId);
-      console.log('the path: ', dbData.data.recipe.path);
       setLoading(false);
-      console.log('edit form data:, ', dbData.data.recipe);
       setRecipe(dbData.data.recipe);
     }
     getRecipeData();
@@ -41,12 +38,13 @@ export default function RecipeComponent({ recipeId }) {
                   <button className="bg-red-500" onClick={() => setToggleForm(!toggleForm)}>
                     Fork
                   </button>
-                  <span className="bg-red-500">
-                    <Link to={`${ROUTES.VERSIONS}/${recipe?.path ? recipe.path[0] : recipe._id}`}>
-                      Other Forks
-                    </Link>
-                  </span>
-                  )
+                  {recipe.path && (
+                    <span className="bg-red-500">
+                      <Link to={`${ROUTES.VERSIONS}/${recipe.path ? recipe.path[0] : recipe._id}`}>
+                        Other Forks
+                      </Link>
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="flex container bg-yellow-500">
