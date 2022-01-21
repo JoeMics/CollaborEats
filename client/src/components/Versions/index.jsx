@@ -1,10 +1,7 @@
 import React from 'react';
 import TreeContainer from './TreeContainer';
-import { useParams } from 'react-router-dom';
 
-export default function VersionComponent() {
-  const { id } = useParams();
-  console.log('id: ', id);
+export default function VersionComponent(props) {
   return (
     <div className="flex-row mx-auto container pt-8">
       <div className="flex justify-between content-start space-x-6 bg-green-500">
@@ -16,7 +13,7 @@ export default function VersionComponent() {
         </div>
       </div>
       <div className="flex-row mx-auto container pt-6">
-        <TreeContainer treeId={id} />
+        <TreeContainer />
       </div>
     </div>
   );
