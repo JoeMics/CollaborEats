@@ -5,7 +5,7 @@ const Versions = () => {
     document.title = `Version - CollaborEats`;
   });
   return (
-    <div>
+    <div className="container w-auto h-auto">
       <VersionComponent />
     </div>
   );
