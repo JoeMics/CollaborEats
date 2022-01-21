@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ListComponent from './ListComponent';
 
-export default function List({ ingredients, edit, ingredientList, setIngredientList }) {
+export default function List({ edit, ingredientList, setIngredientList }) {
   // initial render, shows fills ingredients if existing
   // Adds an "index" property for accessing place in component
   useEffect(() => {
-    const formattedIngredients = ingredients.map((ingredient, index) => {
+    const formattedIngredients = ingredientList.map((ingredient, index) => {
       return {
         ...ingredient,
         index,
@@ -13,7 +13,7 @@ export default function List({ ingredients, edit, ingredientList, setIngredientL
     });
 
     setIngredientList(formattedIngredients);
-  }, [ingredients]);
+  }, []);
 
   const onAddBtnClick = () => {
     const ingredient = {

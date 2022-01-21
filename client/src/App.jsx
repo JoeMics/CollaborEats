@@ -7,6 +7,7 @@ import Recipe from './pages/Recipe';
 import Versions from './pages/Versions';
 import Navbar from './components/Navbar';
 import RecipeMaster from './pages/RecipeMaster';
+import Create from './pages/Create';
 function App() {
   return (
     <Router>
@@ -18,6 +19,8 @@ function App() {
         <Route path={ROUTES.RECIPEPAGE} component={RecipeMaster} exact />
         <Route path={ROUTES.USERRECIPE} component={Recipe} exact />
         <Route path={ROUTES.VERSIONS} component={Versions} exact />
+        <Route path={ROUTES.VERSIONS_PAGE} component={Versions} exact />
+        <Route path={ROUTES.CREATE} component={Create} exact />
       </Switch>
     </Router>
   );

@@ -19,6 +19,10 @@ export async function fetchMasterRecipes() {
   return await axios.get('/recipes');
 }
 
+export async function fetchUserRecipes(ownerId) {
+  return await axios.get(`/recipes/user/${ownerId}`);
+}
+
 export async function getRecipe(recipeId) {
   return await axios.get(`/recipes/${recipeId}`);
 }
@@ -29,6 +33,14 @@ export async function addFork(ownerId, parentId, content) {
     ...content,
   });
 }
+
+export async function addRecipe(ownerId, content) {
+  return await axios.post(`/recipes`, {
+    ownerId,
+    ...content,
+  });
+}
+
 // export async function createRecipe() {}
 // await axios.get('/asdasdasdas');
 

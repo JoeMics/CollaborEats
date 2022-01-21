@@ -12,16 +12,15 @@ router.get('/', async (req, res) => {
   res.send(recipes);
 });
 
-// THIS NEEDS TO BE NOT HERE!!!!
-// router.get('/:ownerId', async (req, res) => {
-//   const recipes = await Recipe.find({ parent: null, ownerId: req.params.ownerId });
-//   res.send(recipes);
-// });
-
 router.get('/:id', async (req, res) => {
   const recipe = await Recipe.findOne({ _id: req.params.id });
   const recipeTree = await Recipe.find({ path: req.params.id });
   res.send({ recipe, recipeTree });
+});
+
+router.get('/user/:ownerId', async (req, res) => {
+  const recipes = await Recipe.find({ ownerId: req.params.ownerId });
+  res.send(recipes);
 });
 
 router.post('/', async (req, res) => {
@@ -32,7 +31,7 @@ router.post('/', async (req, res) => {
     ownerId,
     title,
     description,
-    ingredients: JSON.parse(ingredients),
+    ingredients,
     instructions,
   });
   recipe.save();
