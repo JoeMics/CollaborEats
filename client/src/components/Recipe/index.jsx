@@ -30,7 +30,7 @@ export default function RecipeComponent({ recipeId }) {
   // const handleFork = () => {}
   return (
     <>
-      ={loading && <div>Loading!!!</div>}
+      {loading && <div>Loading!!!</div>}
       {!loading && (
         <div className="flex-row mx-auto container pt-8">
           {!toggleForm ? (

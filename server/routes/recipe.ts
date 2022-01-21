@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
     ownerId,
     title,
     description,
-    ingredients: JSON.parse(ingredients),
+    ingredients,
     instructions,
   });
   recipe.save();
