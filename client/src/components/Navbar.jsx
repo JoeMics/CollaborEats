@@ -1,7 +1,26 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
+import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
+  const { userId, setUserId } = useContext(AuthContext);
+
+  // For demo purposes
+  const demoUsers = {
+    '61e607f0311d699fd35f509e': 'JoeMics',
+    '61e608607f04825b4c4cd517': 'IvanTang',
+  };
+
+  // For demo purposes
+  const cycleUsers = () => {
+    setUserId(
+      userId === '61e607f0311d699fd35f509e'
+        ? '61e608607f04825b4c4cd517'
+        : '61e607f0311d699fd35f509e'
+    );
+  };
+
   return (
     <nav className="flex items-center justify-between flex-wrap text-white bg-neutral-700 p-2">
       <div className="flex">
@@ -21,15 +40,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex">
-        <div className="pt-2 px-2 relative mx-auto text-gray-600">
+        <div className="relative mx-auto text-gray-600">
           <input
-            className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none mr-4"
+            className="border-2 my-auto border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
             type="search"
             autoComplete="off"
             name="search"
             placeholder="Search"
           />
-          <button type="button" className="absolute right-0 top-0 mt-5 mr-8">
+          <button type="button" className="relative -left-8  mr-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="text-gray-600 h-4 w-4"
@@ -46,11 +65,8 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <button className="rounded-full mr-4 px-3 py-2 bg-gray-300 text-sm text-green-700">
-          Login
-        </button>
-        <button className="rounded-full mr-4 px-3 py-2 bg-gray-300 text-sm text-green-700">
-          Sign Up
+        <button className="block items-center px-4 py-2 text-white" onClick={cycleUsers}>
+          Demo: {demoUsers[userId]}
         </button>
       </div>
     </nav>

@@ -10,6 +10,7 @@ import RecipeMaster from './pages/RecipeMaster';
 import Create from './pages/Create';
 import ImageUpload from './pages/ImageUpload';
 
+import Edit from './pages/Edit';
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Route path={ROUTES.VERSIONS_PAGE} component={Versions} exact />
         <Route path={ROUTES.CREATE} component={Create} exact />
         <Route path={ROUTES.IMAGE_UPLOAD} component={ImageUpload} exact />
+        <Route path={ROUTES.EDIT} component={Edit} exact />
       </Switch>
     </Router>
   );

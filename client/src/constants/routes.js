@@ -7,3 +7,4 @@ export const RECIPEPAGE = '/recipe/originals';
 export const USERRECIPE = '/recipe/:id';
 export const CREATE = '/create';
 export const IMAGE_UPLOAD = '/image/upload';
+export const EDIT = '/edit';
