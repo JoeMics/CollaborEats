@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useHistory } from 'react-router-dom';
 import { addFork } from '../../services/api';
 import List from './List';
 
@@ -13,6 +14,7 @@ export default function EditFormComponent({ recipe }) {
 
   const [ingredientList, setIngredientList] = useState([...ingredients]);
   const { userId } = useContext(AuthContext);
+  let history = useHistory();
 
   const editInput = (e) => {
     setRecipeForm({
@@ -28,9 +30,9 @@ export default function EditFormComponent({ recipe }) {
       ingredients: ingredientList,
     };
     // TODO: render recipe page, grab new recipe ID from response
-    await addFork(userId, _id, newRecipe);
+    const result = await addFork(userId, _id, newRecipe);
+    history.push(`/recipe/${result.data._id}`);
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <input
