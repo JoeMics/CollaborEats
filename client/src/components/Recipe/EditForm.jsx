@@ -42,7 +42,6 @@ export default function EditFormComponent({ recipe }) {
         value={recipeForm.title}
         onChange={editInput}
       ></input>
-      <br></br>
       <textarea
         name="description"
         className="w-full h-32 px-4 py-3 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400"
@@ -50,7 +49,6 @@ export default function EditFormComponent({ recipe }) {
         value={recipeForm.description}
         onChange={editInput}
       ></textarea>
-      <br></br>
       <textarea
         name="instructions"
         className="w-full h-32 px-4 py-3 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400"
@@ -58,10 +56,8 @@ export default function EditFormComponent({ recipe }) {
         value={recipeForm.instructions}
         onChange={editInput}
       ></textarea>
-      <br></br>
       <label>Ingredients</label>
       <List edit={true} ingredientList={ingredientList} setIngredientList={setIngredientList} />
-      <br></br>
       <button
         type="submit"
         value="Submit"
