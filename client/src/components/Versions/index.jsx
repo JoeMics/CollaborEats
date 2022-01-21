@@ -3,7 +3,6 @@ import TreeContainer from './TreeContainer';
 import { useParams } from 'react-router-dom';
 export default function VersionComponent() {
   const { id } = useParams();
-  console.log('VERSION id: ', id);
   return (
     <div className="flex-row mx-auto container pt-8">
       <div className="flex justify-between content-start space-x-6 bg-green-500">
