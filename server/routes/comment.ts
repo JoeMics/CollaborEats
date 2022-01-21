@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   // TS does not know recipeId exists
   // @ts-ignore:next-line
   const { recipeId } = req.params;
-  const comments = await Comment.find({ recipeId }).populate('ownerId');
+  const comments = await Comment.find({ recipeId }).sort({ createdAt: 'desc' }).populate('ownerId');
   res.send(comments);
 });
 

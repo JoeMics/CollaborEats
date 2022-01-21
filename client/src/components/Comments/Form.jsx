@@ -4,17 +4,17 @@ const Form = ({ handleSubmit, input, setInput }) => {
   };
 
   return (
-    <section>
+    <section className="w-5/6 mx-auto">
       <form onSubmit={handleSubmit}>
-        <input
-          className="border-2 focus:border-blue-400"
+        <textarea
+          className="w-full h-32 px-4 py-3 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400"
           name="comment"
           value={input}
           onChange={handleChange}
           type="text"
-        />
+        ></textarea>
         <button
-          className=" inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white"
+          className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
           type="submit"
           value="Submit"
         >
