@@ -29,10 +29,18 @@ router.get('/:id/recent', async (req, res) => {
   console.log(recipe);
 
   if (recipeTree.length > 0) {
-    console.log('recipeTree', recipeTree);
     res.send(recipeTree[0]);
   } else {
-    console.log('recipe', recipe);
+    res.send(recipe);
+  }
+});
+
+router.get('/:id/mostForked', async (req, res) => {
+  const recipe = await Recipe.findOne({ _id: req.params.id });
+  const recipeTree = await Recipe.find({ path: req.params.id });
+  if (recipeTree.length > 0) {
+    res.send(recipeTree);
+  } else {
     res.send(recipe);
   }
 });
