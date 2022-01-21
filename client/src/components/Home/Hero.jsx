@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
 const Hero = () => {
   return (
@@ -8,22 +10,24 @@ const Hero = () => {
         <h1 className="text-7xl w-96 font-bold text-green-700 mb-8">
           CollaborEat With Chefs and Make The Perfect Recipe
         </h1>
-        <button className="flex items-center px-4 py-2 bg-blue-300 rounded text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 5l7 7-7 7M5 5l7 7-7 7"
-            />
-          </svg>
-          Fork it Now
+        <button className="px-4 py-2 bg-blue-300 rounded text-white hover:bg-blue-600">
+          <Link to={`${ROUTES.RECIPEPAGE}`} className="flex item-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 5l7 7-7 7M5 5l7 7-7 7"
+              />
+            </svg>
+            Fork it Now
+          </Link>
         </button>
       </div>
       <div className="w-1/2 min-h-full">
