@@ -64,8 +64,8 @@ const treeFormatter = (root, treeData) => {
     // So just push to root node's children here
     if (treeData[i].path.length === 1) {
       data[0].children.push({
-        // name: treeData[i]._id.toString(),
         name: treeData[i].title,
+        id: treeData[i]._id,
         children: [],
       }); //data[0] is always root
     } else {
@@ -84,6 +84,7 @@ const treeFormatter = (root, treeData) => {
       // Push to the correct nested location
       get(r3treepath, data).push({
         name: treeData[i].title,
+        id: treeData[i]._id,
         children: [],
       });
     }
