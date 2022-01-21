@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { addRecipe } from '../../services/api';
 import List from './List';
 
 export default function CreateFormComponent(props) {
@@ -28,7 +29,8 @@ export default function CreateFormComponent(props) {
     };
     // TODO: render recipe page, grab new recipe ID from response
     // await addFork(userId, _id, newRecipe);
-    console.log(newRecipe);
+
+    await addRecipe(userId, newRecipe);
   };
 
   return (
