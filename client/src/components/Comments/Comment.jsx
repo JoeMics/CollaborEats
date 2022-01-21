@@ -4,9 +4,9 @@ const Comment = ({ name, content, createdAt }) => {
       <div>
         <img src="https://i.imgur.com/2WZtOD6.png" alt="" />
       </div>
-      <div className="bg-stone-300 mx-3 p-4 break-words rounded-lg w-4/5">
-        <h4 className="text-m">{name}</h4>
-        <p className="text-xs h-auto">{content}</p>
+      <div className="bg-stone-300 mx-3 p-5 break-words rounded-lg w-full">
+        <h4 className="text-lg">{name}</h4>
+        <p className="h-auto">{content}</p>
         <span className="text-xs">created on: {createdAt}</span>
       </div>
     </article>
