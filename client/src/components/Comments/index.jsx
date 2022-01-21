@@ -27,7 +27,7 @@ const Comments = () => {
 
     try {
       const newComment = await addComment(userId, RECIPEID, input);
-      setComments((prev) => [...prev, newComment.data]);
+      setComments((prev) => [newComment.data, ...prev]);
       setInput('');
     } catch (error) {
       console.log(error);
