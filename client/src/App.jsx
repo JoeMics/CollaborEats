@@ -8,6 +8,8 @@ import Versions from './pages/Versions';
 import Navbar from './components/Navbar';
 import RecipeMaster from './pages/RecipeMaster';
 import Create from './pages/Create';
+import ImageUpload from './pages/ImageUpload';
+
 function App() {
   return (
     <Router>
@@ -21,6 +23,7 @@ function App() {
         <Route path={ROUTES.VERSIONS} component={Versions} exact />
         <Route path={ROUTES.VERSIONS_PAGE} component={Versions} exact />
         <Route path={ROUTES.CREATE} component={Create} exact />
+        <Route path={ROUTES.IMAGE_UPLOAD} component={ImageUpload} exact />
       </Switch>
     </Router>
   );
