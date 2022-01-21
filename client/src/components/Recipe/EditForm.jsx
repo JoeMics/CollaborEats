@@ -1,19 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { addFork } from '../../services/api';
 import List from './List';
 
 export default function EditFormComponent({ recipe }) {
-  const { title, description, instructions, ingredients } = recipe;
+  const { title, description, instructions, ingredients, _id } = recipe;
   const [recipeForm, setRecipeForm] = useState({
-    // parent: _id,
-    // path: [...path, _id],
     title,
     description,
     instructions,
   });
 
   const [ingredientList, setIngredientList] = useState([...ingredients]);
-  const { user } = useContext(AuthContext);
+  const { userId } = useContext(AuthContext);
 
   const editInput = (e) => {
     setRecipeForm({
@@ -22,15 +21,14 @@ export default function EditFormComponent({ recipe }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newRecipe = {
       ...recipeForm,
       ingredients: ingredientList,
     };
-
-    console.log(newRecipe);
+    // TODO: render recipe page, grab new recipe ID from response
+    await addFork(userId, _id, newRecipe);
   };
 
   return (
