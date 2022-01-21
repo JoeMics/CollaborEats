@@ -30,7 +30,7 @@ export default function OrgChartTree({ treeId }) {
     getAllData();
   }, []);
 
-  const nodeSize = { x: 450, y: 400 };
+  const nodeSize = { x: 400, y: 400 };
   const foreignObjectProps = {
     width: nodeSize.x,
     height: nodeSize.y,
@@ -44,19 +44,19 @@ export default function OrgChartTree({ treeId }) {
   const renderForeignObjectNode = ({ nodeDatum, toggleNode, foreignObjectProps }) => {
     return (
       <g>
-        <circle r={20} fill={'pink'}></circle>
+        <circle r={20} fill={'purple'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
-          <div className="mx-8 border-8">
-            <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-300">
+          <div className="mx-8 border-8 rounded-lg">
+            <div className="max-w-sm overflow-hidden shadow-lg bg-gray-400 ">
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2 max-w-2xl">{nodeDatum.name}</div>
-                <p className="text-gray-700 text-base truncate hover:overflow-visible hover:whitespace-normal">
+                <p className="text-gray-800 text-base truncate hover:overflow-visible hover:whitespace-normal">
                   {nodeDatum.description}
                 </p>
               </div>
               <div className="px-6 pt-2 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
                   {nodeDatum.children && (
                     <button style={{ width: '100%' }} onClick={toggleNode}>
                       {nodeDatum.__rd3t.collapsed ? 'Expand' : 'Collapse'}
@@ -64,7 +64,7 @@ export default function OrgChartTree({ treeId }) {
                   )}
                 </span>
 
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
                   <button>
                     <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>Find the recipe here!</Link>
                   </button>
