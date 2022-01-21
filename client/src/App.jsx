@@ -18,6 +18,7 @@ function App() {
         <Route path={ROUTES.RECIPEPAGE} component={RecipeMaster} exact />
         <Route path={ROUTES.USERRECIPE} component={Recipe} exact />
         <Route path={ROUTES.VERSIONS} component={Versions} exact />
+        <Route path={ROUTES.VERSIONS_PAGE} component={Versions} exact />
       </Switch>
     </Router>
   );
