@@ -39,8 +39,8 @@ const Comments = () => {
   ));
 
   return (
-    <section className="container mt-10 mx-auto bg-slate-200">
-      <h2 className="text-4xl font-serif">Comments</h2>
+    <section className="container mt-24 mx-auto">
+      <h2 className="w-5/6 mx-auto text-4xl font-serif">Comments</h2>
       <Form input={input} setInput={setInput} handleSubmit={handleSubmit} />
       {commentComponents}
     </section>
