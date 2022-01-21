@@ -37,6 +37,40 @@ export default function OrgChartTree({ treeId }) {
     x: 1,
   };
 
+  const chevUp = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+      />
+    </svg>
+  );
+
+  const chevDown = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 11l7-7 7 7M5 19l7-7 7 7"
+      />
+    </svg>
+  );
+
   // Here we're using `renderCustomNodeElement` render a component that uses
   // both SVG and HTML tags side-by-side.
   // This is made possible by `foreignObject`, which wraps the HTML tags to
@@ -57,17 +91,52 @@ export default function OrgChartTree({ treeId }) {
               </div>
               <div className="px-6 pt-2 pb-2">
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
-                  {nodeDatum.children && (
-                    <button style={{ width: '100%' }} onClick={toggleNode}>
-                      {nodeDatum.__rd3t.collapsed ? 'Expand' : 'Collapse'}
-                    </button>
-                  )}
+                  <button>
+                    <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                        />
+                      </svg>
+                    </Link>
+                  </button>
                 </span>
 
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
                   <button>
-                    <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>Find the recipe here!</Link>
+                    <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </Link>
                   </button>
+                </span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
+                  {nodeDatum.children && (
+                    <button style={{ width: '100%' }} onClick={toggleNode}>
+                      {nodeDatum.__rd3t.collapsed ? chevUp : chevDown}
+                    </button>
+                  )}
                 </span>
               </div>
             </div>
