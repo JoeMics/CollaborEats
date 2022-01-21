@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import List from './List';
 
 export default function CreateFormComponent(props) {
@@ -7,6 +8,10 @@ export default function CreateFormComponent(props) {
     description: '',
     instructions: '',
   });
+  const [ingredientList, setIngredientList] = useState([
+    { ingredient: null, amount: null, unitOfMeasure: null, index: 0 },
+  ]);
+  const { userId } = useContext(AuthContext);
 
   const editInput = (e) => {
     setRecipeForm({
@@ -19,7 +24,7 @@ export default function CreateFormComponent(props) {
     e.preventDefault();
     const newRecipe = {
       ...recipeForm,
-      // ingredients: ingredientList,
+      ingredients: ingredientList,
     };
     // TODO: render recipe page, grab new recipe ID from response
     // await addFork(userId, _id, newRecipe);
@@ -56,7 +61,7 @@ export default function CreateFormComponent(props) {
         ></textarea>
         <br></br>
         <label>Ingredients</label>
-        {/* <List ingredients={[]} /> */}
+        <List ingredientList={ingredientList} setIngredientList={setIngredientList} edit={true} />
         <br></br>
         <input
           type="submit"

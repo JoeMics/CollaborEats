@@ -60,12 +60,7 @@ export default function EditFormComponent({ recipe }) {
       ></textarea>
       <br></br>
       <label>Ingredients</label>
-      <List
-        ingredients={ingredients}
-        edit={true}
-        ingredientList={ingredientList}
-        setIngredientList={setIngredientList}
-      />
+      <List edit={true} ingredientList={ingredientList} setIngredientList={setIngredientList} />
       <br></br>
       <button
         type="submit"
