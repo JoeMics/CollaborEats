@@ -30,7 +30,7 @@ export default function OrgChartTree({ treeId }) {
     getAllData();
   }, []);
 
-  const nodeSize = { x: 450, y: 300 };
+  const nodeSize = { x: 450, y: 400 };
   const foreignObjectProps = {
     width: nodeSize.x,
     height: nodeSize.y,
@@ -50,8 +50,10 @@ export default function OrgChartTree({ treeId }) {
           <div className="mx-8 border-8">
             <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-300">
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">{nodeDatum.name}</div>
-                <p className="text-gray-700 text-base">{nodeDatum.description}</p>
+                <div className="font-bold text-xl mb-2 max-w-2xl">{nodeDatum.name}</div>
+                <p className="text-gray-700 text-base truncate hover:overflow-visible hover:whitespace-normal">
+                  {nodeDatum.description}
+                </p>
               </div>
               <div className="px-6 pt-2 pb-2">
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
