@@ -38,13 +38,12 @@ export default function RecipeComponent({ recipeId }) {
                   <button className="bg-red-500" onClick={() => setToggleForm(!toggleForm)}>
                     Fork
                   </button>
-                  {recipe.path && (
-                    <span className="bg-red-500">
-                      <Link to={`${ROUTES.VERSIONS}/${recipe.path ? recipe.path[0] : recipe._id}`}>
-                        Other Forks
-                      </Link>
-                    </span>
-                  )}
+
+                  <span className="bg-red-500">
+                    <Link to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}>
+                      Other Forks
+                    </Link>
+                  </span>
                 </div>
               </div>
               <div className="flex container bg-yellow-500">
