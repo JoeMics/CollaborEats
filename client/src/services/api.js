@@ -41,6 +41,10 @@ export async function addRecipe(ownerId, content) {
   });
 }
 
+export async function mostRecentRecipe(recipeId) {
+  return await axios.get(`/recipes/${recipeId}/recent`);
+}
+
 // export async function createRecipe() {}
 // await axios.get('/asdasdasdas');
 

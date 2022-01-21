@@ -23,6 +23,20 @@ router.get('/user/:ownerId', async (req, res) => {
   res.send(recipes);
 });
 
+router.get('/:id/recent', async (req, res) => {
+  const recipe = await Recipe.findOne({ _id: req.params.id });
+  const recipeTree = await Recipe.find({ path: req.params.id }).sort({ createdAt: 'desc' });
+  console.log(recipe);
+
+  if (recipeTree.length > 0) {
+    console.log('recipeTree', recipeTree);
+    res.send(recipeTree[0]);
+  } else {
+    console.log('recipe', recipe);
+    res.send(recipe);
+  }
+});
+
 router.post('/', async (req, res) => {
   const { ownerId, title, description, ingredients, instructions } = req.body;
   const recipe = new Recipe({

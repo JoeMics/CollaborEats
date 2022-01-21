@@ -20,18 +20,21 @@ interface Recipe {
   photo: String;
 }
 
-const recipeSchema = new Schema<Recipe>({
-  path: { type: [String], required: true },
-  parent: { type: String },
-  ownerId: { type: Schema.Types.ObjectId, ref: User, required: true },
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  ingredients: {
-    type: [{ ingredient: String, amount: Number, unitOfMeasure: String }],
-    required: true,
+const recipeSchema = new Schema<Recipe>(
+  {
+    path: { type: [String], required: true },
+    parent: { type: String },
+    ownerId: { type: Schema.Types.ObjectId, ref: User, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    ingredients: {
+      type: [{ ingredient: String, amount: Number, unitOfMeasure: String }],
+      required: true,
+    },
+    instructions: { type: String, required: true },
+    photo: { type: String },
   },
-  instructions: { type: String, required: true },
-  photo: { type: String },
-});
+  { timestamps: true }
+);
 
 export default mongoose.model('Recipe', recipeSchema);
