@@ -10,13 +10,13 @@ const Navbar = () => {
         </h1>
         <ul className="flex">
           <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+            <Link to={ROUTES.DASHBOARD}>Home</Link>
           </li>
           <li className="text-sm px-2 mx-1 my-auto">
             <Link to={ROUTES.RECIPEPAGE}>Recipes</Link>
           </li>
           <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.VERSIONS}>Versions</Link>
+            <Link to={ROUTES.CREATE}>Create</Link>
           </li>
         </ul>
       </div>
