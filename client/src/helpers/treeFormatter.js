@@ -66,6 +66,7 @@ const treeFormatter = (root, treeData) => {
       data[0].children.push({
         name: treeData[i].title,
         id: treeData[i]._id,
+        description: treeData[i].description,
         children: [],
       }); //data[0] is always root
     } else {
@@ -85,6 +86,7 @@ const treeFormatter = (root, treeData) => {
       get(r3treepath, data).push({
         name: treeData[i].title,
         id: treeData[i]._id,
+        description: treeData[i].description,
         children: [],
       });
     }
