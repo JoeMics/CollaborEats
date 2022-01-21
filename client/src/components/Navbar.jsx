@@ -13,13 +13,17 @@ const Navbar = () => {
             <Link to={ROUTES.DASHBOARD}>Home</Link>
           </li>
           <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.RECIPE}>Recipe</Link>
+            <Link to={ROUTES.RECIPEPAGE}>Recipes</Link>
           </li>
           <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.RECIPEPAGE}>Recipe Page</Link>
+            <Link to={ROUTES.CREATE}>Create</Link>
+          </li>
+          {/* Remove this later */}
+          <li className="text-sm px-2 mx-1 my-auto">
+            <Link to={ROUTES.VERSIONS}>Tree page</Link>
           </li>
           <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.VERSIONS}>Versions</Link>
+            <Link to={ROUTES.RECIPE}>Recipe info page</Link>
           </li>
         </ul>
       </div>
