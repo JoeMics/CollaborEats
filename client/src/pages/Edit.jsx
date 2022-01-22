@@ -1,13 +1,21 @@
 import EditForm from '../components/Recipe/EditForm';
+import React, { useState, useEffect } from 'react';
+import { getRecipe } from '../services/api';
 import { useLocation } from 'react-router-dom';
-const Create = () => {
+const Edit = () => {
   const location = useLocation();
-  const { parentRecipe } = location.state;
-  return (
-    <div className="container w-3/5">
-      <EditForm recipe={parentRecipe} />
-    </div>
-  );
+  const { recipeId } = location.state;
+  const [recipe, setRecipe] = useState(null);
+
+  useEffect(() => {
+    async function getRecipeData() {
+      const dbData = await getRecipe(recipeId);
+      setRecipe(dbData.data.recipe);
+    }
+    getRecipeData();
+  }, []);
+
+  return <div className="container w-3/5">{recipe && <EditForm recipe={recipe} />}</div>;
 };
 
-export default Create;
+export default Edit;
