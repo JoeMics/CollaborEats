@@ -1,16 +1,18 @@
 import CardList from '../components/CardList/index';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { fetchUserRecipes } from '../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { AuthContext, AuthProvider } from '../context/AuthContext';
 
 const Dashboard = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { userId } = useContext(AuthContext);
 
   useEffect(() => {
     async function getRecipeData() {
-      const dbData = await fetchUserRecipes('61e607f0311d699fd35f509e');
+      const dbData = await fetchUserRecipes(userId);
       setRecipes(dbData.data);
       // it loads too fast to see at the moment, so this will be removed in
       //real app and we just have setLoading(false);
@@ -18,17 +20,20 @@ const Dashboard = () => {
     }
     setLoading(true);
     getRecipeData();
-  }, []);
+  }, [userId]);
 
   return (
     <div>
+      <header className="container my-10">
+        <h1 className="text-6xl font-serif">Your Recipes</h1>
+      </header>
       {loading ? (
         <div>
           <Skeleton
-            count={2}
+            count={recipes.length}
             width={340}
             height={500}
-            className="border-2 p-5 mx-14 my-4 rounded"
+            className="border-2 p-5 my-4 rounded"
             containerClassName="container flex flex-wrap justify-around"
           />
         </div>
