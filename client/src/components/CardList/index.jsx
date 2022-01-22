@@ -9,6 +9,7 @@ const CardList = ({ recipes }) => {
             key={recipe._id}
             title={recipe.title}
             description={recipe.description}
+            photo={recipe.photo ? recipe.photo : null}
             id={recipe._id}
           />
         ))}
