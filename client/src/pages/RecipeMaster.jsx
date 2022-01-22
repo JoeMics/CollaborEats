@@ -22,13 +22,16 @@ const RecipeMaster = () => {
 
   return (
     <div>
+      <header className="container my-10">
+        <h1 className="text-6xl font-serif">Master Recipes</h1>
+      </header>
       {loading ? (
         <div>
           <Skeleton
-            count={6}
+            count={recipes.length}
             width={340}
             height={500}
-            className="border-2 p-5 mx-14 my-4 rounded"
+            className="border-2 p-5 my-4 rounded"
             containerClassName="container flex flex-wrap justify-around"
           />
         </div>

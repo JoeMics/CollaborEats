@@ -27,6 +27,27 @@ export async function getRecipe(recipeId) {
   return await axios.get(`/recipes/${recipeId}`);
 }
 
+export async function getAllImages() {
+  return await axios.get(`/upload`);
+}
+
+export async function uploadImage(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  try {
+    const response = await axios({
+      method: 'post',
+      url: 'http://localhost:8080/upload',
+      data: formData,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    console.log('the file name: ', response.data.file.filename);
+    return response.data.file.filename;
+  } catch (error) {
+    return error;
+  }
+}
+
 export async function mostRecentRecipe(recipeId) {
   return await axios.get(`/recipes/${recipeId}/recent`);
 }
