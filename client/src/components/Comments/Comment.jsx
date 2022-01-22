@@ -1,13 +1,17 @@
+import TimeAgo from 'react-timeago';
+
 const Comment = ({ name, content, createdAt }) => {
   return (
-    <article className="px-5 py-2 flex justify-center">
-      <div>
+    <article className="w-5/6 my-10 mx-auto flex justify-center">
+      <div className="shrink-0">
         <img src="https://i.imgur.com/2WZtOD6.png" alt="" />
       </div>
-      <div className="bg-stone-300 mx-3 p-5 break-words rounded-lg w-full">
-        <h4 className="text-lg">{name}</h4>
-        <p className="h-auto">{content}</p>
-        <span className="text-xs">created on: {createdAt}</span>
+      <div className="bg-stone-300 mx-3 p-5 break-words rounded-lg flex-col w-11/12">
+        <h4 className="text-lg font-medium">{name}</h4>
+        <p className="h-auto my-2">{content}</p>
+        <span className="text-xs">
+          created <TimeAgo date={createdAt} />
+        </span>
       </div>
     </article>
   );
