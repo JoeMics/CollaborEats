@@ -37,10 +37,11 @@ export default function EditFormComponent({ recipe }) {
       ingredients: ingredientList,
       photo: fileName,
     };
-    // TODO: render recipe page, grab new recipe ID from response
+
     const result = await addFork(userId, _id, newRecipe);
     history.push(`/recipe/${result.data._id}`);
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input

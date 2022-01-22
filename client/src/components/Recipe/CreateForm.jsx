@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { validateInput } from '../../helpers/validation';
 import { addRecipe, uploadImage } from '../../services/api';
 import List from './List';
 
@@ -15,6 +16,8 @@ export default function CreateFormComponent(props) {
   const [ingredientList, setIngredientList] = useState([
     { ingredient: null, amount: null, unitOfMeasure: null, index: 0 },
   ]);
+  const [formError, setFormError] = useState({});
+
   const { userId } = useContext(AuthContext);
   let history = useHistory();
 
@@ -32,16 +35,38 @@ export default function CreateFormComponent(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const fileName = await uploadImage(file);
+    setFormError({});
 
     const newRecipe = {
       ...recipeForm,
       ingredients: ingredientList,
-      photo: fileName,
     };
-    console.log(newRecipe);
-    const result = await addRecipe(userId, newRecipe);
-    history.push(`/recipe/${result.data._id}`);
+
+    // VALIDATION, to be moved to custom hook
+    const validationOptions = {
+      title: { characterCount: 30 },
+    };
+
+    for (const property in newRecipe) {
+      const inputError = validateInput(newRecipe[property], validationOptions[property]);
+      if (inputError) setFormError((prev) => ({ ...prev, [property]: inputError }));
+    }
+
+    if (formError !== {}) return;
+
+    // POST request after validations
+    try {
+      // only upload image when form validated
+      if (file) {
+        newRecipe.photo = await uploadImage(file);
+      }
+
+      const result = await addRecipe(userId, newRecipe);
+      history.push(`/recipe/${result.data._id}`);
+    } catch (error) {
+      // TODO: render page depending on server error
+      console.log(error);
+    }
   };
 
   return (
@@ -60,6 +85,8 @@ export default function CreateFormComponent(props) {
           value={recipeForm.title}
           onChange={editInput}
         ></input>
+        {formError.title && <h4 className="mx-auto text-red-700 font-serif">{formError.title}</h4>}
+
         <label htmlFor="description" className="block text-lg font-semibold">
           Description
         </label>
@@ -70,6 +97,10 @@ export default function CreateFormComponent(props) {
           value={recipeForm.description}
           onChange={editInput}
         ></textarea>
+        {formError.description && (
+          <h4 className="mx-auto text-red-700 font-serif">{formError.description}</h4>
+        )}
+
         <label htmlFor="instructions" className="block text-lg font-semibold">
           Instructions
         </label>
@@ -80,11 +111,17 @@ export default function CreateFormComponent(props) {
           value={recipeForm.instructions}
           onChange={editInput}
         ></textarea>
+        {formError.instructions && (
+          <h4 className="mx-auto text-red-700 font-serif">{formError.instructions}</h4>
+        )}
+
         <label className="block text-lg font-semibold">Ingredients</label>
         <List ingredientList={ingredientList} setIngredientList={setIngredientList} edit={true} />
         <div className="mt-3 mb-3">
+          <label className="block text-lg font-semibold" htmlFor="file">
+            Choose File:
+          </label>
           <input type="file" name="file" id="file" onChange={handleFileSelect} />
-          <label htmlFor="for">Choose File</label>
         </div>
         <button
           type="submit"

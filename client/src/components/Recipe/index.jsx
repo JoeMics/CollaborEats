@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Ingredients from './Ingredients';
 import Instructions from './Instructions';
-import EditFormComponent from './EditForm';
 import { getRecipe } from '../../services/api';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
