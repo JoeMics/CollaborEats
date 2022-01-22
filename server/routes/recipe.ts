@@ -46,7 +46,7 @@ router.get('/:id/mostForked', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { ownerId, title, description, ingredients, instructions } = req.body;
+  const { ownerId, title, description, ingredients, instructions, photo } = req.body;
   const recipe = new Recipe({
     path: [],
     parent: null,
@@ -55,6 +55,7 @@ router.post('/', async (req, res) => {
     description,
     ingredients,
     instructions,
+    photo,
   });
   recipe.save();
   res.send(recipe);

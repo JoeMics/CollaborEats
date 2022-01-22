@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
-import { addFork } from '../../services/api';
+import { addFork, uploadImage } from '../../services/api';
 import List from './List';
 
 export default function EditFormComponent({ recipe }) {
-  const { title, description, instructions, ingredients, _id } = recipe;
+  const { title, description, instructions, ingredients, _id, photo } = recipe;
   const [recipeForm, setRecipeForm] = useState({
     title,
     description,
@@ -13,6 +13,7 @@ export default function EditFormComponent({ recipe }) {
   });
 
   const [ingredientList, setIngredientList] = useState([...ingredients]);
+  const [file, setFile] = useState(null);
   const { userId } = useContext(AuthContext);
   let history = useHistory();
 
@@ -23,11 +24,18 @@ export default function EditFormComponent({ recipe }) {
     });
   };
 
+  const handleFileSelect = (e) => {
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const fileName = await uploadImage(file);
     const newRecipe = {
       ...recipeForm,
       ingredients: ingredientList,
+      photo: fileName,
     };
     // TODO: render recipe page, grab new recipe ID from response
     const result = await addFork(userId, _id, newRecipe);
@@ -60,6 +68,10 @@ export default function EditFormComponent({ recipe }) {
       ></textarea>
       <label>Ingredients</label>
       <List edit={true} ingredientList={ingredientList} setIngredientList={setIngredientList} />
+      <div className="mt-3 mb-3">
+        <input type="file" name="file" id="file" onChange={handleFileSelect} />
+        <label htmlFor="for">Choose File</label>
+      </div>
       <button
         type="submit"
         value="Submit"
