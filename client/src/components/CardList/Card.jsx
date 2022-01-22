@@ -3,7 +3,7 @@ import * as ROUTES from '../../constants/routes';
 const Card = ({ title, description, id }) => {
   return (
     <div className="basis-1/3">
-      <article className="border-2 p-5 my-4 w-96 rounded">
+      <article className="flex-row border-2 p-5 my-4 w-96 rounded">
         <Link to={`${ROUTES.RECIPE}/${id}`}>
           <img src="https://source.unsplash.com/random/400x400" alt="" />
         </Link>
