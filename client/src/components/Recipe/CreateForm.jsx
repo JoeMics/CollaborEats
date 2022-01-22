@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { addRecipe } from '../../services/api';
+import { addRecipe, uploadImage } from '../../services/api';
 import List from './List';
 
 export default function CreateFormComponent(props) {
@@ -9,7 +9,9 @@ export default function CreateFormComponent(props) {
     title: '',
     description: '',
     instructions: '',
+    photo: '',
   });
+  const [file, setFile] = useState(null);
   const [ingredientList, setIngredientList] = useState([
     { ingredient: null, amount: null, unitOfMeasure: null, index: 0 },
   ]);
@@ -23,13 +25,21 @@ export default function CreateFormComponent(props) {
     });
   };
 
+  const handleFileSelect = (e) => {
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const fileName = await uploadImage(file);
+
     const newRecipe = {
       ...recipeForm,
       ingredients: ingredientList,
+      photo: fileName,
     };
-
+    console.log(newRecipe);
     const result = await addRecipe(userId, newRecipe);
     history.push(`/recipe/${result.data._id}`);
   };
@@ -62,6 +72,10 @@ export default function CreateFormComponent(props) {
         ></textarea>
         <label>Ingredients</label>
         <List ingredientList={ingredientList} setIngredientList={setIngredientList} edit={true} />
+        <div className="mt-3 mb-3">
+          <input type="file" name="file" id="file" onChange={handleFileSelect} />
+          <label htmlFor="for">Choose File</label>
+        </div>
         <button
           type="submit"
           value="Submit"
