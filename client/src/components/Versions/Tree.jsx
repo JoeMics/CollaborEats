@@ -113,7 +113,7 @@ export default function OrgChartTree({ treeId }) {
 
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
                   <button>
-                    <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>
+                    <Link to={`${ROUTES.EDIT}`}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-6 w-6"
