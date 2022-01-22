@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 import { addFork, uploadImage } from '../../services/api';
-import List from './List';
+import IngredientInput from './IngredientInput';
 
 export default function EditFormComponent({ recipe }) {
   const { title, description, instructions, ingredients, _id, photo } = recipe;
@@ -10,9 +10,10 @@ export default function EditFormComponent({ recipe }) {
     title,
     description,
     instructions,
+    ingredients,
   });
 
-  const [ingredientList, setIngredientList] = useState([...ingredients]);
+  // const [ingredientList, setIngredientList] = useState([...ingredients]);
   const [file, setFile] = useState(null);
   const { userId } = useContext(AuthContext);
   let history = useHistory();
@@ -34,12 +35,35 @@ export default function EditFormComponent({ recipe }) {
     const fileName = await uploadImage(file);
     const newRecipe = {
       ...recipeForm,
-      ingredients: ingredientList,
       photo: fileName,
     };
 
     const result = await addFork(userId, _id, newRecipe);
     history.push(`/recipe/${result.data._id}`);
+  };
+
+  const IngredientsInputs = recipeForm.ingredients.map((ingredient, index) => {
+    return (
+      <IngredientInput
+        key={index}
+        {...ingredient}
+        index={index}
+        setRecipeForm={setRecipeForm}
+        recipeForm={recipeForm}
+      />
+    );
+  });
+
+  const addIngredient = () => {
+    const newIngredient = { ingredient: '', amount: '', unitOfMeasure: '' };
+    setRecipeForm((prev) => {
+      const ingredients = [...prev.ingredients];
+      ingredients[ingredients.length] = newIngredient;
+      return {
+        ...prev,
+        ingredients,
+      };
+    });
   };
 
   return (
@@ -68,7 +92,14 @@ export default function EditFormComponent({ recipe }) {
         onChange={editInput}
       ></textarea>
       <label>Ingredients</label>
-      <List edit={true} ingredientList={ingredientList} setIngredientList={setIngredientList} />
+      {IngredientsInputs}
+      <button
+        className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
+        type="button"
+        onClick={addIngredient}
+      >
+        Add an ingredient
+      </button>
       <div className="mt-3 mb-3">
         <input type="file" name="file" id="file" onChange={handleFileSelect} />
         <label htmlFor="for">Choose File</label>
