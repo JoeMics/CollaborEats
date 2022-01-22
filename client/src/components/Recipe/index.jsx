@@ -38,7 +38,7 @@ export default function RecipeComponent({ recipeId }) {
                     to={{
                       pathname: ROUTES.EDIT,
                       state: {
-                        parentRecipe: recipe,
+                        recipeId,
                       },
                     }}
                   >
