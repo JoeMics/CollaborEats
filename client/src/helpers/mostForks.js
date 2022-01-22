@@ -54,3 +54,5 @@ function mostForkedRecipeId(treeData) {
 }
 
 console.log(mostForkedRecipeId(tree));
+
+export default mostForkedRecipeId;

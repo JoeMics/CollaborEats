@@ -3,17 +3,29 @@ import TreeContainer from './TreeContainer';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import { mostRecentRecipe } from '../../services/api';
+import { mostRecentRecipe, mostForkedRecipe } from '../../services/api';
+import mostForkedRecipeId from '../../helpers/mostForks';
 
 export default function VersionComponent() {
   const { id } = useParams();
   const [recent, setRecent] = useState('');
+  const [mostForked, setMostForked] = useState('');
 
   useEffect(() => {
     async function getRecentData() {
       const recentRecipe = await mostRecentRecipe(id);
       setRecent(recentRecipe.data._id);
     }
+
+    async function getMostForkedData() {
+      const recipeTreeData = await mostForkedRecipe(id);
+      console.log('recipe tree', recipeTreeData.data);
+      const targetRecipe = mostForkedRecipeId(recipeTreeData.data);
+      console.log('targetRecipeId', targetRecipe);
+      setMostForked(targetRecipe);
+    }
+
+    getMostForkedData();
     getRecentData();
   }, []);
 
@@ -29,7 +41,7 @@ export default function VersionComponent() {
             <Link to={`${ROUTES.RECIPE}/${recent}`}>Most Recent Fork</Link>
           </button>
           <button className="block items-center mx-2 px-4 py-2 bg-blue-300 rounded text-white">
-            Most Forks
+            <Link to={`${ROUTES.RECIPE}/${mostForked}`}>Most Fork</Link>
           </button>
         </div>
       </div>

@@ -27,6 +27,14 @@ export async function getRecipe(recipeId) {
   return await axios.get(`/recipes/${recipeId}`);
 }
 
+export async function mostRecentRecipe(recipeId) {
+  return await axios.get(`/recipes/${recipeId}/recent`);
+}
+
+export async function mostForkedRecipe(recipeId) {
+  return await axios.get(`/recipes/${recipeId}/mostForked`);
+}
+
 export async function addFork(ownerId, parentId, content) {
   return await axios.post(`/recipes/${parentId}/versions/`, {
     ownerId,
@@ -40,14 +48,3 @@ export async function addRecipe(ownerId, content) {
     ...content,
   });
 }
-
-export async function mostRecentRecipe(recipeId) {
-  return await axios.get(`/recipes/${recipeId}/recent`);
-}
-
-// export async function createRecipe() {}
-// await axios.get('/asdasdasdas');
-
-// export async function forkRecipe() {}
-// await axios.get('/');
-// sdasdasdasdsa;
