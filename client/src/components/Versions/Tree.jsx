@@ -79,22 +79,24 @@ export default function OrgChartTree({ treeId }) {
   const renderForeignObjectNode = ({ nodeDatum, toggleNode, foreignObjectProps }) => {
     return (
       <g>
-        <circle r={10} fill={'black'}></circle>
+        <circle className="translate-all" r={10} fill={'black'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
-          <div className="mx-8 border-8 rounded-lg">
-            <div className="max-w-sm overflow-hidden shadow-lg bg-gray-400 ">
+          <div className="mx-8 rounded-lg translate-all">
+            <div className="max-w-sm rounded-lg bg-indigo-200 shadow-slate-500 shadow-md">
               <div className="px-6 py-4">
                 <h3 className="font-bold text-xl mb-2 max-w-2xl">{nodeDatum.name}</h3>
                 <h4 className="font-bold text-l mb-2 max-w-2xl">{nodeDatum.user}</h4>
-                <p className="text-gray-800 text-base truncate hover:overflow-visible hover:whitespace-normal">
+                <p className="text-gray-800 text-base truncate hover:overflow-visible hover:whitespace-normal hover:tr">
                   {nodeDatum.description}
                 </p>
-              </div>
-              <div className="px-6 pt-2 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
-                  <button>
-                    <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>
+                <div className="flex w-full justify-around">
+                  <Link
+                    className="grow border-black border-2"
+                    to={`${ROUTES.RECIPE}/${nodeDatum.id}`}
+                  >
+                    <button className="flex py-2 ">
+                      <span>Recipe</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
@@ -109,20 +111,21 @@ export default function OrgChartTree({ treeId }) {
                           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                         />
                       </svg>
-                    </Link>
-                  </button>
-                </span>
+                    </button>
+                  </Link>
 
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
-                  <button>
-                    <Link
-                      to={{
-                        pathname: ROUTES.EDIT,
-                        state: {
-                          recipeId: nodeDatum.id,
-                        },
-                      }}
-                    >
+                  <Link
+                    className="grow border-black border-2"
+                    to={{
+                      pathname: ROUTES.EDIT,
+                      state: {
+                        recipeId: nodeDatum.id,
+                      },
+                    }}
+                  >
+                    <button className="flex py-2">
+                      <span>Fork</span>
+
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
@@ -137,16 +140,22 @@ export default function OrgChartTree({ treeId }) {
                           d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                         />
                       </svg>
-                    </Link>
-                  </button>
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2 hover:bg-purple-600 hover:text-white">
+                    </button>
+                  </Link>
                   {nodeDatum.children && (
-                    <button style={{ width: '100%' }} onClick={toggleNode}>
-                      {nodeDatum.__rd3t.collapsed ? chevUp : chevDown}
+                    <button className="flex py-2 grow border-black border-2" onClick={toggleNode}>
+                      {nodeDatum.__rd3t.collapsed ? (
+                        <>
+                          {chevUp} <span>Show</span>
+                        </>
+                      ) : (
+                        <>
+                          {chevDown} <span>Less</span>
+                        </>
+                      )}
                     </button>
                   )}
-                </span>
+                </div>
               </div>
             </div>
           </div>
