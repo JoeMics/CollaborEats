@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { AuthContext } from '../context/AuthContext';
+import Toggle from './Toggle';
 
 const Navbar = () => {
   const { userId, setUserId } = useContext(AuthContext);
@@ -22,20 +23,33 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap text-white bg-neutral-700 p-2">
-      <div className="flex">
-        <h1 className="text-2xl">
-          <Link to={ROUTES.HOME}>CollaborEats</Link>
+    <nav className="flex items-center justify-between flex-wrap p-2 px-32 py-8">
+      <div className="flex content-center">
+        <img className="w-16 h-16 mx-auto" src="/images/logo.svg" alt="" />
+        <h1 className="text-3xl my-auto ml-4 mr-6 text-teal-900 dark:text-white">
+          <Link to={ROUTES.HOME}>
+            Collabor<span className="font-bold">Eats</span>
+          </Link>
         </h1>
-        <ul className="flex">
-          <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.DASHBOARD}>Home</Link>
+        <ul className="flex space-x-8">
+          <li className="px-2 mx-1 my-auto text-xl dark:text-white">
+            <Link to={ROUTES.DASHBOARD}>
+              <span className="link-underline link-underline-red hover:text-red-500">Home</span>
+            </Link>
           </li>
-          <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.RECIPEPAGE}>Recipes</Link>
+          <li className="text-xl px-2 mx-1 my-auto dark:text-white">
+            <Link to={ROUTES.RECIPEPAGE}>
+              <span className="link-underline link-underline-teal hover:text-teal-400">
+                Recipes
+              </span>
+            </Link>
           </li>
-          <li className="text-sm px-2 mx-1 my-auto">
-            <Link to={ROUTES.CREATE}>Create</Link>
+          <li className="text-xl px-2 mx-1 my-auto dark:text-white">
+            <Link to={ROUTES.CREATE}>
+              <span className="link-underline link-underline-purple hover:text-fuchsia-600">
+                Create
+              </span>
+            </Link>
           </li>
         </ul>
       </div>
@@ -65,9 +79,10 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <button className="block items-center px-4 py-2 text-white" onClick={cycleUsers}>
+        <button className="block items-center px-4 py-2 text-xl" onClick={cycleUsers}>
           Demo: {demoUsers[userId]}
         </button>
+        <Toggle />
       </div>
     </nav>
   );
