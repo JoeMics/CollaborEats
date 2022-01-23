@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 
 router.post('/', async (req, res) => {
   try {
-    const { ownerId, title, description, ingredients, instructions } = req.body;
+    const { ownerId, title, description, ingredients, instructions, photo } = req.body;
     console.log(title);
     // TS does not know recipeId exists
     // @ts-ignore:next-line
@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
       description,
       ingredients: ingredients,
       instructions,
+      photo,
     });
     await recipe.save();
     res.send(recipe);
