@@ -1,7 +1,7 @@
-import EditForm from '../components/Recipe/EditForm';
 import React, { useState, useEffect } from 'react';
 import { getRecipe } from '../services/api';
 import { useLocation } from 'react-router-dom';
+import RecipeForm from '../components/RecipeForm';
 const Edit = () => {
   const location = useLocation();
   const { recipeId } = location.state;
@@ -15,7 +15,11 @@ const Edit = () => {
     getRecipeData();
   }, []);
 
-  return <div className="container w-3/5">{recipe && <EditForm recipe={recipe} />}</div>;
+  return (
+    <div className="container w-3/5">
+      {recipe && <RecipeForm recipe={recipe} title={`Forking ${recipe.title}`} />}
+    </div>
+  );
 };
 
 export default Edit;

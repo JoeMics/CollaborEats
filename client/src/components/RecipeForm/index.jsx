@@ -5,12 +5,13 @@ import { validateInput } from '../../helpers/validation';
 import { addRecipe, uploadImage } from '../../services/api';
 import IngredientInput from './IngredientInput';
 
-const RecipeForm = (props) => {
+const RecipeForm = ({ title, recipe }) => {
+  recipe = recipe || {};
   const [recipeForm, setRecipeForm] = useState({
-    title: '',
-    description: '',
-    instructions: '',
-    ingredients: [{ ingredient: '', amount: '', unitOfMeasure: '' }],
+    title: recipe.title || '',
+    description: recipe.description || '',
+    instructions: recipe.instructions || '',
+    ingredients: recipe.ingredients || [{ ingredient: '', amount: '', unitOfMeasure: '' }],
     photo: '',
   });
   const [file, setFile] = useState(null);
@@ -98,7 +99,7 @@ const RecipeForm = (props) => {
 
   return (
     <div className="flex-row mx-auto container py-3 px-10">
-      <h1 className="text-6xl font-serif my-8">{props.title}</h1>
+      <h1 className="text-6xl font-serif my-8">{title}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title" className="block text-lg font-semibold">
           Title
