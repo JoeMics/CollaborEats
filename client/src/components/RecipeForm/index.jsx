@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { validateInput } from '../../helpers/validation';
-import { addRecipe, uploadImage } from '../../services/api';
+import { addFork, addRecipe, uploadImage } from '../../services/api';
 import IngredientInput from './IngredientInput';
 
 const RecipeForm = ({ title, recipe }) => {
@@ -87,8 +87,14 @@ const RecipeForm = ({ title, recipe }) => {
         newRecipe.photo = await uploadImage(file);
       }
 
+      // Only on fork
+      if (recipe._id) {
+        const result = await addFork(userId, recipe._id, newRecipe);
+        return history.push(`/recipe/${result.data._id}`);
+      }
+
       const result = await addRecipe(userId, newRecipe);
-      history.push(`/recipe/${result.data._id}`);
+      return history.push(`/recipe/${result.data._id}`);
     } catch (error) {
       // TODO: render page depending on server error
       console.log(error);
