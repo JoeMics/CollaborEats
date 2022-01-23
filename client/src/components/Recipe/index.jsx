@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 export default function RecipeComponent({ recipeId }) {
-  const [recipe, setRecipe] = useState(true);
+  const [recipe, setRecipe] = useState({
+    ownerId: {
+      email: '',
+    },
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,10 +29,15 @@ export default function RecipeComponent({ recipeId }) {
       {!loading && (
         <div className="flex-row mx-auto container mt-8">
           <>
-            <div className="flex justify-between content-start space-x-6">
-              <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
-              <div className="space-x-6 pr-2">
-                <button className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white">
+            <div className="flex flex-wrap justify-between content-start space-x-6 ">
+              <header className="w-3/4">
+                <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
+                <h2 className="text-lg font-serif pl-4 w-9/12 break-words">
+                  Written by:{recipe.ownerId.email}
+                </h2>
+              </header>
+              <div className="flex py-2 items-end basis-2">
+                <button className="flex justify-center items-center px-4 py-2 mx-5 bg-green-700  rounded text-white h-12 w-24">
                   <Link
                     to={{
                       pathname: ROUTES.EDIT,
@@ -40,14 +49,25 @@ export default function RecipeComponent({ recipeId }) {
                     Fork
                   </Link>
                 </button>
-                <button className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white">
+                <button className="flex items-center px-4 py-2 bg-green-700 rounded text-white h-12 w-24">
                   <Link to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}>
                     Other Forks
                   </Link>
                 </button>
               </div>
             </div>
-            <div className="flex w-full bg-slate-200">
+            <div className="h-80 w-full rounded-t-md overflow-hidden mt-6">
+              <img
+                className="w-full object-cover"
+                src={
+                  recipe.photo
+                    ? `http://localhost:8080/image/${recipe.photo}`
+                    : 'https://source.unsplash.com/random/400x400/?food'
+                }
+                alt={recipe.title}
+              />
+            </div>
+            <div className="flex w-full px-12 justify-items-center bg-neutral-200  rounded-b-md py-9">
               <Ingredients ingredients={recipe.ingredients} />
               <Instructions instructions={recipe.instructions} description={recipe.description} />
             </div>
