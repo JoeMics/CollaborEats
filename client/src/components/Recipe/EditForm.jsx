@@ -13,7 +13,6 @@ export default function EditFormComponent({ recipe }) {
     ingredients,
   });
 
-  // const [ingredientList, setIngredientList] = useState([...ingredients]);
   const [file, setFile] = useState(null);
   const { userId } = useContext(AuthContext);
   let history = useHistory();
@@ -32,11 +31,13 @@ export default function EditFormComponent({ recipe }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const fileName = await uploadImage(file);
     const newRecipe = {
       ...recipeForm,
-      photo: fileName,
     };
+
+    if (file) {
+      newRecipe.photo = await uploadImage(file);
+    }
 
     const result = await addFork(userId, _id, newRecipe);
     history.push(`/recipe/${result.data._id}`);

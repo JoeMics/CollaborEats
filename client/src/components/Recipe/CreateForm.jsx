@@ -3,19 +3,17 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { validateInput } from '../../helpers/validation';
 import { addRecipe, uploadImage } from '../../services/api';
-import List from './List';
+import IngredientInput from './IngredientInput';
 
 export default function CreateFormComponent(props) {
   const [recipeForm, setRecipeForm] = useState({
     title: '',
     description: '',
     instructions: '',
+    ingredients: [{ ingredient: '', amount: '', unitOfMeasure: '' }],
     photo: '',
   });
   const [file, setFile] = useState(null);
-  const [ingredientList, setIngredientList] = useState([
-    { ingredient: null, amount: null, unitOfMeasure: null, index: 0 },
-  ]);
   const [formError, setFormError] = useState({});
 
   const { userId } = useContext(AuthContext);
@@ -37,22 +35,27 @@ export default function CreateFormComponent(props) {
     e.preventDefault();
     setFormError({});
 
-    const newRecipe = {
-      ...recipeForm,
-      ingredients: ingredientList,
-    };
+    const newRecipe = { ...recipeForm };
 
     // VALIDATION, to be moved to custom hook
     const validationOptions = {
       title: { characterCount: 30 },
+      photo: { required: false },
     };
+
+    let containsErrors = false;
 
     for (const property in newRecipe) {
       const inputError = validateInput(newRecipe[property], validationOptions[property]);
-      if (inputError) setFormError((prev) => ({ ...prev, [property]: inputError }));
-    }
+      if (inputError) {
+        setFormError((prev) => {
+          return { ...prev, [property]: inputError };
+        });
 
-    if (formError !== {}) return;
+        containsErrors = true;
+      }
+    }
+    if (containsErrors) return;
 
     // POST request after validations
     try {
@@ -67,6 +70,30 @@ export default function CreateFormComponent(props) {
       // TODO: render page depending on server error
       console.log(error);
     }
+  };
+
+  const IngredientsInputs = recipeForm.ingredients.map((ingredient, index) => {
+    return (
+      <IngredientInput
+        key={index}
+        {...ingredient}
+        index={index}
+        setRecipeForm={setRecipeForm}
+        recipeForm={recipeForm}
+      />
+    );
+  });
+
+  const addIngredient = () => {
+    const newIngredient = { ingredient: '', amount: '', unitOfMeasure: '' };
+    setRecipeForm((prev) => {
+      const ingredients = [...prev.ingredients];
+      ingredients[ingredients.length] = newIngredient;
+      return {
+        ...prev,
+        ingredients,
+      };
+    });
   };
 
   return (
@@ -116,7 +143,14 @@ export default function CreateFormComponent(props) {
         )}
 
         <label className="block text-lg font-semibold">Ingredients</label>
-        <List ingredientList={ingredientList} setIngredientList={setIngredientList} edit={true} />
+        {IngredientsInputs}
+        <button
+          className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
+          type="button"
+          onClick={addIngredient}
+        >
+          Add an ingredient
+        </button>
         <div className="mt-3 mb-3">
           <label className="block text-lg font-semibold" htmlFor="file">
             Choose File:
