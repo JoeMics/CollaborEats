@@ -29,15 +29,15 @@ export default function RecipeComponent({ recipeId }) {
       {!loading && (
         <div className="flex-row mx-auto container mt-8">
           <>
-            <div className="flex justify-between content-start space-x-6">
+            <div className="flex flex-wrap justify-between content-start space-x-6">
               <header>
                 <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
                 <h2 className="text-lg font-serif pl-4 w-9/12 break-words">
                   Written by:{recipe.ownerId.email}
                 </h2>
               </header>
-              <div className="space-x-6 pr-2">
-                <button className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white">
+              <div className="flex py-2 items-end basis-2">
+                <button className="flex justify-center items-center px-4 py-2 mx-5 bg-blue-300 rounded text-white h-16 w-24">
                   <Link
                     to={{
                       pathname: ROUTES.EDIT,
@@ -49,7 +49,7 @@ export default function RecipeComponent({ recipeId }) {
                     Fork
                   </Link>
                 </button>
-                <button className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white">
+                <button className="flex items-center px-4 py-2 bg-blue-300 rounded text-white h-16 w-24">
                   <Link to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}>
                     Other Forks
                   </Link>
