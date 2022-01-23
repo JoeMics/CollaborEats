@@ -22,7 +22,7 @@ const RecipeMaster = () => {
 
   return (
     <div>
-      <header className="container my-10">
+      <header className="container py-10">
         <h1 className="text-6xl font-serif">Master Recipes</h1>
       </header>
       {loading ? (
