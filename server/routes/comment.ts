@@ -13,20 +13,24 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { ownerId, content } = req.body;
-  // TS does not know recipeId exists
-  // @ts-ignore:next-line
-  const { recipeId } = req.params;
+  try {
+    const { ownerId, content } = req.body;
+    // TS does not know recipeId exists
+    // @ts-ignore:next-line
+    const { recipeId } = req.params;
 
-  const comment = new Comment({
-    recipeId,
-    ownerId,
-    content,
-  });
-  comment.save();
+    const comment = new Comment({
+      recipeId,
+      ownerId,
+      content,
+    });
+    await comment.save();
 
-  const savedComment = await comment.populate('ownerId');
-  res.send(savedComment);
+    const savedComment = await comment.populate('ownerId');
+    res.send(savedComment);
+  } catch (err) {
+    res.status(500).json({ err: err });
+  }
 });
 
 export default router;
