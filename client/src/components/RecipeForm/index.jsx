@@ -46,6 +46,7 @@ const RecipeForm = ({ title, recipe }) => {
 
     let containsErrors = false;
 
+    // Validations for title, description, and instructions
     for (const property in newRecipe) {
       const inputError = validateInput(newRecipe[property], validationOptions[property]);
       if (inputError) {
@@ -56,6 +57,27 @@ const RecipeForm = ({ title, recipe }) => {
         containsErrors = true;
       }
     }
+
+    // Validations for the ingredients section
+    for (const ingredient of newRecipe.ingredients) {
+      const errors = {
+        amount: validateInput(ingredient.amount, { characterCount: 5 }),
+        ingredient: validateInput(ingredient.ingredient, { characterCount: 10 }),
+        unitOfMeasure: validateInput(ingredient.unitOfMeasure, { required: false }),
+      };
+
+      const filteredErrors = {};
+
+      for (const error in errors) {
+        if (errors[error]) {
+          filteredErrors[error] = errors[error];
+          containsErrors = true;
+        }
+      }
+
+      setFormError((prev) => ({ ...prev, ...filteredErrors }));
+    }
+
     if (containsErrors) return;
 
     // POST request after validations
@@ -81,6 +103,8 @@ const RecipeForm = ({ title, recipe }) => {
         index={index}
         setRecipeForm={setRecipeForm}
         recipeForm={recipeForm}
+        formError={formError}
+        setFormError={setFormError}
       />
     );
   });
@@ -144,6 +168,17 @@ const RecipeForm = ({ title, recipe }) => {
         )}
 
         <label className="block text-lg font-semibold">Ingredients</label>
+        {formError.ingredient && (
+          <h4 className="mx-auto text-red-700 font-serif">Ingredient: {formError.ingredient}</h4>
+        )}
+        {formError.amount && (
+          <h4 className="mx-auto text-red-700 font-serif">Amount: {formError.amount}</h4>
+        )}
+        {formError.unitOfMeasure && (
+          <h4 className="mx-auto text-red-700 font-serif">
+            Unit of Measurement: {formError.unitOfMeasure}
+          </h4>
+        )}
         {IngredientsInputs}
         <button
           className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
