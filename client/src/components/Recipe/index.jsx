@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 export default function RecipeComponent({ recipeId }) {
-  const [recipe, setRecipe] = useState(true);
+  const [recipe, setRecipe] = useState({
+    ownerId: {
+      email: '',
+    },
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,7 +30,12 @@ export default function RecipeComponent({ recipeId }) {
         <div className="flex-row mx-auto container mt-8">
           <>
             <div className="flex justify-between content-start space-x-6">
-              <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
+              <header>
+                <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
+                <h2 className="text-lg font-serif pl-4 w-9/12 break-words">
+                  Written by:{recipe.ownerId.email}
+                </h2>
+              </header>
               <div className="space-x-6 pr-2">
                 <button className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white">
                   <Link
