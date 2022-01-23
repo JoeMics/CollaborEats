@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { AuthContext } from '../context/AuthContext';
 import Toggle from './Toggle';
+import { simpleSearch } from '../services/api';
 
 const Navbar = () => {
   const { userId, setUserId } = useContext(AuthContext);
@@ -20,6 +21,11 @@ const Navbar = () => {
         ? '61e608607f04825b4c4cd517'
         : '61e607f0311d699fd35f509e'
     );
+  };
+
+  const handleSearch = async (searchPhrase) => {
+    const recipes = await simpleSearch(searchPhrase);
+    console.log(recipes.data);
   };
 
   return (
@@ -61,8 +67,13 @@ const Navbar = () => {
             autoComplete="off"
             name="search"
             placeholder="Search"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch(e.target.value);
+              }
+            }}
           />
-          <button type="button" className="relative -left-8  mr-1">
+          <button type="button" className="relative -left-8  mr-1" onClick={handleSearch}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="text-gray-600 h-4 w-4"

@@ -102,3 +102,11 @@ router.post('/', async (req, res) => {
 });
 
 export default router;
+
+router.post('/search', async (req, res) => {
+  const recipes = await await Recipe.find({
+    $and: [{ title: { $regex: req.body.searchPhrase, $options: 'i' } }, { parent: null }],
+  });
+  console.log(recipes);
+  res.send(recipes);
+});
