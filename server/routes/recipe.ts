@@ -9,7 +9,7 @@ router.use('/:recipeId/comments/', commentsRoute);
 
 router.get('/', async (req, res) => {
   try {
-    const recipes = await Recipe.find({ parent: null });
+    const recipes = await Recipe.find({ parent: null }).populate('ownerId', 'email');
     if (!recipes) {
       throw new Error('Recipe not found');
     }
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 
 router.get('/user/:ownerId', async (req, res) => {
   try {
-    const recipes = await Recipe.find({ ownerId: req.params.ownerId });
+    const recipes = await Recipe.find({ ownerId: req.params.ownerId }).populate('ownerId', 'email');
     if (!recipes) {
       throw new Error('Recipes not found');
     }
