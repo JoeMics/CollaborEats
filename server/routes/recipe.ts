@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const recipe = await Recipe.findOne({ _id: req.params.id });
-    const recipeTree = await Recipe.find({ path: req.params.id });
+    const recipe = await Recipe.findOne({ _id: req.params.id }).populate('ownerId', 'email');
+    const recipeTree = await Recipe.find({ path: req.params.id }).populate('ownerId', 'email');
     if (!recipe) {
       throw new Error('Recipe not found');
     }
@@ -83,7 +83,7 @@ router.get('/:id/mostForked', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { ownerId, title, description, ingredients, instructions } = req.body;
+    const { ownerId, title, description, ingredients, instructions, photo } = req.body;
     const recipe = new Recipe({
       path: [],
       parent: null,
@@ -92,6 +92,7 @@ router.post('/', async (req, res) => {
       description,
       ingredients,
       instructions,
+      photo,
     });
     await recipe.save();
     res.send(recipe);
@@ -101,3 +102,14 @@ router.post('/', async (req, res) => {
 });
 
 export default router;
+
+router.post('/search', async (req, res) => {
+  const recipes = await Recipe.find({
+    $or: [
+      { $and: [{ title: { $regex: req.body.searchPhrase, $options: 'i' } }, { parent: null }] },
+      { $and: [{ 'ingredients.ingredient': req.body.searchPhrase }] },
+    ],
+  });
+  // console.log(recipes);
+  res.send(recipes);
+});

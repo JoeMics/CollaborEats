@@ -29,3 +29,7 @@
     background-position: 0 100%;
   }
 }
+
+.ivan_animation {
+  transition: duration-200 ease-in-out;
+}

@@ -68,6 +68,7 @@ const treeFormatter = (root, treeData) => {
         id: treeData[i]._id,
         description: treeData[i].description,
         children: [],
+        user: treeData[i].ownerId.email,
       }); //data[0] is always root
     } else {
       // r3treepath maps out the location we want to push to in the r3tree format
@@ -88,6 +89,7 @@ const treeFormatter = (root, treeData) => {
         id: treeData[i]._id,
         description: treeData[i].description,
         children: [],
+        user: treeData[i].ownerId.email,
       });
     }
   }
