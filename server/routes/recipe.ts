@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const recipe = await Recipe.findOne({ _id: req.params.id });
-    const recipeTree = await Recipe.find({ path: req.params.id });
+    const recipe = await Recipe.findOne({ _id: req.params.id }).populate('ownerId', 'email');
+    const recipeTree = await Recipe.find({ path: req.params.id }).populate('ownerId', 'email');
     if (!recipe) {
       throw new Error('Recipe not found');
     }
