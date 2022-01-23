@@ -62,7 +62,7 @@ const RecipeForm = ({ title, recipe }) => {
     for (const ingredient of newRecipe.ingredients) {
       const errors = {
         amount: validateInput(ingredient.amount, { characterCount: 5 }),
-        ingredient: validateInput(ingredient.ingredient, { characterCount: 10 }),
+        ingredient: validateInput(ingredient.ingredient, { characterCount: 30 }),
         unitOfMeasure: validateInput(ingredient.unitOfMeasure, { required: false }),
       };
 
