@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react';
+const IngredientInput = ({ setRecipeForm, recipeForm, index }) => {
+  const changeHandler = (e) => {
+    const { name } = e.target;
+    const { value } = e.target;
 
-export default function ListComponent({ item, remove, addIngredient, index }) {
-  // const { amount, ingredient, unitOfMeasure, index } = item;
-  const [ingredient, setIngredient] = useState({
-    amount: item.amount,
-    ingredient: item.ingredient,
-    unitOfMeasure: item.unitOfMeasure,
-    index: item.index,
-  });
+    setRecipeForm((prev) => {
+      const ingredients = [...prev.ingredients];
+      ingredients[index] = { ...ingredients[index], [name]: value };
 
-  // Allows updating when indices are reset
-  useEffect(() => {
-    setIngredient(item);
-  }, [item]);
+      return { ...prev, ingredients };
+    });
+  };
 
-  const editInput = (e) => {
-    setIngredient((prev) => {
-      const ingredient = {
-        ...prev,
-        [e.target.name]: e.target.value,
-      };
+  const deleteInput = () => {
+    setRecipeForm((prev) => {
+      const ingredients = [...prev.ingredients];
+      ingredients.splice(index, 1);
 
-      // TODO: Refactor to suppress errors
-      // Updates List (parent) Component's state
-      addIngredient({ ingredient, index });
-
-      return ingredient;
+      return { ...prev, ingredients };
     });
   };
 
@@ -39,9 +30,9 @@ export default function ListComponent({ item, remove, addIngredient, index }) {
           type="text"
           name="ingredient"
           placeholder="Ingredient"
+          value={recipeForm.ingredients[index].ingredient}
+          onChange={changeHandler}
           className="w-80 x-4 my-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
-          onChange={editInput}
-          value={!ingredient.ingredient ? '' : ingredient.ingredient}
         ></input>
       </div>
       <div>
@@ -52,9 +43,9 @@ export default function ListComponent({ item, remove, addIngredient, index }) {
           type="text"
           name="amount"
           placeholder="Amount"
+          value={recipeForm.ingredients[index].amount}
+          onChange={changeHandler}
           className="w-80 x-4 my-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
-          onChange={editInput}
-          value={!ingredient.amount ? '' : ingredient.amount}
         ></input>
       </div>
       <div>
@@ -65,18 +56,20 @@ export default function ListComponent({ item, remove, addIngredient, index }) {
           type="text"
           name="unitOfMeasure"
           placeholder="Unit of Measure"
+          value={recipeForm.ingredients[index].unitOfMeasure}
+          onChange={changeHandler}
           className="w-80 x-4 my-2 border-2 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
-          onChange={editInput}
-          value={!ingredient.unitOfMeasure ? '' : ingredient.unitOfMeasure}
         ></input>
       </div>
       <button
         className="block items-center px-4 py-1 my-2 bg-red-500 rounded text-white"
         type="button"
-        onClick={remove}
+        onClick={deleteInput}
       >
         Delete
       </button>
     </div>
   );
-}
+};
+
+export default IngredientInput;

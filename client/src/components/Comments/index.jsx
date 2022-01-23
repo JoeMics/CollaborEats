@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import validateInput from '../../helpers/validation';
+import { validateInput } from '../../helpers/validation';
 import { addComment, fetchComments } from '../../services/api';
 import Comment from './Comment';
 import Form from './Form';

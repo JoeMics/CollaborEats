@@ -2,16 +2,23 @@
  * Returns null if validation passes
  * Options:
  *  characterCount = Number
+ *  required = Boolean, default true
  */
-const validateInput = (input, options = {}) => {
-  if (!input || input === '') return 'Cannot be blank.';
+export const validateInput = (input, options = { characterCount: null, required: true }) => {
+  const defaultOptions = {
+    characterCount: null,
+    required: true,
+    ...options,
+  };
 
-  if (options.characterCount) {
-    if (input.length > options.characterCount)
-      return `Cannot be longer than ${options.characterCount} characters.`;
+  if (defaultOptions.required) {
+    if (!input || input === '') return 'Cannot be blank.';
+  }
+
+  if (defaultOptions.characterCount) {
+    if (input.length > defaultOptions.characterCount)
+      return `Cannot be longer than ${defaultOptions.characterCount} characters.`;
   }
 
   return null;
 };
-
-export default validateInput;
