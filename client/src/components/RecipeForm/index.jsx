@@ -5,7 +5,7 @@ import { validateInput } from '../../helpers/validation';
 import { addRecipe, uploadImage } from '../../services/api';
 import IngredientInput from './IngredientInput';
 
-export default function CreateFormComponent(props) {
+const RecipeForm = (props) => {
   const [recipeForm, setRecipeForm] = useState({
     title: '',
     description: '',
@@ -98,7 +98,7 @@ export default function CreateFormComponent(props) {
 
   return (
     <div className="flex-row mx-auto container py-3 px-10">
-      <h1 className="text-6xl font-serif my-8">Create a New Recipe</h1>
+      <h1 className="text-6xl font-serif my-8">{props.title}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title" className="block text-lg font-semibold">
           Title
@@ -167,4 +167,6 @@ export default function CreateFormComponent(props) {
       </form>
     </div>
   );
-}
+};
+
+export default RecipeForm;
