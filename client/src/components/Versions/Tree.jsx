@@ -19,6 +19,7 @@ export default function OrgChartTree({ treeId }) {
         id: dbData.data.recipe._id,
         children: [],
         description: dbData.data.recipe.description,
+        user: dbData.data.recipe.ownerId.email,
       };
 
       const treeArray = dbData.data.recipeTree;
@@ -57,16 +58,16 @@ export default function OrgChartTree({ treeId }) {
   const chevDown = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
+      className="h-6 w-6"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
     >
       <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M5 11l7-7 7 7M5 19l7-7 7 7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
       />
     </svg>
   );
@@ -78,13 +79,14 @@ export default function OrgChartTree({ treeId }) {
   const renderForeignObjectNode = ({ nodeDatum, toggleNode, foreignObjectProps }) => {
     return (
       <g>
-        <circle r={20} fill={'purple'}></circle>
+        <circle r={10} fill={'black'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
           <div className="mx-8 border-8 rounded-lg">
             <div className="max-w-sm overflow-hidden shadow-lg bg-gray-400 ">
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2 max-w-2xl">{nodeDatum.name}</div>
+                <h3 className="font-bold text-xl mb-2 max-w-2xl">{nodeDatum.name}</h3>
+                <h4 className="font-bold text-l mb-2 max-w-2xl">{nodeDatum.user}</h4>
                 <p className="text-gray-800 text-base truncate hover:overflow-visible hover:whitespace-normal">
                   {nodeDatum.description}
                 </p>
@@ -95,15 +97,15 @@ export default function OrgChartTree({ treeId }) {
                     <Link to={`${ROUTES.RECIPE}/${nodeDatum.id}`}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
+                        className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                         />
                       </svg>
@@ -123,15 +125,15 @@ export default function OrgChartTree({ treeId }) {
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
+                        className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                         />
                       </svg>
