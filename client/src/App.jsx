@@ -11,6 +11,7 @@ import Create from './pages/Create';
 import ImageUpload from './pages/ImageUpload';
 
 import Edit from './pages/Edit';
+import Footer from './components/Footer';
 function App() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function App() {
         <Route path={ROUTES.IMAGE_UPLOAD} component={ImageUpload} exact />
         <Route path={ROUTES.EDIT} component={Edit} exact />
       </Switch>
+      <Footer />
     </Router>
   );
 }
