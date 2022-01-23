@@ -1,9 +1,9 @@
-import CreateFormComponent from '../components/Recipe/CreateForm';
+import RecipeForm from '../components/RecipeForm';
 
 const Create = () => {
   return (
     <div className="container w-3/5">
-      <CreateFormComponent />
+      <RecipeForm title="Create a NEW Recipe!" />
     </div>
   );
 };
