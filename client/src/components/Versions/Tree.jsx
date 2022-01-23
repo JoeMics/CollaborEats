@@ -82,68 +82,70 @@ export default function OrgChartTree({ treeId }) {
         <circle className="translate-all" r={10} fill={'black'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
-          <div className="mx-8 rounded-lg translate-all">
-            <div className="max-w-sm rounded-lg bg-indigo-200 shadow-slate-500 shadow-md">
+          <div className="mx-8 rounded-lg">
+            <div className="max-w-sm rounded-lg p-1 bg-stone-100 shadow-slate-500 shadow-md ">
               <div className="px-6 py-4">
-                <h3 className="font-bold text-xl mb-2 max-w-2xl">{nodeDatum.name}</h3>
-                <h4 className="font-bold text-l mb-2 max-w-2xl">{nodeDatum.user}</h4>
-                <p className="text-gray-800 text-base truncate hover:overflow-visible hover:whitespace-normal hover:tr">
+                <h3 className="font-semibold text-xl max-w-2xl underline ">{nodeDatum.name}</h3>
+                <h4 className="font-semibold text-xs mb-2 max-w-2xl">by: {nodeDatum.user}</h4>
+                <p className="text-gray-800 py-2 text-base truncate hover:overflow-visible hover:whitespace-normal">
                   {nodeDatum.description}
                 </p>
-                <div className="flex w-full justify-around">
-                  <Link
-                    className="grow border-black border-2"
-                    to={`${ROUTES.RECIPE}/${nodeDatum.id}`}
-                  >
-                    <button className="flex py-2 ">
-                      <span>Recipe</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                        />
-                      </svg>
-                    </button>
-                  </Link>
+              </div>
+              <div className="flex w-full justify-around">
+                <Link
+                  className="flex justify-center basis-1/3 grow hover:bg-stone-200 group-hover:transition-all duration-300"
+                  to={`${ROUTES.RECIPE}/${nodeDatum.id}`}
+                >
+                  <button className="flex py-2 ">
+                    <span>Recipe</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                      />
+                    </svg>
+                  </button>
+                </Link>
 
-                  <Link
-                    className="grow border-black border-2"
-                    to={{
-                      pathname: ROUTES.EDIT,
-                      state: {
-                        recipeId: nodeDatum.id,
-                      },
-                    }}
-                  >
-                    <button className="flex py-2">
-                      <span>Fork</span>
+                <Link
+                  className="flex justify-center basis-1/3 grow border-stone-300  border-x hover:bg-stone-200 group-hover:transition-all duration-300"
+                  to={{
+                    pathname: ROUTES.EDIT,
+                    state: {
+                      recipeId: nodeDatum.id,
+                    },
+                  }}
+                >
+                  <button className="flex py-2">
+                    <span>Fork</span>
 
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </button>
-                  </Link>
-                  {nodeDatum.children && (
-                    <button className="flex py-2 grow border-black border-2" onClick={toggleNode}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+                {nodeDatum.children && (
+                  <div className="flex justify-center basis-1/3 grow hover:bg-stone-200 group-hover:transition-all duration-300">
+                    <button onClick={toggleNode} className="flex py-2">
                       {nodeDatum.__rd3t.collapsed ? (
                         <>
                           {chevUp} <span>Show</span>
@@ -154,8 +156,8 @@ export default function OrgChartTree({ treeId }) {
                         </>
                       )}
                     </button>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
