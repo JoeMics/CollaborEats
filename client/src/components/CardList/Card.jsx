@@ -10,7 +10,7 @@ const Card = ({ title, description, id, photo, ownerId }) => {
             src={
               photo
                 ? `http://localhost:8080/image/${photo}`
-                : 'https://source.unsplash.com/random/?food'
+                : 'https://source.unsplash.com/random/400x400/?food'
             }
             alt="Recipe Card"
           />
