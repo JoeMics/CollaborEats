@@ -69,3 +69,9 @@ export async function addRecipe(ownerId, content) {
     ...content,
   });
 }
+
+export async function simpleSearch(searchPhrase) {
+  return await axios.post(`/recipes/search`, {
+    searchPhrase,
+  });
+}
