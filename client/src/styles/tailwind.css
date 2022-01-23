@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .fade-text {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+  .link-underline {
+    border-bottom-width: 0;
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+    background-size: 0 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s ease-in-out;
+  }
+
+  .link-underline-teal {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#22baad, #22baad);
+  }
+  .link-underline-red {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#ff3d67, #ff3d67);
+  }
+  .link-underline-purple {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#e174fc, #e174fc);
+  }
+  .link-underline:hover {
+    background-size: 100% 3px;
+    background-position: 0 100%;
+  }
+}
