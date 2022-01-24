@@ -43,7 +43,7 @@ const Comments = ({ recipeId }) => {
   ));
 
   return (
-    <section className="container mt-24 mx-auto">
+    <section className="container mt-24 mx-auto dark:text-neutral-200">
       <h2 className="w-5/6 mx-auto text-4xl font-serif">Comments</h2>
       <Form input={input} setInput={setInput} handleSubmit={handleSubmit} />
       {error && <h4 className="w-5/6 mx-auto text-red-700 font-serif">{error}</h4>}
