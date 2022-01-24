@@ -5,7 +5,7 @@ import { validateInput } from '../../helpers/validation';
 import { addFork, addRecipe, uploadImage } from '../../services/api';
 import IngredientInput from './IngredientInput';
 
-const RecipeForm = ({ title, recipe }) => {
+const RecipeForm = ({ title, recipe, setShowModal }) => {
   recipe = recipe || {};
   const [recipeForm, setRecipeForm] = useState({
     title: recipe.title || '',
@@ -103,6 +103,7 @@ const RecipeForm = ({ title, recipe }) => {
       // TODO: render page depending on server error
       console.log(error);
     }
+    setShowModal(false);
   };
 
   const IngredientsInputs = recipeForm.ingredients.map((ingredient, index) => {
@@ -133,62 +134,70 @@ const RecipeForm = ({ title, recipe }) => {
 
   return (
     <>
-      {/* <h1 className="text-6xl font-serif my-8">{title}</h1> */}
       <div className="flex flex-col justify-center p-5 rounded-t">
-        <img className="w-16 h-16 mx-auto" src="/images/logo.svg" alt="" />
-        <h3 className="text-3xl font-serif font-semibold mx-auto px-auto">{title}</h3>
+        <img className="w-12 h-12 mx-auto" src="/images/logo.svg" alt="" />
+        <h3 className="text-2xl font-serif font-semibold mx-auto px-auto">{title}</h3>
       </div>
       <form onSubmit={handleSubmit} className="bg-white rounded px-8 flex flex-col">
         <div class="mx-3 flex flex-col mb-3">
-          <label htmlFor="title" className="block text-xl font-semibold">
+          <label htmlFor="title" className="block text-lg font-semibold">
             Title
           </label>
           <input
             type="text"
             id="title"
             name="title"
-            placeholder="Polish Burgers"
-            className="w-1/3 px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none  focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out"
+            placeholder={formError.title ? 'Title cannot be blank' : 'e.g. Polish Burgers'}
+            className={
+              formError.title
+                ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none  focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
+            }
             value={recipeForm.title}
             onChange={editInput}
           ></input>
-          {formError.title && (
-            <h4 className="mx-auto text-red-700 font-serif">{formError.title}</h4>
-          )}
           <div class="w-full mb-0">
-            <label htmlFor="description" className="block text-xl font-semibold">
+            <label htmlFor="description" className="block text-lg font-semibold">
               Description
             </label>
             <textarea
               name="description"
-              className="w-full h-32 px-4 py-3 border-2 mb-3 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out"
-              placeholder="This recipe is a family favorite that was passed down over the generations..."
+              placeholder={
+                formError.description
+                  ? 'Description cannot be blank'
+                  : 'e.g. This recipe is a family favorite that was passed down over the generations...'
+              }
+              className={
+                formError.description
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  : 'w-full h-24 px-4 py-2 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
+              }
               value={recipeForm.description}
               onChange={editInput}
             ></textarea>
-            {formError.description && (
-              <h4 className="mx-auto text-red-700 font-serif">{formError.description}</h4>
-            )}
           </div>
         </div>
         <div class="mx-3 flex">
           <div class="w-full mb-0">
-            <label htmlFor="instructions" className="block text-xl font-semibold">
+            <label htmlFor="instructions" className="block text-lg font-semibold">
               Instructions
             </label>
             <textarea
               name="instructions"
-              className="w-full h-32 px-4 py-3 border-2 mb-3 border-gray-300 rounded-sm outline-none focus:border-blue-400"
-              placeholder="Instructions"
+              placeholder={
+                formError.instructions ? 'Instructions cannot be blank.' : 'e.g. Instructions'
+              }
+              className={
+                formError.instructions
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 rounded-sm outline-none focus:border-blue-400'
+              }
               value={recipeForm.instructions}
               onChange={editInput}
             ></textarea>
-            {formError.instructions && (
-              <h4 className="mx-auto text-red-700 font-serif">{formError.instructions}</h4>
-            )}
           </div>
         </div>
-        <label className="mx-3 block text-xl font-semibold mb-2">Ingredients</label>
+        <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
         {formError.ingredient && (
           <h4 className="mx-auto text-red-700 font-serif">Ingredient: {formError.ingredient}</h4>
         )}
@@ -220,33 +229,18 @@ const RecipeForm = ({ title, recipe }) => {
         </div>
         <div class="mb-3 w-96">
           <input
-            class="form-control
-                              block
-                              w-full
-                              px-3
-                              mx-3
-                              mt-2
-                              py-1.5
-                              text-base
-                              font-normal
-                              text-gray-700
-                              bg-white bg-clip-padding
-                              border border-solid border-gray-300
-                              rounded
-                              transition
-                              ease-in-out
-                              m-0
-                              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            class="form-control block w-full px-3 mx-3 mt-2 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             type="file"
             name="file"
             id="file"
             onChange={handleFileSelect}
           />
         </div>
-        <div className="flex items-center justify-end p-6 rounded-b">
+        <div className="flex items-center justify-end p-4 rounded-b">
           <button
             className="bg-transparent text-red-500 hover:bg-red-700 hover:text-white font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
+            onClick={() => setShowModal(false)}
           >
             Cancel
           </button>
