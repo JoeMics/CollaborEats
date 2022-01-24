@@ -134,11 +134,14 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-center p-5 rounded-t">
+      <div className="flex flex-col justify-center p-5 rounded-t dark:bg-dark-800 dark:text-neutral-200">
         <img className="w-12 h-12 mx-auto" src="/images/logo.svg" alt="" />
         <h3 className="text-2xl font-serif font-semibold mx-auto px-auto">{title}</h3>
       </div>
-      <form onSubmit={handleSubmit} className="bg-white rounded px-8 flex flex-col">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-b px-8 flex flex-col dark:bg-dark-800 dark:text-neutral-200"
+      >
         <div class="mx-3 flex flex-col mb-3">
           <label htmlFor="title" className="block text-lg font-semibold">
             Title
@@ -151,7 +154,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             className={
               formError.title
                 ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-                : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none  focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
+                : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-800 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
             }
             value={recipeForm.title}
             onChange={editInput}
@@ -170,7 +173,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
               className={
                 formError.description
                   ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-                  : 'w-full h-24 px-4 py-2 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
+                  : 'w-full h-24 px-4 py-2 border-2 dark:bg-dark-800 dark:border-dark-500 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
               }
               value={recipeForm.description}
               onChange={editInput}
@@ -190,7 +193,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
               className={
                 formError.instructions
                   ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-                  : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 rounded-sm outline-none focus:border-blue-400'
+                  : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 dark:bg-dark-800 dark:border-dark-500 rounded-sm outline-none focus:border-blue-400'
               }
               value={recipeForm.instructions}
               onChange={editInput}
@@ -213,7 +216,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
         <div class="mb-3 mx-3 w-8 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-9 hover:text-teal-700 transition duration-200 ease-in-out"
+            className="h-8 w-9 hover:text-primary-400 transition duration-200 ease-in-out"
             onClick={addIngredient}
             fill="none"
             viewBox="0 0 24 24"
@@ -229,7 +232,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
         </div>
         <div class="mb-3 w-96">
           <input
-            class="form-control block w-full px-3 mx-3 mt-2 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            class="form-control block w-full px-3 mx-3 mt-2 py-1.5 text-base font-normal text-gray-700 dark:text-neutral-200 bg-white dark:bg-dark-700 bg-clip-padding border border-solid border-gray-300 dark:border-dark-900 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             type="file"
             name="file"
             id="file"
@@ -245,7 +248,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             Cancel
           </button>
           <button
-            className="bg-teal-900 text-white hover:bg-teal-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            className="bg-primary-400 text-white hover:bg-primary-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="submit"
             value="Create"
           >
