@@ -1,46 +1,3 @@
-const tree = [
-  // {
-  //   id: 1,
-  //   parent: null,
-  //   path: [],
-  // },
-  {
-    id: 2,
-    parent: 1,
-    path: [1], //if path.length == 1 then they are all children;
-  },
-  {
-    id: 4,
-    parent: 1,
-    path: [1],
-  },
-  {
-    id: 3,
-    parent: 2,
-    path: [1, 2],
-  },
-  {
-    id: 7,
-    parent: 4,
-    path: [1, 4],
-  },
-  {
-    id: 6,
-    parent: 3,
-    path: [1, 2, 3],
-  },
-  {
-    id: 5,
-    parent: 3,
-    path: [1, 2, 3],
-  },
-];
-
-const root = {
-  name: '1',
-  children: [],
-};
-
 const treeFormatter = (root, treeData) => {
   // index all nodes in all depths of the tree
   const depthIndex = {};
@@ -62,6 +19,7 @@ const treeFormatter = (root, treeData) => {
   for (let i = 0; i < treeData.length; i++) {
     // All nodes with depth = 1 is always children to root node
     // So just push to root node's children here
+    console.log(treeData[i]);
     if (treeData[i].path.length === 1) {
       data[0].children.push({
         name: treeData[i].title,
@@ -69,6 +27,7 @@ const treeFormatter = (root, treeData) => {
         description: treeData[i].description,
         children: [],
         user: treeData[i].ownerId.email,
+        recipe: treeData[i],
       }); //data[0] is always root
     } else {
       // r3treepath maps out the location we want to push to in the r3tree format
@@ -90,6 +49,7 @@ const treeFormatter = (root, treeData) => {
         description: treeData[i].description,
         children: [],
         user: treeData[i].ownerId.email,
+        recipe: treeData[i],
       });
     }
   }

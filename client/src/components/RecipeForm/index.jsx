@@ -5,7 +5,7 @@ import { validateInput } from '../../helpers/validation';
 import { addFork, addRecipe, uploadImage } from '../../services/api';
 import IngredientInput from './IngredientInput';
 
-const RecipeForm = ({ title, recipe }) => {
+const RecipeForm = ({ title, recipe, setShowModal }) => {
   recipe = recipe || {};
   const [recipeForm, setRecipeForm] = useState({
     title: recipe.title || '',
@@ -62,8 +62,12 @@ const RecipeForm = ({ title, recipe }) => {
     for (const ingredient of newRecipe.ingredients) {
       const errors = {
         amount: validateInput(ingredient.amount, { characterCount: 5 }),
-        ingredient: validateInput(ingredient.ingredient, { characterCount: 30 }),
-        unitOfMeasure: validateInput(ingredient.unitOfMeasure, { required: false }),
+        ingredient: validateInput(ingredient.ingredient, {
+          characterCount: 30,
+        }),
+        unitOfMeasure: validateInput(ingredient.unitOfMeasure, {
+          required: false,
+        }),
       };
 
       const filteredErrors = {};
@@ -99,6 +103,7 @@ const RecipeForm = ({ title, recipe }) => {
       // TODO: render page depending on server error
       console.log(error);
     }
+    setShowModal(false);
   };
 
   const IngredientsInputs = recipeForm.ingredients.map((ingredient, index) => {
@@ -128,52 +133,71 @@ const RecipeForm = ({ title, recipe }) => {
   };
 
   return (
-    <div className="flex-row mx-auto container py-3 px-10">
-      <h1 className="text-6xl font-serif my-8">{title}</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title" className="block text-lg font-semibold">
-          Title
-        </label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Title"
-          className="w-1/3 px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none  focus:border-blue-400"
-          value={recipeForm.title}
-          onChange={editInput}
-        ></input>
-        {formError.title && <h4 className="mx-auto text-red-700 font-serif">{formError.title}</h4>}
-
-        <label htmlFor="description" className="block text-lg font-semibold">
-          Description
-        </label>
-        <textarea
-          name="description"
-          className="w-full h-32 px-4 py-3 border-2 mb-3 border-gray-300 rounded-sm outline-none focus:border-blue-400"
-          placeholder="Description"
-          value={recipeForm.description}
-          onChange={editInput}
-        ></textarea>
-        {formError.description && (
-          <h4 className="mx-auto text-red-700 font-serif">{formError.description}</h4>
-        )}
-
-        <label htmlFor="instructions" className="block text-lg font-semibold">
-          Instructions
-        </label>
-        <textarea
-          name="instructions"
-          className="w-full h-32 px-4 py-3 border-2 mb-3 border-gray-300 rounded-sm outline-none focus:border-blue-400"
-          placeholder="Instructions"
-          value={recipeForm.instructions}
-          onChange={editInput}
-        ></textarea>
-        {formError.instructions && (
-          <h4 className="mx-auto text-red-700 font-serif">{formError.instructions}</h4>
-        )}
-
-        <label className="block text-lg font-semibold">Ingredients</label>
+    <>
+      <div className="flex flex-col justify-center p-5 rounded-t">
+        <img className="w-12 h-12 mx-auto" src="/images/logo.svg" alt="" />
+        <h3 className="text-2xl font-serif font-semibold mx-auto px-auto">{title}</h3>
+      </div>
+      <form onSubmit={handleSubmit} className="bg-white rounded px-8 flex flex-col">
+        <div class="mx-3 flex flex-col mb-3">
+          <label htmlFor="title" className="block text-lg font-semibold">
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder={formError.title ? 'Title cannot be blank' : 'e.g. Polish Burgers'}
+            className={
+              formError.title
+                ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none  focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
+            }
+            value={recipeForm.title}
+            onChange={editInput}
+          ></input>
+          <div class="w-full mb-0">
+            <label htmlFor="description" className="block text-lg font-semibold">
+              Description
+            </label>
+            <textarea
+              name="description"
+              placeholder={
+                formError.description
+                  ? 'Description cannot be blank'
+                  : 'e.g. This recipe is a family favorite that was passed down over the generations...'
+              }
+              className={
+                formError.description
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  : 'w-full h-24 px-4 py-2 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
+              }
+              value={recipeForm.description}
+              onChange={editInput}
+            ></textarea>
+          </div>
+        </div>
+        <div class="mx-3 flex">
+          <div class="w-full mb-0">
+            <label htmlFor="instructions" className="block text-lg font-semibold">
+              Instructions
+            </label>
+            <textarea
+              name="instructions"
+              placeholder={
+                formError.instructions ? 'Instructions cannot be blank.' : 'e.g. Instructions'
+              }
+              className={
+                formError.instructions
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 rounded-sm outline-none focus:border-blue-400'
+              }
+              value={recipeForm.instructions}
+              onChange={editInput}
+            ></textarea>
+          </div>
+        </div>
+        <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
         {formError.ingredient && (
           <h4 className="mx-auto text-red-700 font-serif">Ingredient: {formError.ingredient}</h4>
         )}
@@ -186,28 +210,50 @@ const RecipeForm = ({ title, recipe }) => {
           </h4>
         )}
         {IngredientsInputs}
-        <button
-          className="block items-center px-4 py-2 bg-blue-300 rounded text-white"
-          type="button"
-          onClick={addIngredient}
-        >
-          Add an ingredient
-        </button>
-        <div className="mt-3 mb-3">
-          <label className="block text-lg font-semibold" htmlFor="file">
-            Choose File:
-          </label>
-          <input type="file" name="file" id="file" onChange={handleFileSelect} />
+        <div class="mb-3 mx-3 w-8 cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-8 w-9 hover:text-teal-700 transition duration-200 ease-in-out"
+            onClick={addIngredient}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
         </div>
-        <button
-          type="submit"
-          value="Submit"
-          className="block items-center px-4 py-2 my-4 bg-blue-300 rounded text-white"
-        >
-          Submit
-        </button>
+        <div class="mb-3 w-96">
+          <input
+            class="form-control block w-full px-3 mx-3 mt-2 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            type="file"
+            name="file"
+            id="file"
+            onChange={handleFileSelect}
+          />
+        </div>
+        <div className="flex items-center justify-end p-4 rounded-b">
+          <button
+            className="bg-transparent text-red-500 hover:bg-red-700 hover:text-white font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            onClick={() => setShowModal(false)}
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-teal-900 text-white hover:bg-teal-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="submit"
+            value="Create"
+          >
+            Create
+          </button>
+        </div>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -5,11 +5,14 @@ import { useCenteredTree } from '../../helpers/centerTree';
 import { getRecipe } from '../../services/api';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import Modal from '../Modal';
 
 export default function OrgChartTree({ treeId }) {
   const [treeData, setTreeData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [translate, containerRef] = useCenteredTree();
+  const [showModal, setShowModal] = useState(false);
+  const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
     async function getAllData() {
@@ -20,6 +23,7 @@ export default function OrgChartTree({ treeId }) {
         children: [],
         description: dbData.data.recipe.description,
         user: dbData.data.recipe.ownerId.email,
+        recipe: dbData.data.recipe,
       };
 
       const treeArray = dbData.data.recipeTree;
@@ -72,6 +76,12 @@ export default function OrgChartTree({ treeId }) {
     </svg>
   );
 
+  const handleFork = (selectedRecipe) => {
+    console.log('THE RECIPE IS SELECTED: ', selectedRecipe);
+    setRecipe(selectedRecipe);
+    setShowModal(true);
+  };
+
   // Here we're using `renderCustomNodeElement` render a component that uses
   // both SVG and HTML tags side-by-side.
   // This is made possible by `foreignObject`, which wraps the HTML tags to
@@ -115,14 +125,9 @@ export default function OrgChartTree({ treeId }) {
                   </button>
                 </Link>
 
-                <Link
+                <span
                   className="flex justify-center basis-1/3 grow border-stone-300  border-x hover:bg-stone-200 group-hover:transition-all duration-300"
-                  to={{
-                    pathname: ROUTES.EDIT,
-                    state: {
-                      recipeId: nodeDatum.id,
-                    },
-                  }}
+                  onClick={() => handleFork(nodeDatum.recipe)}
                 >
                   <button className="flex py-2">
                     <span>Fork</span>
@@ -142,7 +147,7 @@ export default function OrgChartTree({ treeId }) {
                       />
                     </svg>
                   </button>
-                </Link>
+                </span>
                 {nodeDatum.children && (
                   <div className="flex justify-center basis-1/3 grow hover:bg-stone-200 group-hover:transition-all duration-300">
                     <button onClick={toggleNode} className="flex py-2">
@@ -184,6 +189,11 @@ export default function OrgChartTree({ treeId }) {
           />
         </div>
       )}
+      <>
+        {showModal ? (
+          <Modal recipe={recipe} title={`Forking ${recipe.title}`} setShowModal={setShowModal} />
+        ) : null}
+      </>
     </>
   );
 }
