@@ -32,20 +32,20 @@ export default function VersionComponent() {
   return (
     <div className="flex-row mx-auto container pt-8">
       <div className="flex justify-between content-start">
-        <h2 className="text-5xl font-serif">Recipe Tree</h2>
+        <h2 className="text-5xl font-serif dark:text-neutral-200">Recipe Tree</h2>
         <div className="flex">
-          <button className="block items-center mx-2 px-4 py-2 bg-blue-300 rounded text-white">
+          <button className="block items-center mx-2 px-4 py-2 bg-primary-500 hover:bg-primary-700 rounded text-white">
             <Link to={`${ROUTES.RECIPE}/${id}`}>Original Fork</Link>
           </button>
-          <button className="block items-center mx-2 px-4 py-2 bg-blue-300 rounded text-white">
+          <button className="block items-center mx-2 px-4 py-2 bg-primary-500 hover:bg-primary-700 rounded text-white">
             <Link to={`${ROUTES.RECIPE}/${recent}`}>Most Recent Fork</Link>
           </button>
-          <button className="block items-center mx-2 px-4 py-2 bg-blue-300 rounded text-white">
+          <button className="block items-center mx-2 px-4 py-2 bg-primary-500 hover:bg-primary-700 rounded text-white">
             <Link to={`${ROUTES.RECIPE}/${mostForked}`}>Most Fork</Link>
           </button>
         </div>
       </div>
-      <div className="flex-row mx-auto container pt-6">
+      <div className="flex-row mx-auto container my-6 ">
         <TreeContainer treeId={id} />
       </div>
     </div>

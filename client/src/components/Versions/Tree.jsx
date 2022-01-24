@@ -92,18 +92,18 @@ export default function OrgChartTree({ treeId }) {
         <circle className="translate-all" r={10} fill={'black'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
-          <div className="mx-8 mt-11 rounded-lg hover:scale-105 group-hover:transition-all duration-300">
-            <div className="max-w-sm rounded-lg p-1 bg-stone-100 shadow-slate-500 shadow-md ">
+          <div className="mx-8 mt-11 rounded-lg hover:scale-105 group-hover:transition-all duration-300 dark:text-neutral-300">
+            <div className="max-w-sm rounded-lg p-1 bg-stone-100 dark:bg-dark-800 shadow-slate-500 dark:shadow-dark-800 shadow-md ">
               <div className="px-6 py-4">
                 <h3 className="font-semibold text-xl max-w-2xl underline ">{nodeDatum.name}</h3>
                 <h4 className="font-semibold text-xs mb-2 max-w-2xl">by: {nodeDatum.user}</h4>
-                <p className="text-gray-800 py-2 text-base truncate hover:overflow-visible hover:whitespace-normal">
+                <p className="text-gray-800 py-2 text-base truncate hover:overflow-visible hover:whitespace-normal dark:text-neutral-200">
                   {nodeDatum.description}
                 </p>
               </div>
               <div className="flex w-full justify-around">
                 <Link
-                  className="flex justify-center basis-1/3 grow hover:bg-stone-200 group-hover:transition-all duration-300"
+                  className="flex justify-center basis-1/3 grow rounded-bl-md hover:bg-stone-200 dark:hover:bg-dark-700 group-hover:transition-all duration-300"
                   to={`${ROUTES.RECIPE}/${nodeDatum.id}`}
                 >
                   <button className="flex py-2 ">
@@ -126,7 +126,7 @@ export default function OrgChartTree({ treeId }) {
                 </Link>
 
                 <span
-                  className="flex justify-center basis-1/3 grow border-stone-300  border-x hover:bg-stone-200 group-hover:transition-all duration-300"
+                  className="flex justify-center basis-1/3 grow border-stone-300  border-x hover:bg-stone-200 dark:hover:bg-dark-700 group-hover:transition-all duration-300"
                   onClick={() => handleFork(nodeDatum.recipe)}
                 >
                   <button className="flex py-2">
@@ -149,7 +149,7 @@ export default function OrgChartTree({ treeId }) {
                   </button>
                 </span>
                 {nodeDatum.children && (
-                  <div className="flex justify-center basis-1/3 grow hover:bg-stone-200 group-hover:transition-all duration-300">
+                  <div className="flex justify-center basis-1/3 grow rounded-br-md hover:bg-stone-200 dark:hover:bg-dark-700 group-hover:transition-all duration-300">
                     <button onClick={toggleNode} className="flex py-2">
                       {nodeDatum.__rd3t.collapsed ? (
                         <>

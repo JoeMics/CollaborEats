@@ -4,7 +4,7 @@ const Card = ({ title, description, id, photo, ownerId }) => {
   return (
     <div className="basis-1/3">
       <Link to={`${ROUTES.RECIPE}/${id}`}>
-        <article className="flex-row border-2 p-5 my-4 w-96 rounded shadow-slate-500 shadow-md hover:scale-105 group-hover:transition-all duration-300">
+        <article className="flex-row p-5 my-4 w-96 rounded shadow-dark-700 shadow-md hover:scale-105 group-hover:transition-all duration-300 dark:bg-dark-700 dark:shadow-none dark:hover:bg-dark-600 dark:text-neutral-200">
           <img
             className="h-96 w-96 rounded-lg object-cover"
             src={
