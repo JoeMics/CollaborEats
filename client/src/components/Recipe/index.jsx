@@ -23,7 +23,7 @@ export default function RecipeComponent({ recipeId }) {
       setRecipe(dbData.data.recipe);
     }
     getRecipeData();
-  }, []);
+  }, [recipeId]);
 
   return (
     <>

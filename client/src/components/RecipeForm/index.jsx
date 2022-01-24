@@ -94,16 +94,17 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
       // Only on fork
       if (recipe._id) {
         const result = await addFork(userId, recipe._id, newRecipe);
-        return history.push(`/recipe/${result.data._id}`);
+        history.push(`/recipe/${result.data._id}`);
+        return setShowModal(false);
       }
 
       const result = await addRecipe(userId, newRecipe);
-      return history.push(`/recipe/${result.data._id}`);
+      history.push(`/recipe/${result.data._id}`);
+      return setShowModal(false);
     } catch (error) {
       // TODO: render page depending on server error
       console.log(error);
     }
-    setShowModal(false);
   };
 
   const IngredientsInputs = recipeForm.ingredients.map((ingredient, index) => {
