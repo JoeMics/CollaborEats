@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 const Card = ({ title, description, id, photo, ownerId }) => {
   return (
-    <div className="basis-1/3">
+    <div className="basis-1/3 flex justify-center">
       <Link to={`${ROUTES.RECIPE}/${id}`}>
-        <article className="flex-row p-5 my-4 w-96 rounded shadow-dark-700 shadow-md hover:scale-105 group-hover:transition-all duration-300 dark:bg-dark-700 dark:shadow-none dark:hover:bg-dark-600 dark:text-neutral-200">
+        <article className="flex-row p-5 my-4 w-96 rounded shadow-dark-50 dark:shadow-black shadow-md dark:shadow-lg hover:scale-105 group-hover:transition-all duration-300 dark:bg-dark-300 dark:shadow-none dark:hover:bg-dark-50 dark:text-neutral-200">
           <img
             className="h-96 w-96 rounded-lg object-cover"
             src={

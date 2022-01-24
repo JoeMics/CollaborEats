@@ -40,7 +40,7 @@ const Dashboard = () => {
               height={500}
               baseColor={theme === 'dark' && '#1d1d1d'}
               highlightColor={theme === 'dark' && '#242424'}
-              className="border-2 p-5 my-4 rounded"
+              className="p-5 my-4 rounded"
               containerClassName="container flex flex-wrap justify-around"
             />
           </div>
