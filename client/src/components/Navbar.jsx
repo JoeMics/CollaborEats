@@ -4,9 +4,13 @@ import * as ROUTES from '../constants/routes';
 import { AuthContext } from '../context/AuthContext';
 import Toggle from './Toggle';
 import { simpleSearch } from '../services/api';
+import React, { useState } from 'react';
+import RecipeForm from './RecipeForm';
+import Modal from './Modal';
 
 const Navbar = () => {
   const { userId, setUserId } = useContext(AuthContext);
+  const [showModal, setShowModal] = useState(false);
 
   // For demo purposes
   const demoUsers = {
@@ -50,12 +54,13 @@ const Navbar = () => {
               </span>
             </Link>
           </li>
-          <li className="text-xl px-2 mx-1 my-auto dark:text-white">
-            <Link to={ROUTES.CREATE}>
-              <span className="link-underline link-underline-purple hover:text-fuchsia-600">
-                Create
-              </span>
-            </Link>
+          <li
+            className="text-xl px-2 mx-1 my-auto dark:text-white cursor-pointer"
+            onClick={() => setShowModal(true)}
+          >
+            <span className="link-underline link-underline-purple hover:text-fuchsia-600">
+              Create
+            </span>
           </li>
         </ul>
       </div>
@@ -95,6 +100,7 @@ const Navbar = () => {
         </button>
         <Toggle />
       </div>
+      <>{showModal ? <Modal title={'Create a New Recipe'} setShowModal={setShowModal} /> : null}</>
     </nav>
   );
 };
