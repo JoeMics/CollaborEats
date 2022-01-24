@@ -41,11 +41,7 @@ const Navbar = ({ transparent }) => {
         <Link to={ROUTES.HOME}>
           <img className="w-16 h-16 mx-auto cursor-pointer" src="/images/logo.svg" alt="logo" />
         </Link>
-        <h1 className="text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200">
-          {/* JOSEPHS STYLES <nav className="flex items-center justify-between flex-wrap p-2 px-32 py-8">
-      <div className="flex content-center">
-        <img className="w-16 h-16 mx-auto" src="/images/logo.svg" alt="" />
-        <h1 className="text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200"> */}
+        <h1 className="text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200 hover:scale-105 transition-all">
           <Link to={ROUTES.HOME}>
             Collabor<span className="font-bold">Eats</span>
           </Link>
