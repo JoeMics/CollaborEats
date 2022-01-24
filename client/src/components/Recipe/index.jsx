@@ -32,25 +32,12 @@ export default function RecipeComponent({ recipeId }) {
         <div className="flex-row mx-auto container mt-8">
           <>
             <div className="flex flex-wrap justify-between content-start space-x-6 ">
-              <header className="w-3/4 dark:text-neutral-200">
+              <header className="dark:text-neutral-200">
                 <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
                 <h2 className="text-lg font-serif pl-4 w-9/12 break-words">
                   Written by:{recipe.ownerId.email}
                 </h2>
               </header>
-              <div className="flex py-2 items-end basis-2">
-                <button
-                  className="flex justify-center items-center px-4 py-2 mx-5 bg-primary-400 hover:bg-primary-500  rounded text-neutral-200 h-12 w-24"
-                  onClick={() => setShowModal(true)}
-                >
-                  Fork
-                </button>
-                <button className="flex items-center px-4 py-2 bg-primary-400 hover:bg-primary-500 rounded text-neutral-200 h-12 w-24">
-                  <Link to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}>
-                    Other Forks
-                  </Link>
-                </button>
-              </div>
             </div>
             <div className="h-80 w-full rounded-t-md overflow-hidden mt-6">
               <img
@@ -63,6 +50,24 @@ export default function RecipeComponent({ recipeId }) {
                 alt={recipe.title}
               />
             </div>
+
+            <div className="flex justify-end h-0 relative bottom-4 pr-5 ">
+              <button
+                className="flex justify-center items-center px-4 py-2 mx-5 bg-primary-600 hover:bg-primary-700  rounded text-neutral-200 text-lg font-bold h-10 w-36"
+                onClick={() => setShowModal(true)}
+              >
+                Fork
+              </button>
+              <button className="flex items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 rounded text-neutral-200 text-lg font-bold h-10 w-36 ">
+                <Link
+                  to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}
+                  className="w-full"
+                >
+                  Other Forks
+                </Link>
+              </button>
+            </div>
+
             <div className="flex w-full px-12 justify-items-center bg-neutral-100 shadow-dark-500 shadow-sm  rounded-b-md py-9 dark:text-neutral-200 dark:bg-dark-500 dark:shadow-black dark:shadow-sm">
               <Ingredients ingredients={recipe.ingredients} />
               <Instructions instructions={recipe.instructions} description={recipe.description} />
