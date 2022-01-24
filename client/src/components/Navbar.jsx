@@ -5,7 +5,6 @@ import { AuthContext } from '../context/AuthContext';
 import Toggle from './Toggle';
 import { simpleSearch } from '../services/api';
 import React, { useState } from 'react';
-import RecipeForm from './RecipeForm';
 import Modal from './Modal';
 
 const Navbar = () => {
@@ -33,9 +32,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap p-2 px-32 py-8">
-      <div className="flex content-center">
-        <img className="w-16 h-16 mx-auto" src="/images/logo.svg" alt="" />
+    <nav className="top-0 absolute z-50 w-full flex items-center justify-between flex-wrap p-2 px-32">
+      <div className="flex content-center text-teal-500">
+        <Link to={ROUTES.HOME}>
+          <img className="w-16 h-16 mx-auto cursor-pointer" src="/images/logo.svg" alt="logo" />
+        </Link>
         <h1 className="text-3xl my-auto ml-4 mr-6 text-teal-900 dark:text-white">
           <Link to={ROUTES.HOME}>
             Collabor<span className="font-bold">Eats</span>
