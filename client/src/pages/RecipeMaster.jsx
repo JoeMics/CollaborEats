@@ -3,10 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { fetchMasterRecipes } from '../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import Navbar from '../components/Navbar';
 
 const RecipeMaster = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    document.title = 'Original Recipes';
+  }, []);
 
   useEffect(() => {
     async function getRecipeData() {
@@ -21,7 +26,8 @@ const RecipeMaster = () => {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="">
+      <Navbar />
       <header className="container py-10">
         <h1 className="text-6xl font-serif dark:text-neutral-200">Master Recipes</h1>
       </header>

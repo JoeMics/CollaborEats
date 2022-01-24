@@ -143,7 +143,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
         onSubmit={handleSubmit}
         className="bg-white rounded-b px-8 flex flex-col dark:bg-dark-700 dark:text-neutral-200"
       >
-        <div class="mx-3 flex flex-col mb-3">
+        <div className="mx-3 flex flex-col mb-3">
           <label htmlFor="title" className="block text-lg font-semibold">
             Title
           </label>
@@ -151,7 +151,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             type="text"
             id="title"
             name="title"
-            placeholder={formError.title ? 'Title cannot be blank' : 'e.g. Polish Burgers'}
+            placeholder={formError.title ? formError.title : 'e.g. Polish Burgers'}
             className={
               formError.title
                 ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
@@ -160,7 +160,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             value={recipeForm.title}
             onChange={editInput}
           ></input>
-          <div class="w-full mb-0">
+          <div className="w-full mb-0">
             <label htmlFor="description" className="block text-lg font-semibold">
               Description
             </label>
@@ -168,7 +168,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
               name="description"
               placeholder={
                 formError.description
-                  ? 'Description cannot be blank'
+                  ? formError.description
                   : 'e.g. This recipe is a family favorite that was passed down over the generations...'
               }
               className={
@@ -181,16 +181,14 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             ></textarea>
           </div>
         </div>
-        <div class="mx-3 flex">
-          <div class="w-full mb-0">
+        <div className="mx-3 flex">
+          <div className="w-full mb-0">
             <label htmlFor="instructions" className="block text-lg font-semibold">
               Instructions
             </label>
             <textarea
               name="instructions"
-              placeholder={
-                formError.instructions ? 'Instructions cannot be blank.' : 'e.g. Instructions'
-              }
+              placeholder={formError.instructions ? formError.instructions : 'e.g. Instructions'}
               className={
                 formError.instructions
                   ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
@@ -202,19 +200,8 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
           </div>
         </div>
         <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
-        {formError.ingredient && (
-          <h4 className="mx-auto text-red-700 font-serif">Ingredient: {formError.ingredient}</h4>
-        )}
-        {formError.amount && (
-          <h4 className="mx-auto text-red-700 font-serif">Amount: {formError.amount}</h4>
-        )}
-        {formError.unitOfMeasure && (
-          <h4 className="mx-auto text-red-700 font-serif">
-            Unit of Measurement: {formError.unitOfMeasure}
-          </h4>
-        )}
         {IngredientsInputs}
-        <div class="mb-3 mx-3 w-8 cursor-pointer">
+        <div className="mb-3 mx-3 w-8 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-8 w-9 hover:text-primary-400 transition duration-200 ease-in-out"
@@ -231,9 +218,9 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             />
           </svg>
         </div>
-        <div class="mb-3 w-96">
+        <div className="mb-3 w-96">
           <input
-            class="form-control block w-full px-3 mx-3 mt-2 py-1.5 text-base font-normal text-gray-700 dark:text-neutral-200 bg-white dark:bg-dark-700 bg-clip-padding border border-solid border-gray-300 dark:border-dark-900 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            className="form-control block w-full px-3 mx-3 mt-2 py-1.5 text-base font-normal text-gray-700 dark:text-neutral-200 bg-white dark:bg-dark-700 bg-clip-padding border border-solid border-gray-300 dark:border-dark-900 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             type="file"
             name="file"
             id="file"

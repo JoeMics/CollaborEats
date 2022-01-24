@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
 import VersionComponent from '../components/Versions/index';
 const Versions = () => {
   useEffect(() => {
     document.title = `Version - CollaborEats`;
   });
   return (
-    <div className="container w-auto h-auto">
-      <VersionComponent />
-    </div>
+    <>
+      <Navbar />
+      <div className="container w-auto h-auto">
+        <VersionComponent />
+      </div>
+    </>
   );
 };
 
