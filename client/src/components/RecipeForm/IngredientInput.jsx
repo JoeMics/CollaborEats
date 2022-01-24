@@ -1,4 +1,4 @@
-const IngredientInput = ({ setRecipeForm, recipeForm, index }) => {
+const IngredientInput = ({ setRecipeForm, recipeForm, index, formError }) => {
   const changeHandler = (e) => {
     const { name } = e.target;
     const { value } = e.target;
@@ -27,10 +27,14 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index }) => {
           Ingredient
         </label>
         <input
-          className="appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out"
+          className={
+            formError.title
+              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out'
+          }
           type="text"
           name="ingredient"
-          placeholder="Ground Beef"
+          placeholder={formError.ingredient ? 'none' : 'Ground Beef'}
           value={recipeForm.ingredients[index].ingredient}
           onChange={changeHandler}
         />
@@ -40,12 +44,16 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index }) => {
           Amount
         </label>
         <input
-          className="appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out"
+          className={
+            formError.amount
+              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out'
+          }
           type="text"
           name="amount"
           value={recipeForm.ingredients[index].amount}
           onChange={changeHandler}
-          placeholder="1"
+          placeholder={formError.amount ? 'none' : '1'}
         />
       </div>
       <div class="w-1/2 px-3">
@@ -53,9 +61,13 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index }) => {
           Unit of Measure
         </label>
         <input
-          class="appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out"
+          class={
+            formError.unitOfMeasure
+              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out'
+          }
           type="text"
-          placeholder="lb"
+          placeholder={formError.unitOfMeasure ? 'blank' : 'lb'}
           name="unitOfMeasure"
           value={recipeForm.ingredients[index].unitOfMeasure}
           onChange={changeHandler}
