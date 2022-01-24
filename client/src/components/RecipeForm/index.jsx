@@ -94,14 +94,10 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
       // Only on fork
       if (recipe._id) {
         const result = await addFork(userId, recipe._id, newRecipe);
-        console.log('result: ', result);
-        setShowModal(false);
-        console.log(`/recipe/${result.data._id}`);
         return history.push(`/recipe/${result.data._id}`);
       }
 
       const result = await addRecipe(userId, newRecipe);
-      setShowModal(false);
       return history.push(`/recipe/${result.data._id}`);
     } catch (error) {
       // TODO: render page depending on server error
