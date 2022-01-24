@@ -1,13 +1,15 @@
 import CardList from '../components/CardList/index';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { fetchMasterRecipes } from '../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Navbar from '../components/Navbar';
+import { ThemeContext } from '../context/ThemeContext';
 
 const RecipeMaster = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     document.title = 'Original Recipes';
@@ -34,11 +36,13 @@ const RecipeMaster = () => {
       {loading ? (
         <div>
           <Skeleton
-            count={recipes.length}
+            count={8}
             width={340}
             height={500}
-            className="border-2 p-5 my-4 rounded"
-            containerClassName="container flex flex-wrap justify-around"
+            baseColor={theme === 'dark' && '#1d1d1d'}
+            highlightColor={theme === 'dark' && '#242424'}
+            className="p-5 my-4 rounded"
+            containerClassName="container flex flex-wrap justify-around "
           />
         </div>
       ) : (

@@ -5,11 +5,13 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { AuthContext } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Dashboard = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const { userId } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     async function getRecipeData() {
@@ -36,6 +38,8 @@ const Dashboard = () => {
               count={recipes.length}
               width={340}
               height={500}
+              baseColor={theme === 'dark' && '#1d1d1d'}
+              highlightColor={theme === 'dark' && '#242424'}
               className="border-2 p-5 my-4 rounded"
               containerClassName="container flex flex-wrap justify-around"
             />
