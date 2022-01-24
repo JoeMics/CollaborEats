@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LandingPage from '../components/Home';
 import Footer from '../components/Footer';
 import { fetchData } from '../services/api';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -9,19 +10,9 @@ const Home = () => {
     document.title = 'Home - CollaborEats';
   }, []);
 
-  //example
-  useEffect(() => {
-    async function getAllData() {
-      const dbData = await fetchData();
-      console.log('dbData: ', dbData.data);
-      setData(dbData.data);
-      console.log(data);
-    }
-    getAllData();
-  }, []);
-
   return (
     <div>
+      <Navbar transparent />
       <LandingPage />
     </div>
   );

@@ -4,6 +4,7 @@ import { fetchUserRecipes } from '../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { AuthContext } from '../context/AuthContext';
+import Navbar from '../components/Navbar';
 
 const Dashboard = () => {
   const [recipes, setRecipes] = useState([]);
@@ -23,24 +24,27 @@ const Dashboard = () => {
   }, [userId]);
 
   return (
-    <div>
-      <header className="container py-10">
-        <h1 className="text-6xl font-serif dark:text-neutral-200">Your Recipes</h1>
-      </header>
-      {loading ? (
-        <div>
-          <Skeleton
-            count={recipes.length}
-            width={340}
-            height={500}
-            className="border-2 p-5 my-4 rounded"
-            containerClassName="container flex flex-wrap justify-around"
-          />
-        </div>
-      ) : (
-        <CardList recipes={recipes} />
-      )}
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <header className="container py-10">
+          <h1 className="text-6xl font-serif dark:text-neutral-200">Your Recipes</h1>
+        </header>
+        {loading ? (
+          <div>
+            <Skeleton
+              count={recipes.length}
+              width={340}
+              height={500}
+              className="border-2 p-5 my-4 rounded"
+              containerClassName="container flex flex-wrap justify-around"
+            />
+          </div>
+        ) : (
+          <CardList recipes={recipes} />
+        )}
+      </div>
+    </>
   );
 };
 
