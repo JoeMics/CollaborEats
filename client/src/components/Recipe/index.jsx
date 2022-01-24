@@ -63,7 +63,7 @@ export default function RecipeComponent({ recipeId }) {
                 alt={recipe.title}
               />
             </div>
-            <div className="flex w-full px-12 justify-items-center bg-neutral-200  rounded-b-md py-9 dark:text-neutral-200 dark:bg-dark-800">
+            <div className="flex w-full px-12 justify-items-center bg-neutral-100 shadow-dark-500 shadow-sm  rounded-b-md py-9 dark:text-neutral-200 dark:bg-dark-500 dark:shadow-black dark:shadow-sm">
               <Ingredients ingredients={recipe.ingredients} />
               <Instructions instructions={recipe.instructions} description={recipe.description} />
             </div>
