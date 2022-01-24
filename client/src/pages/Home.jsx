@@ -9,17 +9,6 @@ const Home = () => {
     document.title = 'Home - CollaborEats';
   }, []);
 
-  //example
-  useEffect(() => {
-    async function getAllData() {
-      const dbData = await fetchData();
-      console.log('dbData: ', dbData.data);
-      setData(dbData.data);
-      console.log(data);
-    }
-    getAllData();
-  }, []);
-
   return (
     <div>
       <LandingPage />
