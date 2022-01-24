@@ -32,7 +32,7 @@ export default function RecipeComponent({ recipeId }) {
         <div className="flex-row mx-auto container mt-8">
           <>
             <div className="flex flex-wrap justify-between content-start space-x-6 ">
-              <header className="w-3/4">
+              <header className="w-3/4 dark:text-neutral-200">
                 <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
                 <h2 className="text-lg font-serif pl-4 w-9/12 break-words">
                   Written by:{recipe.ownerId.email}
@@ -40,12 +40,12 @@ export default function RecipeComponent({ recipeId }) {
               </header>
               <div className="flex py-2 items-end basis-2">
                 <button
-                  className="flex justify-center items-center px-4 py-2 mx-5 bg-green-700  rounded text-white h-12 w-24"
+                  className="flex justify-center items-center px-4 py-2 mx-5 bg-primary-400 hover:bg-primary-500  rounded text-neutral-200 h-12 w-24"
                   onClick={() => setShowModal(true)}
                 >
                   Fork
                 </button>
-                <button className="flex items-center px-4 py-2 bg-green-700 rounded text-white h-12 w-24">
+                <button className="flex items-center px-4 py-2 bg-primary-400 hover:bg-primary-500 rounded text-neutral-200 h-12 w-24">
                   <Link to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}>
                     Other Forks
                   </Link>
@@ -58,12 +58,12 @@ export default function RecipeComponent({ recipeId }) {
                 src={
                   recipe.photo
                     ? `http://localhost:8080/image/${recipe.photo}`
-                    : 'https://source.unsplash.com/random/400x400/?food'
+                    : 'https://source.unsplash.com/random//?food'
                 }
                 alt={recipe.title}
               />
             </div>
-            <div className="flex w-full px-12 justify-items-center bg-neutral-200  rounded-b-md py-9">
+            <div className="flex w-full px-12 justify-items-center bg-neutral-200  rounded-b-md py-9 dark:text-neutral-200 dark:bg-dark-800">
               <Ingredients ingredients={recipe.ingredients} />
               <Instructions instructions={recipe.instructions} description={recipe.description} />
             </div>

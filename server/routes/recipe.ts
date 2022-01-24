@@ -104,12 +104,18 @@ router.post('/', async (req, res) => {
 export default router;
 
 router.post('/search', async (req, res) => {
-  const recipes = await Recipe.find({
-    $or: [
-      { $and: [{ title: { $regex: req.body.searchPhrase, $options: 'i' } }, { parent: null }] },
-      { $and: [{ 'ingredients.ingredient': req.body.searchPhrase }] },
-    ],
-  });
-  // console.log(recipes);
-  res.send(recipes);
+  try {
+    const recipes = await Recipe.find({
+      $or: [
+        { $and: [{ title: { $regex: req.body.searchPhrase, $options: 'i' } }, { parent: null }] },
+        { $and: [{ 'ingredients.ingredient': req.body.searchPhrase }] },
+      ],
+    }).populate('ownerId');
+    if (!recipes) {
+      throw new Error('No recipes found');
+    }
+    res.send(recipes);
+  } catch (err) {
+    res.status(500).json({ err: err });
+  }
 });

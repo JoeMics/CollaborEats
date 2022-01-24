@@ -24,6 +24,9 @@
   .link-underline-purple {
     background-image: linear-gradient(transparent, transparent), linear-gradient(#e174fc, #e174fc);
   }
+  .link-underline-primary {
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#17b21d, #17b21d);
+  }
   .link-underline:hover {
     background-size: 100% 3px;
     background-position: 0 100%;

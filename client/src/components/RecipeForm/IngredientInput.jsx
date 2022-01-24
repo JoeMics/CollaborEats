@@ -30,7 +30,7 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index, formError }) => {
           className={
             formError.title
               ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out'
+              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none dark:bg-dark-700 dark:border-dark-500  focus:border-blue-400 transition duration-200 ease-in-out'
           }
           type="text"
           name="ingredient"
@@ -47,7 +47,7 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index, formError }) => {
           className={
             formError.amount
               ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out'
+              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none dark:bg-dark-700 dark:border-dark-500 focus:border-blue-400 transition duration-200 ease-in-out'
           }
           type="text"
           name="amount"
@@ -64,7 +64,7 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index, formError }) => {
           className={
             formError.unitOfMeasure
               ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none  focus:border-blue-400 transition duration-200 ease-in-out'
+              : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none dark:bg-dark-700 dark:border-dark-500 focus:border-blue-400 transition duration-200 ease-in-out'
           }
           type="text"
           placeholder={formError.unitOfMeasure ? 'blank' : 'lb'}

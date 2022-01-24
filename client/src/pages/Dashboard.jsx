@@ -25,7 +25,7 @@ const Dashboard = () => {
   return (
     <div>
       <header className="container py-10">
-        <h1 className="text-6xl font-serif">Your Recipes</h1>
+        <h1 className="text-6xl font-serif dark:text-neutral-200">Your Recipes</h1>
       </header>
       {loading ? (
         <div>

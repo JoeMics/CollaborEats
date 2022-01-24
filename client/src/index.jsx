@@ -6,7 +6,7 @@ import { ThemeProvider } from './context/ThemeContext';
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
-      <main className="dark:bg-slate-700 bg-white transition-all">
+      <main className="dark:bg-dark-900 bg-white transition-all">
         <AuthProvider>
           <App />
         </AuthProvider>
