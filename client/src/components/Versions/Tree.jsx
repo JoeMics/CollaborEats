@@ -92,7 +92,7 @@ export default function OrgChartTree({ treeId }) {
         <circle className="translate-all" r={10} fill={'black'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
-          <div className="mx-8 rounded-lg">
+          <div className="mx-8 mt-11 rounded-lg hover:scale-105 group-hover:transition-all duration-300">
             <div className="max-w-sm rounded-lg p-1 bg-stone-100 shadow-slate-500 shadow-md ">
               <div className="px-6 py-4">
                 <h3 className="font-semibold text-xl max-w-2xl underline ">{nodeDatum.name}</h3>

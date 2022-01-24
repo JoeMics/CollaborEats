@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 
 router.get('/:versionId', async (req, res) => {
   const { versionId } = req.params;
-  const recipe = await Recipe.findOne({ _id: versionId });
+  const recipe = await Recipe.findOne({ _id: versionId }).populate('ownerId', 'email');
   res.send(recipe);
 });
 

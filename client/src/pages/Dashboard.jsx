@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { fetchUserRecipes } from '../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { AuthContext, AuthProvider } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 const Dashboard = () => {
   const [recipes, setRecipes] = useState([]);
