@@ -4,10 +4,12 @@ import Instructions from './Instructions';
 import { getRecipe } from '../../services/api';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import Modal from '../Modal';
 
 export default function RecipeComponent({ recipeId }) {
   const [recipe, setRecipe] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     async function getRecipeData() {
@@ -28,17 +30,11 @@ export default function RecipeComponent({ recipeId }) {
             <div className="flex justify-between content-start space-x-6">
               <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
               <div className="space-x-6 pr-2">
-                <button className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white">
-                  <Link
-                    to={{
-                      pathname: ROUTES.EDIT,
-                      state: {
-                        recipeId,
-                      },
-                    }}
-                  >
-                    Fork
-                  </Link>
+                <button
+                  className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white"
+                  onClick={() => setShowModal(true)}
+                >
+                  Fork
                 </button>
                 <button className="inline-flex items-center px-4 py-2 bg-blue-300 rounded text-white">
                   <Link to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}>
@@ -54,6 +50,11 @@ export default function RecipeComponent({ recipeId }) {
           </>
         </div>
       )}
+      <>
+        {showModal ? (
+          <Modal recipe={recipe} title={`Forking ${recipe.title}`} setShowModal={setShowModal} />
+        ) : null}
+      </>
     </>
   );
 }
