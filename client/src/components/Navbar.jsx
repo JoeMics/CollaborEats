@@ -7,7 +7,7 @@ import { simpleSearch } from '../services/api';
 import React, { useState } from 'react';
 import Modal from './Modal';
 
-const Navbar = () => {
+const Navbar = ({ transparent }) => {
   const { userId, setUserId } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
 
@@ -32,7 +32,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="top-0 absolute z-50 w-full flex items-center justify-between flex-wrap p-2 px-32">
+    <nav
+      className={`${
+        transparent && 'top-0 absolute z-50 w-full'
+      } flex items-center justify-between flex-wrap p-2 px-32`}
+    >
       <div className="flex content-center text-teal-500">
         <Link to={ROUTES.HOME}>
           <img className="w-16 h-16 mx-auto cursor-pointer" src="/images/logo.svg" alt="logo" />

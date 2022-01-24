@@ -13,7 +13,6 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Router>
-      <Navbar />
       <Switch>
         <Route path={ROUTES.HOME} component={Home} exact />
         <Route path={ROUTES.DASHBOARD} component={Dashboard} exact />

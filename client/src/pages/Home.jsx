@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LandingPage from '../components/Home';
 import Footer from '../components/Footer';
 import { fetchData } from '../services/api';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -11,6 +12,7 @@ const Home = () => {
 
   return (
     <div>
+      <Navbar transparent />
       <LandingPage />
     </div>
   );
