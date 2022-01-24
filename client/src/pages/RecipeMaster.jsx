@@ -9,6 +9,10 @@ const RecipeMaster = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'Original Recipes';
+  }, []);
+
+  useEffect(() => {
     async function getRecipeData() {
       const dbData = await fetchMasterRecipes();
       setRecipes(dbData.data);
@@ -21,7 +25,7 @@ const RecipeMaster = () => {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="">
       <header className="container py-10">
         <h1 className="text-6xl font-serif">Master Recipes</h1>
       </header>
