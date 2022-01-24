@@ -45,7 +45,7 @@ export default function RecipeComponent({ recipeId }) {
                 >
                   Fork
                 </button>
-                <button className="flex items-center px-4 py-2 bg-green-700 rounded text-white h-12 w-24">
+                <button className="flex items-center px-4 py-2 bg-secondary-500 rounded text-white h-12 w-24">
                   <Link to={`${ROUTES.VERSIONS}/${!recipe.parent ? recipe._id : recipe.path[0]}`}>
                     Other Forks
                   </Link>
