@@ -36,7 +36,7 @@ const Navbar = () => {
     <nav className="flex items-center justify-between flex-wrap p-2 px-32 py-8">
       <div className="flex content-center">
         <img className="w-16 h-16 mx-auto" src="/images/logo.svg" alt="" />
-        <h1 className="text-3xl my-auto ml-4 mr-6 text-teal-900 dark:text-neutral-200">
+        <h1 className="text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200">
           <Link to={ROUTES.HOME}>
             Collabor<span className="font-bold">Eats</span>
           </Link>
@@ -69,7 +69,8 @@ const Navbar = () => {
       <div className="flex">
         <div className="relative mx-auto text-gray-600">
           <input
-            className="border-2 my-auto border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+            className="border-2 my-auto border-gray-300 bg-white 
+            dark:bg-dark-300 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
             type="search"
             autoComplete="off"
             name="search"
@@ -97,7 +98,10 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <button className="block items-center px-4 py-2 text-xl" onClick={cycleUsers}>
+        <button
+          className="block items-center px-4 py-2 text-xl dark:text-neutral-200"
+          onClick={cycleUsers}
+        >
           Demo: {demoUsers[userId]}
         </button>
         <Toggle />
