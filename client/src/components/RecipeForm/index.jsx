@@ -134,13 +134,13 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-center p-5 rounded-t dark:bg-dark-800 dark:text-neutral-200">
+      <div className="flex flex-col justify-center p-5 rounded-t dark:bg-dark-700 dark:text-neutral-200">
         <img className="w-12 h-12 mx-auto" src="/images/logo.svg" alt="" />
         <h3 className="text-2xl font-serif font-semibold mx-auto px-auto">{title}</h3>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-b px-8 flex flex-col dark:bg-dark-800 dark:text-neutral-200"
+        className="bg-white rounded-b px-8 flex flex-col dark:bg-dark-700 dark:text-neutral-200"
       >
         <div class="mx-3 flex flex-col mb-3">
           <label htmlFor="title" className="block text-lg font-semibold">
@@ -154,7 +154,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             className={
               formError.title
                 ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-                : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-800 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
+                : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-700 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
             }
             value={recipeForm.title}
             onChange={editInput}
@@ -173,7 +173,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
               className={
                 formError.description
                   ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-                  : 'w-full h-24 px-4 py-2 border-2 dark:bg-dark-800 dark:border-dark-500 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
+                  : 'w-full h-24 px-4 py-2 border-2 dark:bg-dark-700 dark:border-dark-500 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
               }
               value={recipeForm.description}
               onChange={editInput}
@@ -193,7 +193,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
               className={
                 formError.instructions
                   ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
-                  : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 dark:bg-dark-800 dark:border-dark-500 rounded-sm outline-none focus:border-blue-400'
+                  : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 dark:bg-dark-700 dark:border-dark-500 rounded-sm outline-none focus:border-blue-400'
               }
               value={recipeForm.instructions}
               onChange={editInput}
