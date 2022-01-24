@@ -7,15 +7,6 @@ const Home = () => {
   return (
     <>
       <Hero />
-      {jumbotronData.map((jumbotron) => (
-        <Jumbotron
-          key={jumbotron.id}
-          direction={jumbotron.direction}
-          imgSrc={jumbotron.imgSrc}
-          description={jumbotron.description}
-          background={jumbotron.background}
-        />
-      ))}
     </>
   );
 };

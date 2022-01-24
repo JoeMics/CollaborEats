@@ -72,6 +72,57 @@ const Hero = () => {
           </svg>
         </div>
       </div>
+
+      <section className="pb-20 bg-gray-300 -mt-48">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap">
+            <div className="relative basis-1/3 pt-12">
+              <article className="py-5 px-12 my-4 w-68 mr-16 rounded-lg bg-white mx-auto">
+                <img
+                  className="h-44 w-68 rounded-lg object-cover mx-auto"
+                  src="https://source.unsplash.com/random/500x300/?food"
+                  alt="Recipe Card"
+                />
+                <h3 className="text-2xl underline py-2 mx-2 truncate">Title Title</h3>
+                <p className="text-m pb-2 mx-2 truncate">by SOMEGUY</p>
+                <p className="text-lg py-3 mx-2 truncate">
+                  sladkfjsdklfjs flksjd flksd jflksdj fldkskl
+                </p>
+              </article>
+            </div>
+
+            <div className="relative basis-1/3">
+              <article className="py-5 px-12 my-4 w-68 mr-16 rounded-lg bg-white mx-auto">
+                <img
+                  className="h-48 w-68 rounded-lg object-cover mx-auto"
+                  src="https://source.unsplash.com/random/500x300/?food"
+                  alt="Recipe Card"
+                />
+                <h3 className="text-2xl underline py-2 mx-2 truncate">Title Title</h3>
+                <p className="text-m pb-2 mx-2 truncate">by SOMEGUY</p>
+                <p className="text-lg py-3 mx-2 truncate">
+                  sladkfjsdklfjs flksjd flksd jflksdj fldkskl
+                </p>
+              </article>
+            </div>
+
+            <div className="relative basis-1/3 pt-6">
+              <article className="py-5 px-12 my-4 w-68 mr-16 rounded-lg bg-white mx-auto">
+                <img
+                  className="h-48 w-68 rounded-lg object-cover mx-auto"
+                  src="https://source.unsplash.com/random/500x300/?food"
+                  alt="Recipe Card"
+                />
+                <h3 className="text-2xl underline py-2 mx-2 truncate">Title Title</h3>
+                <p className="text-m pb-2 mx-2 truncate">by SOMEGUY</p>
+                <p className="text-lg py-3 mx-2 truncate">
+                  sladkfjsdklfjs flksjd flksd jflksdj fldkskl
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
