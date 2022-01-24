@@ -2,7 +2,7 @@ import Card from './Card';
 // Must be a "grid" layout
 const CardList = ({ recipes }) => {
   return (
-    <section className="container flex flex-wrap justify-around">
+    <section className="container flex flex-wrap justify-around mb-16">
       {recipes &&
         recipes.map((recipe) => {
           console.log(recipe);

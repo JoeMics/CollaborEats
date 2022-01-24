@@ -37,15 +37,11 @@ const Navbar = ({ transparent }) => {
         transparent && 'top-0 absolute z-50 w-full'
       } flex items-center justify-between flex-wrap p-2 px-32`}
     >
-      <div className="flex content-center text-teal-500">
+      <div className="flex content-center text-primary-500">
         <Link to={ROUTES.HOME}>
           <img className="w-16 h-16 mx-auto cursor-pointer" src="/images/logo.svg" alt="logo" />
         </Link>
-        <h1 className="text-3xl my-auto ml-4 mr-6 text-teal-900 dark:text-white">
-          {/* JOSEPHS STYLES <nav className="flex items-center justify-between flex-wrap p-2 px-32 py-8">
-      <div className="flex content-center">
-        <img className="w-16 h-16 mx-auto" src="/images/logo.svg" alt="" />
-        <h1 className="text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200"> */}
+        <h1 className="text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200 hover:scale-105 transition-all">
           <Link to={ROUTES.HOME}>
             Collabor<span className="font-bold">Eats</span>
           </Link>
@@ -53,14 +49,14 @@ const Navbar = ({ transparent }) => {
         <ul className="flex space-x-8">
           <li className="px-2 mx-1 my-auto text-xl dark:text-neutral-200">
             <Link to={ROUTES.DASHBOARD}>
-              <span className="link-underline link-underline-red hover:dark:text-primary-500 dark:link-underline-primary">
+              <span className="link-underline  hover:dark:text-primary-500 link-underline-primary">
                 Home
               </span>
             </Link>
           </li>
           <li className="text-xl px-2 mx-1 my-auto dark:text-neutral-200">
             <Link to={ROUTES.RECIPEPAGE}>
-              <span className="link-underline link-underline-teal hover:text-teal-400 hover:dark:text-primary-500 dark:link-underline-primary">
+              <span className="link-underline hover:text-primary-500 link-underline-primary">
                 Recipes
               </span>
             </Link>
@@ -69,7 +65,7 @@ const Navbar = ({ transparent }) => {
             className="text-xl px-2 mx-1 my-auto dark:text-neutral-200 cursor-pointer"
             onClick={() => setShowModal(true)}
           >
-            <span className="link-underline link-underline-purple hover:text-secondary-400">
+            <span className="link-underline link-underline-primary dark:link-underline-purple dark:hover:text-secondary-400">
               Create
             </span>
           </li>

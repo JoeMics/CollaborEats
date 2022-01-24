@@ -31,19 +31,17 @@ export default function VersionComponent() {
 
   return (
     <div className="flex-row mx-auto container pt-8">
-      <div className="flex justify-between content-start">
-        <h2 className="text-5xl font-serif dark:text-neutral-200">Recipe Tree</h2>
-        <div className="flex">
-          <button className="block items-center mx-2 px-4 py-2 bg-primary-500 hover:bg-primary-700 rounded text-white">
-            <Link to={`${ROUTES.RECIPE}/${id}`}>Original Fork</Link>
-          </button>
-          <button className="block items-center mx-2 px-4 py-2 bg-primary-500 hover:bg-primary-700 rounded text-white">
-            <Link to={`${ROUTES.RECIPE}/${recent}`}>Most Recent Fork</Link>
-          </button>
-          <button className="block items-center mx-2 px-4 py-2 bg-primary-500 hover:bg-primary-700 rounded text-white">
-            <Link to={`${ROUTES.RECIPE}/${mostForked}`}>Most Fork</Link>
-          </button>
-        </div>
+      <h2 className="text-5xl font-serif dark:text-neutral-200">Recipe Tree</h2>
+      <div className="flex justify-end h-0 mr-6 relative top-12">
+        <button className="flex justify-center items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 rounded text-neutral-200 text-lg font-bold h-10 w-40">
+          <Link to={`${ROUTES.RECIPE}/${id}`}>Original</Link>
+        </button>
+        <button className="flex justify-center items-center px-4 py-2 mx-5 bg-primary-600 hover:bg-primary-700 rounded text-neutral-200 text-lg font-bold h-10 w-40">
+          <Link to={`${ROUTES.RECIPE}/${recent}`}>Most Recent</Link>
+        </button>
+        <button className="flex justify-center items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 rounded text-neutral-200 text-lg font-bold h-10 w-40">
+          <Link to={`${ROUTES.RECIPE}/${mostForked}`}>Most Forked</Link>
+        </button>
       </div>
       <div className="flex-row mx-auto container my-6 ">
         <TreeContainer treeId={id} />

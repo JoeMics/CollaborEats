@@ -54,7 +54,7 @@ export default function OrgChartTree({ treeId }) {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-        d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+        d="M5 11l7-7 7 7M5 19l7-7 7 7"
       />
     </svg>
   );
@@ -89,15 +89,15 @@ export default function OrgChartTree({ treeId }) {
   const renderForeignObjectNode = ({ nodeDatum, toggleNode, foreignObjectProps }) => {
     return (
       <g>
-        <circle className="translate-all" r={10} fill={'black'}></circle>
+        <circle className="translate-all" r={10} fill={'white'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
-          <div className="mx-8 mt-11 rounded-lg hover:scale-105 group-hover:transition-all duration-300 dark:text-neutral-300">
-            <div className="max-w-sm rounded-lg p-1 bg-stone-100 dark:bg-dark-800 shadow-slate-500 dark:shadow-dark-800 shadow-md ">
+          <div className="mx-8 mt-11 rounded-lg hover:scale-105 hover:transition-all duration-300 dark:text-neutral-50">
+            <div className="max-w-sm rounded-lg p-1 bg-stone-100 dark:bg-dark-200 dark:hover:bg-dark-50 dark:group-hover:transition-all duration-300 shadow-slate-500 dark:shadow-black shadow-md ">
               <div className="px-6 py-4">
                 <h3 className="font-semibold text-xl max-w-2xl underline ">{nodeDatum.name}</h3>
                 <h4 className="font-semibold text-xs mb-2 max-w-2xl">by: {nodeDatum.user}</h4>
-                <p className="text-gray-800 py-2 text-base truncate hover:overflow-visible hover:whitespace-normal dark:text-neutral-200">
+                <p className="text-gray-800 py-2 truncate hover:overflow-visible hover:whitespace-normal dark:text-neutral-200  transition-all duration-300">
                   {nodeDatum.description}
                 </p>
               </div>
