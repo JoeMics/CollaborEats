@@ -36,29 +36,31 @@ const Navbar = () => {
     <nav className="flex items-center justify-between flex-wrap p-2 px-32 py-8">
       <div className="flex content-center">
         <img className="w-16 h-16 mx-auto" src="/images/logo.svg" alt="" />
-        <h1 className="text-3xl my-auto ml-4 mr-6 text-teal-900 dark:text-white">
+        <h1 className="text-3xl my-auto ml-4 mr-6 text-teal-900 dark:text-neutral-200">
           <Link to={ROUTES.HOME}>
             Collabor<span className="font-bold">Eats</span>
           </Link>
         </h1>
         <ul className="flex space-x-8">
-          <li className="px-2 mx-1 my-auto text-xl dark:text-white">
+          <li className="px-2 mx-1 my-auto text-xl dark:text-neutral-200">
             <Link to={ROUTES.DASHBOARD}>
-              <span className="link-underline link-underline-red hover:text-red-500">Home</span>
+              <span className="link-underline link-underline-red hover:dark:text-primary-500 dark:link-underline-primary">
+                Home
+              </span>
             </Link>
           </li>
-          <li className="text-xl px-2 mx-1 my-auto dark:text-white">
+          <li className="text-xl px-2 mx-1 my-auto dark:text-neutral-200">
             <Link to={ROUTES.RECIPEPAGE}>
-              <span className="link-underline link-underline-teal hover:text-teal-400">
+              <span className="link-underline link-underline-teal hover:text-teal-400 hover:dark:text-primary-500 dark:link-underline-primary">
                 Recipes
               </span>
             </Link>
           </li>
           <li
-            className="text-xl px-2 mx-1 my-auto dark:text-white cursor-pointer"
+            className="text-xl px-2 mx-1 my-auto dark:text-neutral-200 cursor-pointer"
             onClick={() => setShowModal(true)}
           >
-            <span className="link-underline link-underline-purple hover:text-fuchsia-600">
+            <span className="link-underline link-underline-purple hover:text-secondary-400">
               Create
             </span>
           </li>
