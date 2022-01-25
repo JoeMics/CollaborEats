@@ -42,7 +42,7 @@ const SearchBar = () => {
       />
       {filteredData.length !== 0 && (
         <OutsideClick action={handleClick}>
-          <div className="w-60 max-h-72 bg-white shadow-sm overflow-hidden overflow-y-auto hide-scrollbar absolute top-16 z-10">
+          <div className="lg:w-36 xl:w-56 max-h-72 bg-white shadow-sm overflow-hidden overflow-y-auto hide-scrollbar absolute top-16 z-10">
             {filteredData.slice(0, 10).map((value) => {
               return (
                 <Link to={`${ROUTES.RECIPE}/${value._id}`} onClick={handleClick}>
