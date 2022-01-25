@@ -186,8 +186,8 @@ export default function OrgChartTree({ treeId }) {
             renderCustomNodeElement={(rd3tProps) =>
               renderForeignObjectNode({ ...rd3tProps, foreignObjectProps })
             }
-            enableLegacyTransitions={true}
-            transitionDuration={500}
+            // enableLegacyTransitions={true}
+            // transitionDuration={500}
             scaleExtent={{ min: 0.1, max: 3 }}
           />
         </div>

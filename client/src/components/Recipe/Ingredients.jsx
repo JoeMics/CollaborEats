@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function Ingredients({ ingredients }) {
-  console.log(ingredients);
   return (
     <div className="w-1/2  p-10">
       <h3 className="mt-4 ml-4 font-sans font-semibold">Ingredients</h3>

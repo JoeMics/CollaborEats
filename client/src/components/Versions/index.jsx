@@ -19,9 +19,7 @@ export default function VersionComponent() {
 
     async function getMostForkedData() {
       const recipeTreeData = await mostForkedRecipe(id);
-      console.log('recipe tree', recipeTreeData.data);
       const targetRecipe = mostForkedRecipeId(recipeTreeData.data);
-      console.log('targetRecipeId', targetRecipe);
       setMostForked(targetRecipe);
     }
 
