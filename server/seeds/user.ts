@@ -10,4 +10,9 @@ export default [
     email: 'IvanTang@avatar.com',
     password: 'password',
   },
+  {
+    _id: '61ef64a8f892afce875f3810',
+    email: 'JamJam@JamJam.com',
+    password: 'password',
+  },
 ];
