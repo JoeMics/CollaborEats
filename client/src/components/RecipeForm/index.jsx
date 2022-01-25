@@ -136,7 +136,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   return (
     <>
       <div className="flex flex-col justify-center p-5 rounded-t dark:bg-dark-500 dark:text-neutral-200 dark:border-black dark:border-lg">
-        <img className="w-12 h-12 mx-auto" src="/images/logo.svg" alt="" />
+        <img className="w-20 h-20 mb-2  mx-auto" src="/images/logo.svg" alt="" />
         <h3 className="text-2xl font-serif font-semibold mx-auto px-auto">{title}</h3>
       </div>
       <form
