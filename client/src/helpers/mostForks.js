@@ -37,19 +37,29 @@ const tree = [
 ];
 
 function mostForkedRecipeId(treeData) {
+  if (treeData.length === 1) {
+    console.log('onlyOneId');
+    const rId = treeData[0]._id;
+    return rId;
+  }
+  console.log('mF treedata', treeData);
   //aggregate
   const pIdArr = [];
   treeData.map((dataPoint) => pIdArr.push(dataPoint.parent));
+  console.log('mf pIdArr', pIdArr);
   //count occurences
   const pIdCounts = {};
   for (const pId of pIdArr) {
     pIdCounts[pId] = pIdCounts[pId] ? pIdCounts[pId] + 1 : 1;
   }
+  console.log('mF pIdCounts', pIdCounts);
   //get max
   const arrOfOccurences = Object.values(pIdCounts);
   const max = Math.max(...arrOfOccurences);
+  console.log('mF max', max);
   //return key with highest value
   const pId = Object.keys(pIdCounts).find((key) => pIdCounts[key] === max);
+  console.log('mF pId', pId);
   return pId;
 }
 

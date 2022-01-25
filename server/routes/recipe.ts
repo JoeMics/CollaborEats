@@ -64,7 +64,7 @@ router.get('/:id/recent', async (req, res) => {
 
 router.get('/:id/mostForked', async (req, res) => {
   try {
-    const recipe = await Recipe.findOne({ _id: req.params.id });
+    const recipe = await Recipe.find({ _id: req.params.id });
     const recipeTree = await Recipe.find({ path: req.params.id });
 
     if (!recipe || !recipeTree) {
