@@ -19,7 +19,6 @@ const treeFormatter = (root, treeData) => {
   for (let i = 0; i < treeData.length; i++) {
     // All nodes with depth = 1 is always children to root node
     // So just push to root node's children here
-    console.log(treeData[i]);
     if (treeData[i].path.length === 1) {
       data[0].children.push({
         name: treeData[i].title,
