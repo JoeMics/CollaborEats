@@ -43,7 +43,7 @@ export default function RecipeComponent({ recipeId }) {
                 src={
                   recipe.photo
                     ? `http://localhost:8080/image/${recipe.photo}`
-                    : 'https://source.unsplash.com/random//?food'
+                    : '/demo/default_image.jpg'
                 }
                 alt={recipe.title}
               />

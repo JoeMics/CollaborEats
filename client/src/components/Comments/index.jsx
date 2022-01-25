@@ -18,7 +18,7 @@ const Comments = ({ recipeId }) => {
       setComments(allComments.data);
     }
     getAllComments();
-  }, []);
+  }, [recipeId]);
 
   const handleSubmit = async (e) => {
     // TODO: add validations/sanitizations
