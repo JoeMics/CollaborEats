@@ -29,8 +29,8 @@ const Navbar = ({ transparent }) => {
   return (
     <nav
       className={`${
-        transparent && 'top-0 absolute z-50 w-full'
-      } flex items-center justify-between flex-wrap p-2 lg:px-20 xl:px-32 mt-4`}
+        transparent && 'top-0 absolute z-50 w-full mt-4'
+      } flex items-center justify-between flex-wrap p-2 lg:px-20 xl:px-32`}
     >
       <div className="flex content-center text-primary-500">
         <Link to={ROUTES.HOME}>
