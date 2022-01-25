@@ -31,15 +31,13 @@ export default function RecipeComponent({ recipeId }) {
       {!loading && (
         <div className="flex-row mx-auto container mt-8">
           <>
-            <div className="flex flex-wrap justify-between content-start space-x-6 ">
-              <header className="dark:text-neutral-200">
-                <h2 className="text-6xl font-serif pl-4 w-9/12 break-words">{recipe.title}</h2>
-                <h2 className="text-lg font-serif pl-4 w-9/12 break-words">
-                  Written by:{recipe.ownerId.email}
-                </h2>
-              </header>
-            </div>
-            <div className="h-80 w-full rounded-t-md overflow-hidden mt-6">
+            <header className="dark:text-neutral-200">
+              <h2 className="text-6xl font-serif pl-4 w-10/12 break-words">{recipe.title}</h2>
+              <h2 className="text-lg font-serif pl-4 w-10/12 break-words">
+                Written by:{recipe.ownerId.email}
+              </h2>
+            </header>
+            <div className="h-80 w-full rounded-t-md overflow-hidden overflow-y-scroll mt-6 scrollable-image hide-scrollbar">
               <img
                 className="w-full object-cover"
                 src={
