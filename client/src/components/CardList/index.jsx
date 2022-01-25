@@ -5,7 +5,6 @@ const CardList = ({ recipes }) => {
     <section className="container flex flex-wrap justify-around mb-16">
       {recipes &&
         recipes.map((recipe) => {
-          console.log(recipe);
           return (
             <Card
               key={recipe._id}
