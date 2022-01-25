@@ -33,6 +33,11 @@
   }
 }
 
-.ivan_animation {
-  transition: duration-200 ease-in-out;
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  background-color: transparent;
+}
+
+.scrollable-image {
+  height: 30rem;
 }
