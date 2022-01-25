@@ -1,24 +1,74 @@
-import jumbotronData from '../data/jumbo-data';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-const SearchBar = ({ placeholder, data }) => {
+import React, { useState } from 'react';
+import { simpleSearch } from '../services/api';
+import OutsideClick from '../hooks/useClickOutside';
+
+const SearchBar = () => {
+  const [filteredData, setFilteredData] = useState([]);
+  const [input, setInput] = useState('');
+
+  const handleFilter = async (e) => {
+    setInput(e.target.value);
+    const query = e.target.value;
+    console.log('query: ', query);
+    const { data } = await simpleSearch(query);
+    console.log(data);
+
+    const newFilter = data.filter((value) => {
+      return value.title.toLowerCase().includes(query);
+    });
+    if (query === '') {
+      setFilteredData([]);
+    } else {
+      setFilteredData(() => newFilter);
+    }
+  };
+
+  const handleClick = (e) => {
+    setInput('');
+    setFilteredData([]);
+  };
   return (
-    <div className="search">
-      <div className="searchInput">
-        <input type="text" placeholder={placeholder} />
-        <div className="searchIcon"></div>
-        <div className="mt-2 w-80 h-72 bg-teal-400 shadow-sm overflow-hidden overflow-y-auto">
-          {jumbotronData.map((value, key) => {
-            return (
-              <span className="w-full h-16 flex items-center text-gray-800">
-                <Link to={ROUTES.RECIPE}>
-                  <p className="ml-4">{value.description}</p>
-                </Link>
-              </span>
-            );
-          })}
-        </div>
-      </div>
+    <div className="flex flex-col">
+      <input
+        className="w-60"
+        type="search"
+        placeholder="Search recipe..."
+        name="search"
+        autoComplete="off"
+        value={input}
+        onChange={handleFilter}
+      />
+      <div className="searchIcon"></div>
+      {filteredData.length !== 0 && (
+        <OutsideClick action={handleClick}>
+          <div className="w-60 max-h-72 bg-white shadow-sm overflow-hidden overflow-y-auto hide-scrollbar absolute top-16">
+            {filteredData.slice(0, 10).map((value, key) => {
+              return (
+                <span
+                  key={value._id}
+                  className="w-full h-16 flex items-center text-gray-800 hover:bg-gray-400"
+                  onClick={handleClick}
+                >
+                  <Link to={`${ROUTES.RECIPE}/${value._id}`}>
+                    <p
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          handleClick();
+                        }
+                      }}
+                      className="ml-4"
+                    >
+                      {value.title}
+                    </p>
+                  </Link>
+                </span>
+              );
+            })}
+          </div>
+        </OutsideClick>
+      )}
     </div>
   );
 };
@@ -41,11 +91,11 @@ export default SearchBar;
 //         autoComplete="off"
 //         name="search"
 //         placeholder="Search"
-//         onKeyDown={(e) => {
-//           if (e.key === 'Enter') {
-//             handleSearch(e.target.value);
-//           }
-//         }}
+// onKeyDown={(e) => {
+//   if (e.key === 'Enter') {
+//     handleSearch(e.target.value);
+//   }
+// }}
 //       />
 //       <button type="button" className="relative -left-8  mr-1" onClick={handleSearch}>
 //         <svg
