@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { AuthContext } from '../context/AuthContext';
 import Toggle from './Toggle';
-import { simpleSearch } from '../services/api';
 import React, { useState } from 'react';
 import Modal from './Modal';
 import Search from './Searchbar';
@@ -25,11 +24,6 @@ const Navbar = ({ transparent }) => {
         ? '61e608607f04825b4c4cd517'
         : '61e607f0311d699fd35f509e'
     );
-  };
-
-  const handleSearch = async (searchPhrase) => {
-    const recipes = await simpleSearch(searchPhrase);
-    console.log(recipes.data);
   };
 
   return (
@@ -73,9 +67,7 @@ const Navbar = ({ transparent }) => {
         </ul>
       </div>
       <div className="flex">
-        <div className="relative mx-auto text-gray-600">
-          <Search placeholder={'search'} />
-        </div>
+        <Search placeholder={'search'} />
         <button
           className="block items-center px-4 py-2 text-xl dark:text-neutral-200"
           onClick={cycleUsers}
