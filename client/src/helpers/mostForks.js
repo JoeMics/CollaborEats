@@ -1,42 +1,8 @@
-const tree = [
-  {
-    id: 2,
-    parent: 1,
-    path: [1],
-  },
-  {
-    id: 4,
-    parent: 1,
-    path: [1],
-  },
-  {
-    id: 3,
-    parent: 2,
-    path: [1, 2],
-  },
-  {
-    id: 7,
-    parent: 4,
-    path: [1, 4],
-  },
-  {
-    id: 6,
-    parent: 3,
-    path: [1, 2, 3],
-  },
-  {
-    id: 5,
-    parent: 3,
-    path: [1, 2, 3],
-  },
-  {
-    id: 6,
-    parent: 3,
-    path: [1, 2, 3],
-  },
-];
-
 function mostForkedRecipeId(treeData) {
+  if (treeData.length === 1 && treeData[0].parent === null) {
+    const rId = treeData[0]._id;
+    return rId;
+  }
   //aggregate
   const pIdArr = [];
   treeData.map((dataPoint) => pIdArr.push(dataPoint.parent));
@@ -52,7 +18,5 @@ function mostForkedRecipeId(treeData) {
   const pId = Object.keys(pIdCounts).find((key) => pIdCounts[key] === max);
   return pId;
 }
-
-console.log(mostForkedRecipeId(tree));
 
 export default mostForkedRecipeId;

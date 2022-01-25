@@ -89,7 +89,7 @@ export default function OrgChartTree({ treeId }) {
   const renderForeignObjectNode = ({ nodeDatum, toggleNode, foreignObjectProps }) => {
     return (
       <g>
-        <circle className="translate-all" r={10} fill={'white'}></circle>
+        <circle r={15} fill={'white'}></circle>
         {/* `foreignObject` requires width & height to be explicitly set. */}
         <foreignObject {...foreignObjectProps}>
           <div className="mx-8 mt-11 rounded-lg hover:scale-105 hover:transition-all duration-300 dark:text-neutral-50">
@@ -153,11 +153,11 @@ export default function OrgChartTree({ treeId }) {
                     <button onClick={toggleNode} className="flex py-2">
                       {nodeDatum.__rd3t.collapsed ? (
                         <>
-                          {chevUp} <span>Show</span>
+                          {chevDown} <span>Show</span>
                         </>
                       ) : (
                         <>
-                          {chevDown} <span>Less</span>
+                          {chevUp} <span>Less</span>
                         </>
                       )}
                     </button>
@@ -186,6 +186,8 @@ export default function OrgChartTree({ treeId }) {
             renderCustomNodeElement={(rd3tProps) =>
               renderForeignObjectNode({ ...rd3tProps, foreignObjectProps })
             }
+            enableLegacyTransitions={true}
+            transitionDuration={500}
           />
         </div>
       )}
