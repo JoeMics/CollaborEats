@@ -24,7 +24,7 @@ const SearchBar = () => {
     }
   };
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     setInput('');
     setFilteredData(() => []);
   };
@@ -32,7 +32,7 @@ const SearchBar = () => {
   return (
     <div className="flex flex-col">
       <input
-        className="w-60"
+        className="lg:w-36 xl:w-56"
         type="search"
         placeholder="Search recipe..."
         name="search"
