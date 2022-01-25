@@ -153,11 +153,11 @@ export default function OrgChartTree({ treeId }) {
                     <button onClick={toggleNode} className="flex py-2">
                       {nodeDatum.__rd3t.collapsed ? (
                         <>
-                          {chevDown} <span>Less</span>
+                          {chevDown} <span>Show</span>
                         </>
                       ) : (
                         <>
-                          {chevUp} <span>Show</span>
+                          {chevUp} <span>Less</span>
                         </>
                       )}
                     </button>
