@@ -97,7 +97,7 @@ export default function OrgChartTree({ treeId }) {
               <div className="px-6 py-4">
                 <h3 className="font-semibold text-xl max-w-2xl underline ">{nodeDatum.name}</h3>
                 <h4 className="font-semibold text-xs mb-2 max-w-2xl">by: {nodeDatum.user}</h4>
-                <p className="text-gray-800 py-2 hover:overflow-visible hover:whitespace-normal dark:text-neutral-200  transition-all duration-300">
+                <p className="text-gray-800 line-clamp-6 py-2 dark:text-neutral-200 transition-all duration-300">
                   {nodeDatum.description}
                 </p>
               </div>
@@ -188,6 +188,7 @@ export default function OrgChartTree({ treeId }) {
             }
             enableLegacyTransitions={true}
             transitionDuration={500}
+            scaleExtent={{ min: 0.1, max: 3 }}
           />
         </div>
       )}
