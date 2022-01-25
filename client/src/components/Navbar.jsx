@@ -6,6 +6,7 @@ import Toggle from './Toggle';
 import { simpleSearch } from '../services/api';
 import React, { useState } from 'react';
 import Modal from './Modal';
+import Search from './Searchbar';
 
 const Navbar = ({ transparent }) => {
   const { userId, setUserId } = useContext(AuthContext);
@@ -73,35 +74,7 @@ const Navbar = ({ transparent }) => {
       </div>
       <div className="flex">
         <div className="relative mx-auto text-gray-600">
-          <input
-            className="border-2 my-auto border-gray-300 bg-white 
-            dark:bg-dark-300 h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-            type="search"
-            autoComplete="off"
-            name="search"
-            placeholder="Search"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleSearch(e.target.value);
-              }
-            }}
-          />
-          <button type="button" className="relative -left-8  mr-1" onClick={handleSearch}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-gray-600 h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
+          <Search placeholder={'search'} />
         </div>
         <button
           className="block items-center px-4 py-2 text-xl dark:text-neutral-200"
