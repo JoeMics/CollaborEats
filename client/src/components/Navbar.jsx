@@ -30,26 +30,30 @@ const Navbar = ({ transparent }) => {
     <nav
       className={`${
         transparent && 'top-0 absolute z-50 w-full'
-      } flex items-center justify-between flex-wrap p-2 px-32`}
+      } flex items-center justify-between flex-wrap p-2 lg:px-20 xl:px-32 mt-4`}
     >
       <div className="flex content-center text-primary-500">
         <Link to={ROUTES.HOME}>
-          <img className="w-16 h-16 mx-auto cursor-pointer" src="/images/logo.svg" alt="logo" />
+          <img
+            className="w-12 h-12 xl:w-16 xl:h-16 mx-auto cursor-pointer"
+            src="/images/logo.svg"
+            alt="logo"
+          />
         </Link>
-        <h1 className="text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200 hover:scale-105 transition-all">
+        <h1 className="text-2xl xl:text-3xl my-auto ml-4 mr-6 text-primary-600 dark:text-neutral-200 hover:scale-105 transition-all">
           <Link to={ROUTES.HOME}>
             Collabor<span className="font-bold">Eats</span>
           </Link>
         </h1>
         <ul className="flex space-x-8">
-          <li className="px-2 mx-1 my-auto text-xl dark:text-neutral-200">
+          <li className="px-2 mx-1 my-auto text-md xl:text-xl dark:text-neutral-200">
             <Link to={ROUTES.DASHBOARD}>
               <span className="link-underline  hover:dark:text-primary-500 link-underline-primary">
                 Home
               </span>
             </Link>
           </li>
-          <li className="text-xl px-2 mx-1 my-auto dark:text-neutral-200">
+          <li className="text-md xl:text-xl px-2 mx-1 my-auto dark:text-neutral-200">
             <Link to={ROUTES.RECIPEPAGE}>
               <span className="link-underline hover:text-primary-500 link-underline-primary">
                 Recipes
@@ -57,7 +61,7 @@ const Navbar = ({ transparent }) => {
             </Link>
           </li>
           <li
-            className="text-xl px-2 mx-1 my-auto dark:text-neutral-200 cursor-pointer"
+            className="text-md xl:text-xl px-2 xl:mx-1 my-auto dark:text-neutral-200 cursor-pointer"
             onClick={() => setShowModal(true)}
           >
             <span className="link-underline link-underline-primary dark:link-underline-purple dark:hover:text-secondary-400">
