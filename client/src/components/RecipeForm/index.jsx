@@ -133,10 +133,36 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     });
   };
 
+  const populateForm = () => {
+    setRecipeForm((prev) => {
+      return {
+        ...prev,
+        title: 'The BEST Pizza',
+        description:
+          "In my life, I've only known one truth, and that is that pineapple belongs on every pizza in the world. This recipe is the embodiment of all of my hard work over the years as a chef.",
+        instructions:
+          '1. Preheat your oven with a stone to 500F.\n\n2. Roll out the fresh pizza dough on a pizza peel dusted with flour, into a 12 in. circle.\n\n3. Add tomato sauce to pizza crust.\n\n4. Add cheese, cubed ham, and pineapples.\n\n5. Transfer pizza into the hot pizza stone, and bake for 15 - 18 minutes.\n\n6. Let the pizza rest, and brush the crust with olive oil.',
+        ingredients: [
+          { ingredient: 'Fresh Pizza Dough', amount: '500', unitOfMeasure: 'grams' },
+          { ingredient: 'Tomato Sauce', amount: '100', unitOfMeasure: 'ml' },
+          { ingredient: 'Mozzarella', amount: '200', unitOfMeasure: 'grams' },
+          { ingredient: 'Cubed Ham', amount: '1/2', unitOfMeasure: 'cup' },
+          { ingredient: 'Cubed Pineapple', amount: '1/4', unitOfMeasure: 'cup' },
+        ],
+        photo: '',
+      };
+    });
+  };
+
   return (
     <>
       <div className="flex flex-col justify-center p-5 rounded-t dark:bg-dark-500 dark:text-neutral-200 dark:border-black dark:border-lg">
-        <img className="w-20 h-20 mb-2  mx-auto" src="/images/logo.svg" alt="" />
+        <img
+          className="w-20 h-20 mb-2  mx-auto"
+          onClick={populateForm}
+          src="/images/logo.svg"
+          alt=""
+        />
         <h3 className="text-2xl font-serif font-semibold mx-auto px-auto">{title}</h3>
       </div>
       <form
