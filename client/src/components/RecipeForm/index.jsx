@@ -40,7 +40,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
 
     // VALIDATION, to be moved to custom hook
     const validationOptions = {
-      title: { characterCount: 30 },
+      title: { characterCount: 35 },
       photo: { required: false },
     };
 
@@ -139,9 +139,9 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
         ...prev,
         title: 'The BEST Pizza',
         description:
-          "In my life, I've only known one truth, and that is that pineapple belongs on every pizza in the world. This recipe is the embodiment of all of my hard work over the years as a chef.",
+          "In my life, I've only known one truth, and that is that pineapples DO belong on every pizza in the world. This recipe is the embodiment of all of my hard work over the years as a chef.",
         instructions:
-          '1. Preheat your oven with a stone to 500F.\n\n2. Roll out the fresh pizza dough on a pizza peel dusted with flour, into a 12 in. circle.\n\n3. Add tomato sauce to pizza crust.\n\n4. Add cheese, cubed ham, and pineapples.\n\n5. Transfer pizza into the hot pizza stone, and bake for 15 - 18 minutes.\n\n6. Let the pizza rest, and brush the crust with olive oil.',
+          '1. Preheat your oven with a stone to 500F.\n\n2. Roll out the fresh pizza dough on a pizza peel dusted with flour, into a 12 in. circle.\n\n3. Add tomato sauce to pizza crust.\n\n4. Add cheese, pineapples, and cubed ham.\n\n5. Transfer pizza into the hot pizza stone, and bake for 15 - 18 minutes.\n\n6. Let the pizza rest, and brush the crust with olive oil.',
         ingredients: [
           { ingredient: 'Fresh Pizza Dough', amount: '500', unitOfMeasure: 'grams' },
           { ingredient: 'Tomato Sauce', amount: '100', unitOfMeasure: 'ml' },
