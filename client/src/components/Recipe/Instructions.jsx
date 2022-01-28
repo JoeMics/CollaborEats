@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default function Instructions({ description, instructions }) {
-  // intructions = getIntructions()
-  // descriptions = getDescriptions()
   return (
     <div className="flex w-full flex-col p-10 whitespace-pre-line">
       <h3 className="ml-4 mt-4 font-sans font-semibold">Description</h3>

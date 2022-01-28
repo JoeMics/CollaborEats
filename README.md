@@ -21,9 +21,9 @@
 
 # Summary
 
-CollaborEats is a collaborative **Single-Page Web Application (SPA)** built using the **MERN** stack.
+CollaborEats is a **Single-Page Web Application (SPA)** built using the **MERN** stack.
 
-CollaborEats allows you to create new versions of yours, or other people's recipes by "Forking" them. Every recipe is stored in a "family tree" with the original recipe as the root, allowing you to make mistakes, and experiment without losing track of what you have done in the past.
+CollaborEats allows you to create new versions of yours, or other people's recipes by "Forking" them. Every recipe is stored in a tree structure with the original recipe as the root, allowing you to make mistakes, and experiment without losing track of what you have done in the past.
 
 ## Features
 
@@ -38,7 +38,11 @@ Users can:
 
 ## Screenshots
 
-![image](./docs/images/link)
+![landing page](./screenshots/landing_page.png)
+![recipe](./screenshots/recipe.png)
+![recipe form](./screenshots/recipe_form.png)
+![recipe versions tree](./screenshots/recipe_tree.png)
+![recipe list](./screenshots/recipe_list.png)
 
 # Getting Started
 

@@ -21,7 +21,6 @@ const Comments = ({ recipeId }) => {
   }, [recipeId]);
 
   const handleSubmit = async (e) => {
-    // TODO: add validations/sanitizations
     e.preventDefault();
 
     const errorMessage = validateInput(input, { characterCount: 500 });
