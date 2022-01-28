@@ -25,7 +25,7 @@ export default function VersionComponent() {
 
     getMostForkedData();
     getRecentData();
-  }, []);
+  }, [id]);
 
   return (
     <div className="flex-row mx-auto container pt-8">

@@ -1,5 +1,5 @@
 import RecipeForm from './RecipeForm';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import OutsideClick from '../hooks/useClickOutside';
 
 const Modal = ({ title, recipe, setShowModal }) => {

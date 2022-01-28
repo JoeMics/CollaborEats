@@ -41,13 +41,12 @@ const ImageUpload = () => {
       <div className="flex-row">
         <div className="m-auto">
           <h1 className="font-bold text-xl text-center my-4">Upload Files</h1>
-          {/* <form action="http://localhost:8080/upload" method="POST" enctype="multipart/form-data"> */}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <input type="file" name="file" id="file" onChange={handleFileSelect} />
               <label htmlFor="for">Choose File</label>
             </div>
-            <input type="submit" value="Submit" className="px-3 px-3 bg-blue-400" />
+            <input type="submit" value="Submit" className="px-3 bg-blue-400" />
           </form>
           <button type="button" onClick={handleFetch}>
             get all images
