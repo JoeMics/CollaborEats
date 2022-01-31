@@ -19,16 +19,16 @@ export default function OrgChartTree({ treeId }) {
       const dbData = await getRecipe(treeId);
       const root = {
         name: dbData.data.recipe.title,
-        id: dbData.data.recipe._id,
-        children: [],
+        _id: dbData.data.recipe._id,
+        parent: null,
         description: dbData.data.recipe.description,
         user: dbData.data.recipe.ownerId.email,
         recipe: dbData.data.recipe,
       };
 
       const treeArray = dbData.data.recipeTree;
-      const formattedAnswer = treeFormatter(root, treeArray);
-      setTreeData(formattedAnswer);
+      const formattedData = treeFormatter(root, treeArray);
+      setTreeData(formattedData);
       setLoading(false);
     }
     setLoading(true);
@@ -95,8 +95,12 @@ export default function OrgChartTree({ treeId }) {
           <div className="mx-8 mt-11 rounded-lg hover:scale-105 hover:transition-all duration-300 dark:text-neutral-50">
             <div className="max-w-sm rounded-lg p-1 bg-stone-100 dark:bg-dark-200 dark:hover:bg-dark-50 dark:group-hover:transition-all duration-300 shadow-slate-500 dark:shadow-black shadow-md bgdar">
               <div className="px-6 py-4">
-                <h3 className="font-semibold text-xl max-w-2xl underline ">{nodeDatum.name}</h3>
-                <h4 className="font-semibold text-xs mb-2 max-w-2xl">by: {nodeDatum.user}</h4>
+                <h3 className="font-semibold text-xl max-w-2xl underline ">
+                  {nodeDatum.name || nodeDatum.title}
+                </h3>
+                <h4 className="font-semibold text-xs mb-2 max-w-2xl">
+                  by: {nodeDatum.user || nodeDatum.ownerId.email}
+                </h4>
                 <p className="text-gray-800 line-clamp-6 py-2 dark:text-neutral-200 transition-all duration-300">
                   {nodeDatum.description}
                 </p>
@@ -104,7 +108,7 @@ export default function OrgChartTree({ treeId }) {
               <div className="flex w-full justify-around">
                 <Link
                   className="flex justify-center basis-1/3 grow rounded-bl-md hover:bg-stone-200 dark:hover:bg-dark-700 group-hover:transition-all duration-300"
-                  to={`${ROUTES.RECIPE}/${nodeDatum.id}`}
+                  to={`${ROUTES.RECIPE}/${nodeDatum.id || nodeDatum._id}`}
                 >
                   <button className="flex py-2 ">
                     <span>Recipe</span>
