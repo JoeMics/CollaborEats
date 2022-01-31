@@ -36,11 +36,17 @@ const treeFormatter = (root, treeData) => {
         // We use the path AKA the array of ancestors to find the index of the parent
         // inside depth index we created in the beginning
         let node = treeData[i].path[j];
-        let parentIndex = depthIndex[j].indexOf(node);
+        let offset = 0;
+        if (j > 1) {
+          offset = getOffset(depthIndex[j], treeData[i].path[j - 1], treeData);
+        }
+        let parentIndex =
+          depthIndex[j].indexOf(node) - offset < 0
+            ? depthIndex[j].indexOf(node)
+            : depthIndex[j].indexOf(node) - offset;
         r3treepath.push(parentIndex);
         r3treepath.push('children');
       }
-
       // Push to the correct nested location
       get(r3treepath, data).push({
         name: treeData[i].title,
@@ -56,6 +62,29 @@ const treeFormatter = (root, treeData) => {
   return data;
 };
 
+//This reducer gets the path to the tree
 const get = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
+
+//this function offsets the number of treenodes in the same depth that are not part of the path
+const getOffset = (depthNodes, parent, dbData) => {
+  let offset = 0;
+  let parentCount = 0;
+  depthNodes.forEach((depthNode) => {
+    dbData.forEach((treeNode) => {
+      if (treeNode._id === depthNode && treeNode.parent !== parent) {
+        offset++;
+      }
+      if (treeNode._id === depthNode && treeNode.parent === parent) {
+        parentCount++;
+      }
+    });
+  });
+  //if parentCount is 1 that means that nothing in depthNodes shares same parents
+  //need to set offset to 1 so it becomes 0 which corresponds to only child in tree
+  if (parentCount === 1) {
+    offset = 1;
+  }
+  return offset;
+};
 
 export default treeFormatter;
