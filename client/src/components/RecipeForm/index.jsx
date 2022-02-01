@@ -15,7 +15,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     photo: '',
   });
   const [file, setFile] = useState(null);
-  const [formError, setFormError] = useState({});
+  const [formError, setFormError] = useState({ ...recipeForm });
 
   const { userId } = useContext(AuthContext);
   let history = useHistory();
@@ -39,50 +39,42 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     const newRecipe = { ...recipeForm };
 
     // VALIDATION, to be moved to custom hook
+    const newFormErrors = {};
+
     const validationOptions = {
       title: { characterCount: 35 },
       photo: { required: false },
     };
 
-    let containsErrors = false;
-
     // Validations for title, description, and instructions
     for (const property in newRecipe) {
       const inputError = validateInput(newRecipe[property], validationOptions[property]);
-      if (inputError) {
-        setFormError((prev) => {
-          return { ...prev, [property]: inputError };
-        });
-
-        containsErrors = true;
-      }
+      newFormErrors[property] = inputError;
     }
 
     // Validations for the ingredients section
-    for (const ingredient of newRecipe.ingredients) {
-      const errors = {
-        amount: validateInput(ingredient.amount, { characterCount: 5 }),
-        ingredient: validateInput(ingredient.ingredient, {
-          characterCount: 30,
-        }),
-        unitOfMeasure: validateInput(ingredient.unitOfMeasure, {
-          required: false,
-        }),
+    const ingredientErrors = newRecipe.ingredients.map(({ amount, ingredient, unitOfMeasure }) => {
+      return {
+        amount: validateInput(amount, { characterCount: 5 }),
+        ingredient: validateInput(ingredient, { characterCount: 30 }),
+        unitOfMeasure: validateInput(unitOfMeasure, { required: false }),
       };
+    });
+    newFormErrors.ingredients = ingredientErrors;
 
-      const filteredErrors = {};
+    setFormError(newFormErrors);
 
-      for (const error in errors) {
-        if (errors[error]) {
-          filteredErrors[error] = errors[error];
-          containsErrors = true;
+    // Iterate through error messages
+    // The submitHandler will return when it reaches any error message
+    for (const error in newFormErrors) {
+      if (error === 'ingredients') {
+        for (const ingredient of newFormErrors[error]) {
+          if (Object.values(ingredient).some((el) => el !== null)) return;
         }
+      } else {
+        if (newFormErrors[error] !== null) return;
       }
-
-      setFormError((prev) => ({ ...prev, ...filteredErrors }));
     }
-
-    if (containsErrors) return;
 
     // POST request after validations
     try {
@@ -124,6 +116,15 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   const addIngredient = () => {
     const newIngredient = { ingredient: '', amount: '', unitOfMeasure: '' };
     setRecipeForm((prev) => {
+      const ingredients = [...prev.ingredients];
+      ingredients[ingredients.length] = newIngredient;
+      return {
+        ...prev,
+        ingredients,
+      };
+    });
+
+    setFormError((prev) => {
       const ingredients = [...prev.ingredients];
       ingredients[ingredients.length] = newIngredient;
       return {
