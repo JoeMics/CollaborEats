@@ -109,7 +109,8 @@ router.post('/search', async (req, res) => {
     const recipes = await Recipe.find({
       $or: [
         { $and: [{ title: { $regex: req.body.searchPhrase, $options: 'i' } }, { parent: null }] },
-        { $and: [{ 'ingredients.ingredient': req.body.searchPhrase }] },
+        { $and: [{ 'ingredients.ingredient': req.body.searchPhrase }, { parent: null }] },
+        { $and: [{ tags: req.body.searchPhrase, $options: 'i' }, { parent: null }] },
       ],
     }).populate('ownerId');
     if (!recipes) {
