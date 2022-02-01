@@ -158,34 +158,32 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             type="text"
             id="title"
             name="title"
-            placeholder={formError.title ? formError.title : 'e.g. Polish Burgers'}
+            placeholder="e.g. Polish Burgers"
             className={
               formError.title
-                ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 rounded-sm outline-none text-red-900 focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
                 : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
             }
             value={recipeForm.title}
             onChange={editInput}
-          ></input>
+          />
+          <p className="text-red-900 dark:text-red-500">{formError.title}</p>
           <div className="w-full mb-0">
             <label htmlFor="description" className="block text-lg font-semibold">
               Description
             </label>
             <textarea
               name="description"
-              placeholder={
-                formError.description
-                  ? formError.description
-                  : 'e.g. This recipe is a family favorite that was passed down over the generations...'
-              }
+              placeholder="e.g. This recipe is a family favorite that was passed down over the generations..."
               className={
                 formError.description
-                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 rounded-sm outline-none text-red-900 focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
                   : 'w-full h-24 px-4 py-2 border-2 dark:bg-dark-50 dark:border-dark-500 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
               }
               value={recipeForm.description}
               onChange={editInput}
             ></textarea>
+            <p className="text-red-900 dark:text-red-500">{formError.description}</p>
           </div>
         </div>
         <div className="mx-3 flex">
@@ -195,15 +193,16 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             </label>
             <textarea
               name="instructions"
-              placeholder={formError.instructions ? formError.instructions : 'e.g. Instructions'}
+              placeholder="e.g. Instructions"
               className={
                 formError.instructions
-                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 rounded-sm outline-none text-red-900 focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
                   : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 dark:bg-dark-50 dark:border-dark-500 rounded-sm outline-none focus:border-blue-400'
               }
               value={recipeForm.instructions}
               onChange={editInput}
             ></textarea>
+            <p className="text-red-900 dark:text-red-500">{formError.instructions}</p>
           </div>
         </div>
         <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
