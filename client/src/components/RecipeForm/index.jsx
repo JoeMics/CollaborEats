@@ -34,22 +34,24 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   };
 
   const handleFileSelect = (e) => {
-    console.log(e.target.files[0]);
     setFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormError({});
 
     const newRecipe = { ...recipeForm };
-
-    // VALIDATION, to be moved to custom hook
     const newFormErrors = {};
 
+    // All options for validation
     const validationOptions = {
       title: { characterCount: 35 },
       photo: { required: false },
+      ingredients: {
+        ingredient: { characterCount: 30 },
+        amount: { characterCount: 5 },
+        unitOfMeasure: { required: false },
+      },
     };
 
     // Validations for title, description, and instructions
@@ -61,9 +63,9 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     // Validations for the ingredients section
     const ingredientErrors = newRecipe.ingredients.map(({ amount, ingredient, unitOfMeasure }) => {
       return {
-        amount: validateInput(amount, { characterCount: 5 }),
-        ingredient: validateInput(ingredient, { characterCount: 30 }),
-        unitOfMeasure: validateInput(unitOfMeasure, { required: false }),
+        ingredient: validateInput(ingredient, validationOptions.ingredients.ingredient),
+        amount: validateInput(amount, validationOptions.ingredients.amount),
+        unitOfMeasure: validateInput(unitOfMeasure, validationOptions.ingredients.unitOfMeasure),
       };
     });
     newFormErrors.ingredients = ingredientErrors;
