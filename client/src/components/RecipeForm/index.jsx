@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { validateInput } from '../../helpers/validation';
@@ -15,7 +15,13 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     photo: '',
   });
   const [file, setFile] = useState(null);
-  const [formError, setFormError] = useState({ ...recipeForm });
+  const [formError, setFormError] = useState({
+    ingredients: recipeForm.ingredients.map((inputs) => ({
+      ingredient: null,
+      amount: null,
+      unitOfMeasure: null,
+    })),
+  });
 
   const { userId } = useContext(AuthContext);
   let history = useHistory();
