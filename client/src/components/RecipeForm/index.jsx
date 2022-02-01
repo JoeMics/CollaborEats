@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { validateInput } from '../../helpers/validation';
@@ -15,7 +15,13 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     photo: '',
   });
   const [file, setFile] = useState(null);
-  const [formError, setFormError] = useState({});
+  const [formError, setFormError] = useState({
+    ingredients: recipeForm.ingredients.map((inputs) => ({
+      ingredient: null,
+      amount: null,
+      unitOfMeasure: null,
+    })),
+  });
 
   const { userId } = useContext(AuthContext);
   let history = useHistory();
@@ -28,61 +34,55 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   };
 
   const handleFileSelect = (e) => {
-    console.log(e.target.files[0]);
     setFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormError({});
 
     const newRecipe = { ...recipeForm };
+    const newFormErrors = {};
 
-    // VALIDATION, to be moved to custom hook
+    // All options for validation
     const validationOptions = {
       title: { characterCount: 35 },
       photo: { required: false },
+      ingredients: {
+        ingredient: { characterCount: 30 },
+        amount: { characterCount: 5 },
+        unitOfMeasure: { required: false },
+      },
     };
-
-    let containsErrors = false;
 
     // Validations for title, description, and instructions
     for (const property in newRecipe) {
       const inputError = validateInput(newRecipe[property], validationOptions[property]);
-      if (inputError) {
-        setFormError((prev) => {
-          return { ...prev, [property]: inputError };
-        });
-
-        containsErrors = true;
-      }
+      newFormErrors[property] = inputError;
     }
 
     // Validations for the ingredients section
-    for (const ingredient of newRecipe.ingredients) {
-      const errors = {
-        amount: validateInput(ingredient.amount, { characterCount: 5 }),
-        ingredient: validateInput(ingredient.ingredient, {
-          characterCount: 30,
-        }),
-        unitOfMeasure: validateInput(ingredient.unitOfMeasure, {
-          required: false,
-        }),
+    const ingredientErrors = newRecipe.ingredients.map(({ amount, ingredient, unitOfMeasure }) => {
+      return {
+        ingredient: validateInput(ingredient, validationOptions.ingredients.ingredient),
+        amount: validateInput(amount, validationOptions.ingredients.amount),
+        unitOfMeasure: validateInput(unitOfMeasure, validationOptions.ingredients.unitOfMeasure),
       };
+    });
+    newFormErrors.ingredients = ingredientErrors;
 
-      const filteredErrors = {};
+    setFormError(newFormErrors);
 
-      for (const error in errors) {
-        if (errors[error]) {
-          filteredErrors[error] = errors[error];
-          containsErrors = true;
+    // Iterate through error messages
+    // The submitHandler will return when it reaches any error message
+    for (const error in newFormErrors) {
+      if (error === 'ingredients') {
+        for (const ingredient of newFormErrors[error]) {
+          if (Object.values(ingredient).some((el) => el !== null)) return;
         }
+      } else {
+        if (newFormErrors[error] !== null) return;
       }
-
-      setFormError((prev) => ({ ...prev, ...filteredErrors }));
     }
-
-    if (containsErrors) return;
 
     // POST request after validations
     try {
@@ -131,6 +131,15 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
         ingredients,
       };
     });
+
+    setFormError((prev) => {
+      const ingredients = [...prev.ingredients];
+      ingredients[ingredients.length] = newIngredient;
+      return {
+        ...prev,
+        ingredients,
+      };
+    });
   };
 
   return (
@@ -151,34 +160,32 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             type="text"
             id="title"
             name="title"
-            placeholder={formError.title ? formError.title : 'e.g. Polish Burgers'}
+            placeholder="e.g. Polish Burgers"
             className={
               formError.title
-                ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 rounded-sm outline-none text-red-900 focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
                 : 'w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out'
             }
             value={recipeForm.title}
             onChange={editInput}
-          ></input>
+          />
+          <p className="text-red-900 dark:text-red-500">{formError.title}</p>
           <div className="w-full mb-0">
             <label htmlFor="description" className="block text-lg font-semibold">
               Description
             </label>
             <textarea
               name="description"
-              placeholder={
-                formError.description
-                  ? formError.description
-                  : 'e.g. This recipe is a family favorite that was passed down over the generations...'
-              }
+              placeholder="e.g. This recipe is a family favorite that was passed down over the generations..."
               className={
                 formError.description
-                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 rounded-sm outline-none text-red-900 focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
                   : 'w-full h-24 px-4 py-2 border-2 dark:bg-dark-50 dark:border-dark-500 border-gray-300 rounded-sm outline-none focus:border-blue-400 transition duration-200 ease-in-out'
               }
               value={recipeForm.description}
               onChange={editInput}
             ></textarea>
+            <p className="text-red-900 dark:text-red-500">{formError.description}</p>
           </div>
         </div>
         <div className="mx-3 flex">
@@ -188,15 +195,16 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             </label>
             <textarea
               name="instructions"
-              placeholder={formError.instructions ? formError.instructions : 'e.g. Instructions'}
+              placeholder="e.g. Instructions"
               className={
                 formError.instructions
-                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+                  ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 rounded-sm outline-none text-red-900 focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
                   : 'w-full h-24 px-4 py-3 border-2 mb-2 border-gray-300 dark:bg-dark-50 dark:border-dark-500 rounded-sm outline-none focus:border-blue-400'
               }
               value={recipeForm.instructions}
               onChange={editInput}
             ></textarea>
+            <p className="text-red-900 dark:text-red-500">{formError.instructions}</p>
           </div>
         </div>
         <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
