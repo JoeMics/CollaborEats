@@ -11,7 +11,7 @@ const Card = ({ title, description, id, photo, ownerId }) => {
         />
         <h3 className="text-2xl underline py-2 mx-2 truncate">{title}</h3>
         <p className="text-m pb-2 mx-2 truncate">by {ownerId}</p>
-        <p className="text-lg py-3 mx-2 truncate">{description}</p>
+        <p className="text-lg py-3 mx-2 line-clamp-5 fade-text">{description}</p>
       </article>
     </Link>
   );
