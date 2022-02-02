@@ -199,6 +199,16 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             ></textarea>
           </div>
         </div>
+        <label className="mx-3 block text-lg font-semibold mb-2">Tags</label>
+        <div className="mx-3 flex">
+          <input
+            placeholder="Name"
+            class="w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out"
+          ></input>
+        </div>
+        <p class="mx-3 flex text-sm text-gray-500">
+          Start writing, to finish your tag use a comma, tab or enter...
+        </p>
         <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
         {IngredientsInputs}
         <div className="mb-3 mx-3 w-8 cursor-pointer">
