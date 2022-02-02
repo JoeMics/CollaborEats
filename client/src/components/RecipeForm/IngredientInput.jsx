@@ -28,16 +28,19 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index, formError }) => {
         </label>
         <input
           className={
-            formError.title
-              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+            formError.ingredients[index].ingredient
+              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 block p-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
               : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500  focus:border-blue-400 transition duration-200 ease-in-out'
           }
           type="text"
           name="ingredient"
-          placeholder={formError.ingredient ? 'blank' : 'Ground Beef'}
+          placeholder="Ground Beef"
           value={recipeForm.ingredients[index].ingredient}
           onChange={changeHandler}
         />
+        <p className="text-red-900 text-sm dark:text-red-500">
+          {formError.ingredients[index].ingredient}
+        </p>
       </div>
       <div className="w-1/2 px-3">
         <label htmlFor="amount" className="block font-semibold">
@@ -45,16 +48,19 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index, formError }) => {
         </label>
         <input
           className={
-            formError.amount
-              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+            formError.ingredients[index].amount
+              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
               : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400 transition duration-200 ease-in-out'
           }
           type="text"
           name="amount"
           value={recipeForm.ingredients[index].amount}
           onChange={changeHandler}
-          placeholder={formError.amount ? 'blank' : '1'}
+          placeholder="1"
         />
+        <p className="text-red-900 text-sm dark:text-red-500">
+          {formError.ingredients[index].amount}
+        </p>
       </div>
       <div className="w-1/2 px-3">
         <label htmlFor="unit-of-measure" className="block font-semibold">
@@ -62,16 +68,19 @@ const IngredientInput = ({ setRecipeForm, recipeForm, index, formError }) => {
         </label>
         <input
           className={
-            formError.unitOfMeasure
-              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
+            formError.ingredients[index].unitOfMeasure
+              ? 'w-full px-4 py-2 border-2 mb-3 bg-red-50 border-red-500 text-red-900 rounded-sm outline-none focus:ring-red-500 focus:border-red-500 blockp-2.5 dark:bg-red-100 dark:border-red-400 font-serif'
               : 'appearance-none block w-full border-2 py-2 px-4 border-gray-lighter rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400 transition duration-200 ease-in-out'
           }
           type="text"
-          placeholder={formError.unitOfMeasure ? 'blank' : 'lb'}
+          placeholder="lb"
           name="unitOfMeasure"
           value={recipeForm.ingredients[index].unitOfMeasure}
           onChange={changeHandler}
         />
+        <p className="text-red-900 text-sm dark:text-red-500">
+          {formError.ingredients[index].unitOfMeasure}
+        </p>
       </div>
       <div className="mt-7 cursor-pointer">
         <svg
