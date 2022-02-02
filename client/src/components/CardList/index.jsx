@@ -1,8 +1,21 @@
 import Card from './Card';
+import Masonry from 'react-masonry-css';
+
 // Must be a "grid" layout
 const CardList = ({ recipes }) => {
+  const breakpointColumbsObj = {
+    default: 4,
+    1440: 3,
+    1024: 2,
+    768: 1,
+  };
+
   return (
-    <section className="container flex flex-wrap justify-around mb-16">
+    <Masonry
+      className="my-masonry-grid container mx-auto mb-16"
+      columnClassName="my-masonry-grid_column"
+      breakpointCols={breakpointColumbsObj}
+    >
       {recipes &&
         recipes.map((recipe) => {
           return (
@@ -16,7 +29,7 @@ const CardList = ({ recipes }) => {
             />
           );
         })}
-    </section>
+    </Masonry>
   );
 };
 
