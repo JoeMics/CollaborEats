@@ -142,6 +142,32 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     });
   };
 
+  // const addTag = () => {
+
+  // }
+
+  const testTag = (
+    <div className="flex items-center bg-red-500 rounded-full px-3 py-1">
+      testTag
+      <button className="pl-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </button>
+    </div>
+  );
+
   return (
     <>
       <div className="flex flex-col justify-center p-5 rounded-t dark:bg-dark-500 dark:text-neutral-200 dark:border-black dark:border-lg">
@@ -214,9 +240,8 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             class="w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out"
           ></input>
         </div>
-        <p class="mx-3 flex text-gray-500">
-          Start writing, to finish your tag use a comma, tab or enter...
-        </p>
+        <div className="mx-3 flex pb-1">{testTag}</div>
+
         <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
         {IngredientsInputs}
         <div className="mb-3 mx-3 w-8 cursor-pointer">
