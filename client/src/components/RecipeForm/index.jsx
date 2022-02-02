@@ -147,8 +147,8 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   // }
 
   const testTag = (
-    <div className="flex items-center bg-red-500 rounded-full px-3 py-1">
-      testTag
+    <div className="flex items-center bg-red-500 rounded-full px-3 py-1 mx-1 my-1">
+      test
       <button className="pl-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +240,9 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             class="w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out"
           ></input>
         </div>
-        <div className="mx-3 flex pb-1">{testTag}</div>
+        <div className="mx-3 flex flex-wrap">
+          {[testTag, testTag, testTag, testTag, testTag, testTag, testTag, testTag]}
+        </div>
 
         <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
         {IngredientsInputs}
