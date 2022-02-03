@@ -13,8 +13,8 @@ const Navbar = ({ transparent }) => {
 
   // For demo purposes
   const demoUsers = {
-    '61e607f0311d699fd35f509e': 'JoeMics',
-    '61e608607f04825b4c4cd517': 'IvanTang',
+    '61e607f0311d699fd35f509e': 'Joseph Micla',
+    '61e608607f04825b4c4cd517': 'Ivan Tang',
   };
 
   // For demo purposes
@@ -76,7 +76,7 @@ const Navbar = ({ transparent }) => {
           className="block items-center px-4 py-2 text-xl dark:text-neutral-200"
           onClick={cycleUsers}
         >
-          Demo: {demoUsers[userId]}
+          {demoUsers[userId]}
         </button>
         <Toggle />
       </div>
