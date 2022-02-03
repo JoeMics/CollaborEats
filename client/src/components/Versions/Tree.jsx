@@ -130,7 +130,11 @@ export default function OrgChartTree({ treeId }) {
                 </Link>
 
                 <span
-                  className="flex justify-center basis-1/3 grow border-stone-300  border-x hover:bg-stone-200 dark:hover:bg-dark-700 group-hover:transition-all duration-300"
+                  className={
+                    nodeDatum.children
+                      ? 'flex justify-center basis-1/3 grow border-stone-300  border-x hover:bg-stone-200 dark:hover:bg-dark-700 group-hover:transition-all duration-300'
+                      : 'flex justify-center basis-1/3 grow border-stone-300  border-l rounded-br-md hover:bg-stone-200 dark:hover:bg-dark-700 group-hover:transition-all duration-300'
+                  }
                   onClick={() => handleFork(nodeDatum.recipe)}
                 >
                   <button className="flex py-2">
