@@ -6,6 +6,8 @@ import Toggle from './Toggle';
 import React, { useState } from 'react';
 import Modal from './Modal';
 import Search from './Searchbar';
+import GoogleLogin from 'react-google-login';
+import axios from 'axios';
 
 const Navbar = ({ transparent }) => {
   const { userId, setUserId } = useContext(AuthContext);
@@ -24,6 +26,10 @@ const Navbar = ({ transparent }) => {
         ? '61e608607f04825b4c4cd517'
         : '61e607f0311d699fd35f509e'
     );
+  };
+
+  const handleLogin = async (googleResponse) => {
+    console.log(googleResponse);
   };
 
   return (
@@ -72,12 +78,13 @@ const Navbar = ({ transparent }) => {
       </div>
       <div className="flex">
         <Search placeholder={'search'} />
-        <button
-          className="block items-center px-4 py-2 text-xl dark:text-neutral-200"
-          onClick={cycleUsers}
-        >
-          {demoUsers[userId]}
-        </button>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          buttonText="Login"
+          onSuccess={handleLogin}
+          onFailure={handleLogin}
+          cookiePolicy="single_host_origin"
+        />
         <Toggle />
       </div>
       <>{showModal ? <Modal title={'Create a New Recipe'} setShowModal={setShowModal} /> : null}</>
