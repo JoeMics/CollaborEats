@@ -23,7 +23,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     })),
   });
 
-  const { userId } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   let history = useHistory();
 
   const editInput = (e) => {
@@ -93,12 +93,13 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
 
       // Only on fork
       if (recipe._id) {
-        const result = await addFork(userId, recipe._id, newRecipe);
+        const result = await addFork(user._id, recipe._id, newRecipe);
         history.push(`/recipe/${result.data._id}`);
         return setShowModal(false);
       }
 
-      const result = await addRecipe(userId, newRecipe);
+      console.log(user);
+      const result = await addRecipe(user._id, newRecipe);
       history.push(`/recipe/${result.data._id}`);
       return setShowModal(false);
     } catch (error) {

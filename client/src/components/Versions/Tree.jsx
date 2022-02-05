@@ -22,7 +22,7 @@ export default function OrgChartTree({ treeId }) {
         _id: dbData.data.recipe._id,
         parent: null,
         description: dbData.data.recipe.description,
-        user: dbData.data.recipe.ownerId.email,
+        user: dbData.data.recipe.ownerId.name,
         recipe: dbData.data.recipe,
       };
 
@@ -99,7 +99,7 @@ export default function OrgChartTree({ treeId }) {
                   {nodeDatum.name || nodeDatum.title}
                 </h3>
                 <h4 className="font-semibold text-xs mb-2 max-w-2xl">
-                  by: {nodeDatum.user || nodeDatum.ownerId.email}
+                  by: {nodeDatum.user || nodeDatum.ownerId.name}
                 </h4>
                 <p className="text-gray-800 line-clamp-6 py-2 dark:text-neutral-200 transition-all duration-300">
                   {nodeDatum.description}
