@@ -30,11 +30,18 @@ router.post('/auth/google', async (req, res) => {
       { upsert: true, new: true }
     );
 
+    req.session.userId = user._id;
+
     res.status(201);
     res.send(user);
   } catch (e) {
-    console.log(e);
+    res.status(500);
     res.send(e);
   }
+});
+
+router.post('/check', async (req, res) => {
+  // middleware checks for current user session
+  res.send(req.user);
 });
 export default router;

@@ -3,6 +3,7 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
+import session from 'express-session';
 
 import User from './models/user';
 import Recipe from './models/recipe';
@@ -18,7 +19,8 @@ const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 // const methodOverride = require('method-override');
-// const cookieParser = require('cookieParser');
+
+import { Request, Response } from 'express';
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -34,9 +36,39 @@ app.use(
     extended: true,
   })
 );
-// app.use(cookieParser);
-app.use(cors());
+
+// Add origin, and credentials to receive session from client
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 // app.use(methodOverride('_method'));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET!,
+    saveUninitialized: true,
+    resave: false,
+    cookie: { httpOnly: true },
+  })
+);
+
+// Use declaration merging toB add user and UserId
+declare module 'express-serve-static-core' {
+  interface Request {
+    user: any;
+  }
+}
+
+declare module 'express-session' {
+  interface SessionData {
+    userId: string;
+  }
+}
+
+// middleware to check current user on every request
+// the User data is accessible on every endpoint as "req.user"
+app.use(async (req, res: Response, next) => {
+  const user = await User.findOne({ _id: req.session.userId });
+  req.user = user;
+  next();
+});
 
 //Routes
 app.use('/recipes', recipeRoutes);
