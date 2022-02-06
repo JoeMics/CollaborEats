@@ -86,6 +86,11 @@ export async function authenticateWithGoogle(googleResponse) {
   return await response;
 }
 
+export async function logout() {
+  const response = await axios.post(`users/auth/logout`);
+  return await response;
+}
+
 export async function fetchCurrentUser() {
   const response = await axios.post(`users/check`);
 

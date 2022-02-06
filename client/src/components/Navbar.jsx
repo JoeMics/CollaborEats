@@ -6,30 +6,23 @@ import Toggle from './Toggle';
 import React, { useState } from 'react';
 import Modal from './Modal';
 import Search from './Searchbar';
-import GoogleLogin from 'react-google-login';
-import axios from 'axios';
+import GoogleLogin, { GoogleLogout } from 'react-google-login';
+import { authenticateWithGoogle, logout } from '../services/api';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Navbar = ({ transparent }) => {
-  const { userId, setUserId } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
-
-  // For demo purposes
-  const demoUsers = {
-    '61e607f0311d699fd35f509e': 'Joseph Micla',
-    '61e608607f04825b4c4cd517': 'Ivan Tang',
-  };
-
-  // For demo purposes
-  const cycleUsers = () => {
-    setUserId(
-      userId === '61e607f0311d699fd35f509e'
-        ? '61e608607f04825b4c4cd517'
-        : '61e607f0311d699fd35f509e'
-    );
-  };
+  const { theme } = useContext(ThemeContext);
 
   const handleLogin = async (googleResponse) => {
-    console.log(googleResponse);
+    const res = await authenticateWithGoogle(googleResponse);
+    setUser(res.data);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    setUser(null);
   };
 
   return (
@@ -52,13 +45,16 @@ const Navbar = ({ transparent }) => {
           </Link>
         </h1>
         <ul className="flex space-x-8">
-          <li className="px-2 mx-1 my-auto text-md xl:text-xl dark:text-neutral-200">
-            <Link to={ROUTES.DASHBOARD}>
-              <span className="link-underline  hover:dark:text-primary-500 link-underline-primary">
-                Home
-              </span>
-            </Link>
-          </li>
+          {user && (
+            <li className="px-2 mx-1 my-auto text-md xl:text-xl dark:text-neutral-200">
+              <Link to={ROUTES.DASHBOARD}>
+                <span className="link-underline  hover:dark:text-primary-500 link-underline-primary">
+                  Home
+                </span>
+              </Link>
+            </li>
+          )}
+
           <li className="text-md xl:text-xl px-2 mx-1 my-auto dark:text-neutral-200">
             <Link to={ROUTES.RECIPEPAGE}>
               <span className="link-underline hover:text-primary-500 link-underline-primary">
@@ -78,13 +74,41 @@ const Navbar = ({ transparent }) => {
       </div>
       <div className="flex">
         <Search placeholder={'search'} />
-        <GoogleLogin
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          buttonText="Login"
-          onSuccess={handleLogin}
-          onFailure={handleLogin}
-          cookiePolicy="single_host_origin"
-        />
+
+        {!user ? (
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            onSuccess={handleLogin}
+            onFailure={handleLogin}
+            cookiePolicy="single_host_origin"
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="rounded-full flex justify-center items-center px-4 py-2 mx-4 bg-neutral-200 dark:bg-dark-200 dark:hover:bg-dark-50 hover:bg-neutral-300 dark:text-neutral-200 font-semibold"
+              >
+                Sign In
+              </button>
+            )}
+          />
+        ) : (
+          <GoogleLogout
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            buttonText="Log Out"
+            onLogoutSuccess={handleLogout}
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="rounded-full flex justify-center items-center px-4 py-2 mx-4 bg-neutral-200 dark:bg-dark-200 dark:hover:bg-dark-50 hover:bg-neutral-300 dark:text-neutral-200 font-semibold"
+              >
+                <img className="rounded-full max-h-6 mr-2" src={user.picture} alt="avatar" />
+                Log out
+              </button>
+            )}
+          ></GoogleLogout>
+        )}
+
         <Toggle />
       </div>
       <>{showModal ? <Modal title={'Create a New Recipe'} setShowModal={setShowModal} /> : null}</>
