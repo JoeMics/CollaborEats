@@ -75,3 +75,24 @@ export async function simpleSearch(searchPhrase) {
     searchPhrase,
   });
 }
+
+// input: response object from google login
+// output: collaboreats api server response
+export async function authenticateWithGoogle(googleResponse) {
+  const body = { token: googleResponse.tokenId };
+
+  const response = await axios.post(`users/auth/google`, body);
+
+  return await response;
+}
+
+export async function logout() {
+  const response = await axios.post(`users/auth/logout`);
+  return await response;
+}
+
+export async function fetchCurrentUser() {
+  const response = await axios.post(`users/check`);
+
+  return await response;
+}

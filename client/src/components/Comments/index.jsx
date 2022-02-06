@@ -9,7 +9,7 @@ const Comments = ({ recipeId }) => {
   const [comments, setComments] = useState([]);
   const [input, setInput] = useState('');
   const [error, setError] = useState(null);
-  const { userId } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   // Inital render for comments
   useEffect(() => {
@@ -29,7 +29,7 @@ const Comments = ({ recipeId }) => {
     if (errorMessage) return setError(errorMessage);
 
     try {
-      const newComment = await addComment(userId, recipeId, input);
+      const newComment = await addComment(user._id, recipeId, input);
       setComments((prev) => [newComment.data, ...prev]);
       setInput('');
     } catch (err) {
@@ -38,7 +38,13 @@ const Comments = ({ recipeId }) => {
   };
 
   const commentComponents = comments.map(({ _id, ownerId, content, createdAt }, index) => (
-    <Comment key={_id || index} name={ownerId.email} content={content} createdAt={createdAt} />
+    <Comment
+      key={_id || index}
+      name={ownerId.name}
+      content={content}
+      createdAt={createdAt}
+      picture={ownerId.picture}
+    />
   ));
 
   return (

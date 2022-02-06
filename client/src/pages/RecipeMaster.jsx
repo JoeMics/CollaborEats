@@ -21,9 +21,9 @@ const RecipeMaster = () => {
       setRecipes(dbData.data);
       // it loads too fast to see at the moment, so this will be removed in
       //real app and we just have setLoading(false);
-      setTimeout(() => setLoading(false), 1000);
+      // setTimeout(() => setLoading(false), 1000);
     }
-    setLoading(true);
+    setLoading(false);
     getRecipeData();
   }, []);
 

@@ -10,12 +10,12 @@ import { ThemeContext } from '../context/ThemeContext';
 const Dashboard = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { userId } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     async function getRecipeData() {
-      const dbData = await fetchUserRecipes(userId);
+      const dbData = await fetchUserRecipes(user._id);
       setRecipes(dbData.data);
       // it loads too fast to see at the moment, so this will be removed in
       //real app and we just have setLoading(false);
@@ -23,7 +23,7 @@ const Dashboard = () => {
     }
     setLoading(true);
     getRecipeData();
-  }, [userId]);
+  }, [user]);
 
   return (
     <>
