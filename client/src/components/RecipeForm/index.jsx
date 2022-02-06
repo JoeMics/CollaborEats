@@ -12,8 +12,10 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     description: recipe.description || '',
     instructions: recipe.instructions || '',
     ingredients: recipe.ingredients || [{ ingredient: '', amount: '', unitOfMeasure: '' }],
+    tags: recipe.tags || [],
     photo: '',
   });
+
   const [file, setFile] = useState(null);
   const [formError, setFormError] = useState({
     ingredients: recipeForm.ingredients.map((inputs) => ({
@@ -22,6 +24,22 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
       unitOfMeasure: null,
     })),
   });
+
+  const [input, setInput] = useState('');
+  const [tags, setTags] = useState([]);
+
+  const onInputChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    const trimmedInput = input.trim();
+    if (e.key === ' ' && trimmedInput.length && !tags.includes(trimmedInput)) {
+      e.preventDefault();
+      setTags((prev) => [...prev, trimmedInput]);
+      setInput('');
+    }
+  };
 
   const { user } = useContext(AuthContext);
   let history = useHistory();
@@ -143,13 +161,9 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     });
   };
 
-  // const addTag = () => {
-
-  // }
-
-  const testTag = (
+  const tagsArray = tags.map((tag) => (
     <div className="flex items-center bg-red-500 rounded-full px-3 py-1 mx-1 my-1">
-      test
+      {tag}
       <button className="pl-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +181,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
         </svg>
       </button>
     </div>
-  );
+  ));
 
   return (
     <>
@@ -241,11 +255,12 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
             <input
               placeholder="e.g Burger"
               class="w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out"
+              value={input}
+              onChange={onInputChange}
+              onKeyDown={handleKeyPress}
             ></input>
           </div>
-          <div className="mx-3 flex flex-wrap">
-            {[testTag, testTag, testTag, testTag, testTag, testTag, testTag, testTag]}
-          </div>
+          <div className="mx-3 flex flex-wrap">{tagsArray}</div>
 
           <label className="mx-3 block text-lg font-semibold mb-2">Ingredients</label>
           {IngredientsInputs}
