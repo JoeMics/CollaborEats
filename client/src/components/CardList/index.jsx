@@ -25,7 +25,7 @@ const CardList = ({ recipes }) => {
               description={recipe.description}
               photo={recipe.photo ? recipe.photo : null}
               id={recipe._id}
-              ownerId={recipe.ownerId.email}
+              ownerId={recipe.ownerId}
             />
           );
         })}

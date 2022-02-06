@@ -9,7 +9,7 @@ router.use('/:recipeId/comments/', commentsRoute);
 
 router.get('/', async (req, res) => {
   try {
-    const recipes = await Recipe.find({ parent: null }).populate('ownerId', 'email');
+    const recipes = await Recipe.find({ parent: null }).populate('ownerId', 'name');
     if (!recipes) {
       throw new Error('Recipe not found');
     }
@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const recipe = await Recipe.findOne({ _id: req.params.id }).populate('ownerId', 'email');
-    const recipeTree = await Recipe.find({ path: req.params.id }).populate('ownerId', 'email');
+    const recipe = await Recipe.findOne({ _id: req.params.id }).populate('ownerId', 'name');
+    const recipeTree = await Recipe.find({ path: req.params.id }).populate('ownerId', 'name');
     if (!recipe) {
       throw new Error('Recipe not found');
     }
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 
 router.get('/user/:ownerId', async (req, res) => {
   try {
-    const recipes = await Recipe.find({ ownerId: req.params.ownerId }).populate('ownerId', 'email');
+    const recipes = await Recipe.find({ ownerId: req.params.ownerId }).populate('ownerId', 'name');
     if (!recipes) {
       throw new Error('Recipes not found');
     }
