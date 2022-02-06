@@ -16,6 +16,7 @@ const Navbar = ({ transparent }) => {
   const { theme } = useContext(ThemeContext);
 
   const handleLogin = async (googleResponse) => {
+    console.log(googleResponse);
     const res = await authenticateWithGoogle(googleResponse);
     setUser(res.data);
   };
