@@ -47,6 +47,11 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
       setTags(tagsCopy);
       setInput(poppedTag);
     }
+
+    setRecipeForm({
+      ...recipeForm,
+      tags,
+    });
   };
 
   const { user } = useContext(AuthContext);
