@@ -18,6 +18,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+const MongoDBStore = require('connect-mongodb-session')(session);
 // const methodOverride = require('method-override');
 
 import { Request, Response } from 'express';
@@ -40,12 +41,14 @@ app.use(
 // Add origin, and credentials to receive session from client
 app.use(cors({ origin: process.env.WEB_APP_URL, credentials: true }));
 // app.use(methodOverride('_method'));
+const store = new MongoDBStore({ uri: process.env.DB_URI, collection: 'mySessions' });
 app.use(
   session({
     secret: process.env.SESSION_SECRET!,
     saveUninitialized: true,
     resave: false,
     cookie: { httpOnly: true },
+    store,
   })
 );
 
