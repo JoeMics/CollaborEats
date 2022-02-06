@@ -81,7 +81,7 @@ const Navbar = ({ transparent }) => {
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             onSuccess={handleLogin}
             onFailure={handleLogin}
-            cookiePolicy="single_host_origin"
+            cookiePolicy="https://collabor-eats.herokuapp.com/"
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}
