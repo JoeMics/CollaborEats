@@ -40,8 +40,14 @@ router.post('/auth/google', async (req, res) => {
   }
 });
 
+router.post('/auth/logout', (req, res) => {
+  req.session.destroy((err) => res.send(err));
+  res.status(200).send('Logged out');
+});
+
 router.post('/check', async (req, res) => {
   // middleware checks for current user session
   res.send(req.user);
 });
+
 export default router;

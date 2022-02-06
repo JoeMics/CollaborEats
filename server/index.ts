@@ -38,7 +38,7 @@ app.use(
 );
 
 // Add origin, and credentials to receive session from client
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: process.env.WEB_APP_URL, credentials: true }));
 // app.use(methodOverride('_method'));
 app.use(
   session({
@@ -49,7 +49,7 @@ app.use(
   })
 );
 
-// Use declaration merging toB add user and UserId
+// Use declaration merging to add user and userId
 declare module 'express-serve-static-core' {
   interface Request {
     user: any;
@@ -64,7 +64,7 @@ declare module 'express-session' {
 
 // middleware to check current user on every request
 // the User data is accessible on every endpoint as "req.user"
-app.use(async (req, res: Response, next) => {
+app.use(async (req, res, next) => {
   const user = await User.findOne({ _id: req.session.userId });
   req.user = user;
   next();
