@@ -34,7 +34,7 @@ export default function RecipeComponent({ recipeId }) {
             <header className="dark:text-neutral-200">
               <h2 className="text-6xl font-serif pl-4 w-10/12 break-words">{recipe.title}</h2>
               <h2 className="text-lg font-serif pl-4 w-10/12 break-words">
-                Written by:{recipe.ownerId.email}
+                Written by: {recipe.ownerId.name}
               </h2>
             </header>
             <div className="h-80 w-full rounded-t-md overflow-hidden overflow-y-scroll mt-6 scrollable-image hide-scrollbar">
