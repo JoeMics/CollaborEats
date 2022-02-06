@@ -35,6 +35,7 @@ router.post('/auth/google', async (req, res) => {
     res.status(201);
     res.send(user);
   } catch (e) {
+    console.log(e);
     res.status(500);
     res.send(e);
   }
