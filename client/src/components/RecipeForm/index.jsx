@@ -39,6 +39,14 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
       setTags((prev) => [...prev, trimmedInput]);
       setInput('');
     }
+
+    if (e.key === 'Backspace' && !input.length && tags.length) {
+      e.preventDefault();
+      const tagsCopy = [...tags];
+      const poppedTag = tagsCopy.pop();
+      setTags(tagsCopy);
+      setInput(poppedTag);
+    }
   };
 
   const { user } = useContext(AuthContext);
