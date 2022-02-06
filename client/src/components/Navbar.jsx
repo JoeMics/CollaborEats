@@ -78,10 +78,10 @@ const Navbar = ({ transparent }) => {
 
         {!user ? (
           <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
             onSuccess={handleLogin}
             onFailure={handleLogin}
-            cookiePolicy="https://collabor-eats.herokuapp.com/"
+            cookiePolicy={'single_host_origin'}
             render={(renderProps) => (
               <button
                 onClick={renderProps.onClick}
@@ -94,7 +94,7 @@ const Navbar = ({ transparent }) => {
           />
         ) : (
           <GoogleLogout
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
             buttonText="Log Out"
             onLogoutSuccess={handleLogout}
             render={(renderProps) => (
