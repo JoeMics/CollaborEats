@@ -35,17 +35,8 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   const handleKeyPress = (e) => {
     const trimmedInput = input.trim();
     if (e.key === ' ' && trimmedInput.length && !tags.includes(trimmedInput)) {
-      e.preventDefault();
       setTags((prev) => [...prev, trimmedInput]);
       setInput('');
-    }
-
-    if (e.key === 'Backspace' && !input.length && tags.length) {
-      e.preventDefault();
-      const tagsCopy = [...tags];
-      const poppedTag = tagsCopy.pop();
-      setTags(tagsCopy);
-      setInput(poppedTag);
     }
 
     setRecipeForm({
@@ -53,6 +44,32 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
       tags,
     });
   };
+
+  const deleteTag = (index) => {
+    setTags((prev) => prev.filter((tag, i) => i !== index));
+  };
+
+  const tagsArray = tags.map((tag, index) => (
+    <div className="flex items-center bg-red-500 rounded-full px-3 py-1 mx-1 my-1">
+      {tag}
+      <button className="pl-1" onClick={() => deleteTag(index)}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </button>
+    </div>
+  ));
 
   const { user } = useContext(AuthContext);
   let history = useHistory();
@@ -173,32 +190,6 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
       };
     });
   };
-
-  const deleteTag = (index) => {
-    setTags((prev) => prev.filter((tag, i) => i !== index));
-  };
-
-  const tagsArray = tags.map((tag, index) => (
-    <div className="flex items-center bg-red-500 rounded-full px-3 py-1 mx-1 my-1">
-      {tag}
-      <button className="pl-1" onClick={() => deleteTag(index)}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </button>
-    </div>
-  ));
 
   return (
     <>
