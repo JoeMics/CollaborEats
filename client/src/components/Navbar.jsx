@@ -6,25 +6,10 @@ import Toggle from './Toggle';
 import React, { useState } from 'react';
 import Modal from './Modal';
 import Search from './Searchbar';
-import GoogleLogin, { GoogleLogout } from 'react-google-login';
-import { authenticateWithGoogle, logout } from '../services/api';
-import { ThemeContext } from '../context/ThemeContext';
 
 const Navbar = ({ transparent }) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, signInWithGoogle, handleSignOut } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
-  const { theme } = useContext(ThemeContext);
-
-  const handleLogin = async (googleResponse) => {
-    console.log(googleResponse);
-    const res = await authenticateWithGoogle(googleResponse);
-    setUser(res.data);
-  };
-
-  const handleLogout = async () => {
-    await logout();
-    setUser(null);
-  };
 
   return (
     <nav
@@ -76,38 +61,21 @@ const Navbar = ({ transparent }) => {
       <div className="flex">
         <Search placeholder={'search'} />
 
-        {!user ? (
-          <GoogleLogin
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            onSuccess={handleLogin}
-            onFailure={handleLogin}
-            cookiePolicy="single_host_origin"
-            render={(renderProps) => (
-              <button
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-                className="rounded-full flex justify-center items-center px-4 py-2 mx-4 bg-neutral-200 dark:bg-dark-200 dark:hover:bg-dark-50 hover:bg-neutral-300 dark:text-neutral-200 font-semibold"
-              >
-                Sign In
-              </button>
-            )}
-          />
+        {user ? (
+          <button
+            onClick={handleSignOut}
+            className="rounded-full flex justify-center items-center px-4 py-2 mx-4 bg-neutral-200 dark:bg-dark-200 dark:hover:bg-dark-50 hover:bg-neutral-300 dark:text-neutral-200 font-semibold"
+          >
+            <img className="rounded-full max-h-7 mr-2" src={user.picture} alt="avatar" />
+            {user.name}
+          </button>
         ) : (
-          <GoogleLogout
-            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            buttonText="Log Out"
-            onLogoutSuccess={handleLogout}
-            render={(renderProps) => (
-              <button
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-                className="rounded-full flex justify-center items-center px-4 py-2 mx-4 bg-neutral-200 dark:bg-dark-200 dark:hover:bg-dark-50 hover:bg-neutral-300 dark:text-neutral-200 font-semibold"
-              >
-                <img className="rounded-full max-h-6 mr-2" src={user.picture} alt="avatar" />
-                Log out
-              </button>
-            )}
-          ></GoogleLogout>
+          <button
+            onClick={signInWithGoogle}
+            className="rounded-full flex justify-center items-center px-4 py-2 mx-4 bg-neutral-200 dark:bg-dark-200 dark:hover:bg-dark-50 hover:bg-neutral-300 dark:text-neutral-200 font-semibold"
+          >
+            Sign In
+          </button>
         )}
 
         <Toggle />
