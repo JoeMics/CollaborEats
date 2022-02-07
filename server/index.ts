@@ -44,7 +44,22 @@ app.use(
 
 // Add origin, and credentials to receive session from client
 // disable cors
-app.use(cors({ origin: process.env.WEB_APP_URL, credentials: true }));
+const options: cors.CorsOptions = {
+  allowedHeaders: [
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'X-Access-Token',
+    'Authorization',
+  ],
+  credentials: true,
+  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+  origin: process.env.WEB_APP_URL,
+  preflightContinue: false,
+};
+
+app.use(cors(options));
 // app.use(methodOverride('_method'));
 
 // Use declaration merging to add user and userId
@@ -59,7 +74,7 @@ declare module 'express-serve-static-core' {
 // the User data is accessible on every endpoint as "req.user"
 app.use(async (req, res, next) => {
   // Prevent cors
-  res.header('Access-Control-Allow-Origin', 'collaboreats-api.herokuapp.com');
+  res.header('Access-Control-Allow-Origin', process.env.WEB_APP_URL);
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
   res.header(
     'Access-Control-Allow-Headers',
