@@ -45,8 +45,9 @@ app.use(
 // Add origin, and credentials to receive session from client
 app.use(
   cors({
-    // origin: 'https://vibrant-cray-95d891.netlify.app',
-    origin: 'http://localhost:3000',
+    // uncomment to work in dev environment
+    // origin: 'http://localhost:3000',
+    origin: 'https://vibrant-cray-95d891.netlify.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Reqested-With', 'Accept'],
     preflightContinue: true,
