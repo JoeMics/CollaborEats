@@ -43,7 +43,7 @@ app.use(
 );
 
 // Add origin, and credentials to receive session from client
-app.use(cors({ origin: process.env.WEB_APP_URL, credentials: true }));
+app.use(cors({ origin: process.env.WEB_APP_URL }));
 // app.use(methodOverride('_method'));
 
 // Use declaration merging to add user and userId
