@@ -76,17 +76,12 @@ declare module 'express-serve-static-core' {
 // the User data is accessible on every endpoint as "req.user"
 app.use(async (req, res, next) => {
   // Prevent cors
-<<<<<<< HEAD
   // res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-=======
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
->>>>>>> 44e27f09e9f9082eefbfdece830a8389677ce45e
+  // res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  // res.header(
+  //   'Access-Control-Allow-Headers',
+  //   'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  // );
 
   // Check for access token in header
   // Token must be of authorization type, and must include "Bearer"
