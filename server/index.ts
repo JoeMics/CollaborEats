@@ -44,8 +44,7 @@ app.use(
 
 // Add origin, and credentials to receive session from client
 // disable cors
-// app.use(cors({ origin: false }));
-app.use(cors());
+app.use(cors({ origin: false }));
 // app.use(methodOverride('_method'));
 
 // Use declaration merging to add user and userId
