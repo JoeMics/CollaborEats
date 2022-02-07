@@ -17,6 +17,7 @@ interface Recipe {
   description: String;
   ingredients: Types.Array<Ingredient>;
   instructions: String;
+  tags: Types.Array<String>;
   photo: String;
 }
 
@@ -32,6 +33,7 @@ const recipeSchema = new Schema<Recipe>(
       required: true,
     },
     instructions: { type: String, required: true },
+    tags: { type: [String] },
     photo: { type: String },
   },
   { timestamps: true }

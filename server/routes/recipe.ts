@@ -83,7 +83,7 @@ router.get('/:id/mostForked', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { ownerId, title, description, ingredients, instructions, photo } = req.body;
+    const { ownerId, title, description, ingredients, instructions, photo, tags } = req.body;
     const recipe = new Recipe({
       path: [],
       parent: null,
@@ -92,6 +92,7 @@ router.post('/', async (req, res) => {
       description,
       ingredients,
       instructions,
+      tags,
       photo,
     });
     await recipe.save();
@@ -108,7 +109,8 @@ router.post('/search', async (req, res) => {
     const recipes = await Recipe.find({
       $or: [
         { $and: [{ title: { $regex: req.body.searchPhrase, $options: 'i' } }, { parent: null }] },
-        { $and: [{ 'ingredients.ingredient': req.body.searchPhrase }] },
+        { $and: [{ 'ingredients.ingredient': req.body.searchPhrase }, { parent: null }] },
+        { $and: [{ tags: req.body.searchPhrase, $options: 'i' }, { parent: null }] },
       ],
     }).populate('ownerId');
     if (!recipes) {
