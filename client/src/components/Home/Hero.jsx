@@ -24,7 +24,7 @@ const Hero = () => {
             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
               <div className="pr-12">
                 <h1 className="text-white font-bold text-5xl xl:text-6xl tracking-wider">
-                  CollaborEat With Chefs to Make The Perfect Recipe2
+                  CollaborEat With Chefs to Make The Perfect Recipe3
                 </h1>
                 <p className="mt-4 text-xl text-gray-300 font-semibold tracking-wider">
                   Create Your First Recipe Now
