@@ -262,7 +262,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
           <div className="mx-3 flex">
             <input
               placeholder="e.g Burger"
-              class="w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out"
+              className="w-full px-4 py-2 border-2 mb-3 border-gray-300 rounded-sm outline-none dark:bg-dark-50 dark:border-dark-500 focus:border-blue-400  focus:bg-white transition duration-200 ease-in-out"
               value={input}
               onChange={onInputChange}
               onKeyDown={handleKeyPress}

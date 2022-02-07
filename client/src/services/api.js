@@ -1,9 +1,5 @@
 import axios from '../lib/api';
 
-export async function fetchData() {
-  return await axios.get('/recipes/61e607f0311d699fd35f509e');
-}
-
 export async function addComment(ownerId, recipeId, content) {
   return await axios.post(`/recipes/${recipeId}/comments`, {
     ownerId,
@@ -37,7 +33,7 @@ export async function uploadImage(file) {
   try {
     const response = await axios({
       method: 'post',
-      url: 'http://localhost:8080/upload',
+      url: `${process.env.REACT_APP_API_URL}/upload`,
       data: formData,
       headers: { 'Content-Type': 'multipart/form-data' },
     });
@@ -74,25 +70,4 @@ export async function simpleSearch(searchPhrase) {
   return await axios.post(`/recipes/search`, {
     searchPhrase,
   });
-}
-
-// input: response object from google login
-// output: collaboreats api server response
-export async function authenticateWithGoogle(googleResponse) {
-  const body = { token: googleResponse.tokenId };
-
-  const response = await axios.post(`users/auth/google`, body);
-
-  return await response;
-}
-
-export async function logout() {
-  const response = await axios.post(`users/auth/logout`);
-  return await response;
-}
-
-export async function fetchCurrentUser() {
-  const response = await axios.post(`users/check`);
-
-  return await response;
 }
