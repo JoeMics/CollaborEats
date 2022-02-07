@@ -45,7 +45,7 @@ app.use(
 // Add origin, and credentials to receive session from client
 app.use(
   cors({
-    origin: process.env.WEB_APP_URL,
+    origin: false,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Reqested-With', 'Accept'],
     preflightContinue: true,
