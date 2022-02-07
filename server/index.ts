@@ -56,11 +56,9 @@ const options: cors.CorsOptions = {
   credentials: true,
   methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
   origin: process.env.WEB_APP_URL,
-  preflightContinue: true,
+  preflightContinue: false,
 };
 app.use(cors(options));
-// @ts-ignore:next-line
-app.options('*', cors(options));
 // app.use(cors({ origin: process.env.WEB_APP_URL }));
 // app.use(methodOverride('_method'));
 
@@ -76,7 +74,7 @@ declare module 'express-serve-static-core' {
 // the User data is accessible on every endpoint as "req.user"
 app.use(async (req, res, next) => {
   // Prevent cors
-  // res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', process.env.WEB_APP_URL);
   // res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
   // res.header(
   //   'Access-Control-Allow-Headers',
