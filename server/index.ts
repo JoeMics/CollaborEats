@@ -19,11 +19,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-<<<<<<< HEAD
-const MongoDBStore = require('connect-mongodb-session')(session);
-=======
 // for deleting photos @JoeMics
->>>>>>> main
 // const methodOverride = require('method-override');
 
 // Constants
