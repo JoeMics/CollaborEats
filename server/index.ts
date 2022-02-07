@@ -1,9 +1,10 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express from 'express';
+import express, { application } from 'express';
 import cors from 'cors';
-import session from 'express-session';
+import { initializeApp, applicationDefault } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
 
 import User from './models/user';
 import Recipe from './models/recipe';
@@ -18,15 +19,19 @@ const crypto = require('crypto');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+// for deleting photos @JoeMics
 // const methodOverride = require('method-override');
-
-import { Request, Response } from 'express';
 
 // Constants
 const PORT = process.env.PORT || 8080;
 
 // Server
 const app = express();
+
+//Initialize firebase admin sdk
+initializeApp({
+  credential: applicationDefault(),
+});
 
 // Middleware
 app.use(morgan('tiny'));
@@ -40,14 +45,6 @@ app.use(
 // Add origin, and credentials to receive session from client
 app.use(cors({ origin: process.env.WEB_APP_URL, credentials: true }));
 // app.use(methodOverride('_method'));
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET!,
-    saveUninitialized: true,
-    resave: false,
-    cookie: { httpOnly: true },
-  })
-);
 
 // Use declaration merging to add user and userId
 declare module 'express-serve-static-core' {
@@ -56,17 +53,37 @@ declare module 'express-serve-static-core' {
   }
 }
 
-declare module 'express-session' {
-  interface SessionData {
-    userId: string;
-  }
-}
-
 // middleware to check current user on every request
+// update Users collection on every request
 // the User data is accessible on every endpoint as "req.user"
 app.use(async (req, res, next) => {
-  const user = await User.findOne({ _id: req.session.userId });
-  req.user = user;
+  // Check for access token in header
+  // Token must be of authorization type, and must include "Bearer"
+  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+    const idToken = req.headers.authorization?.split(' ')[1];
+
+    if (idToken) {
+      // Verify token
+      const decodedToken = await getAuth().verifyIdToken(idToken);
+      const { uid } = decodedToken;
+
+      // Get user info from firebase
+      const userRecord = await getAuth().getUser(uid);
+      const { email, displayName, photoURL } = userRecord;
+
+      // User info to query for and update user info
+      // This allows us to always have the most updated version of the user
+      const user = await User.findOneAndUpdate(
+        { email },
+        { name: displayName, picture: photoURL },
+        { upsert: true, new: true }
+      );
+
+      // allows all routes to access the user on every request
+      req.user = user;
+      return next();
+    }
+  }
   next();
 });
 
