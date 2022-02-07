@@ -1,5 +1,7 @@
 import axios from '../lib/api';
 
+// Comments
+
 export async function addComment(ownerId, recipeId, content) {
   return await axios.post(`/recipes/${recipeId}/comments`, {
     ownerId,
@@ -10,6 +12,8 @@ export async function addComment(ownerId, recipeId, content) {
 export async function fetchComments(recipeId) {
   return await axios.get(`/recipes/${recipeId}/comments`);
 }
+
+// Recipes
 
 export async function fetchMasterRecipes() {
   return await axios.get('/recipes');
@@ -70,4 +74,11 @@ export async function simpleSearch(searchPhrase) {
   return await axios.post(`/recipes/search`, {
     searchPhrase,
   });
+}
+
+// Users
+
+// returns mongoDB user
+export async function fetchCurrentUser() {
+  return await axios.post(`/users/check`);
 }
