@@ -45,11 +45,8 @@ const SearchBar = () => {
           <div className="lg:w-36 xl:w-56 max-h-72 bg-white shadow-sm overflow-hidden overflow-y-auto hide-scrollbar absolute top-16 z-10 rounded-lg">
             {filteredData.slice(0, 10).map((value) => {
               return (
-                <Link to={`${ROUTES.RECIPE}/${value._id}`} onClick={handleClick}>
-                  <span
-                    key={value._id}
-                    className="w-full h-16 flex items-center text-gray-800 hover:bg-gray-400"
-                  >
+                <Link key={value._id} to={`${ROUTES.RECIPE}/${value._id}`} onClick={handleClick}>
+                  <span className="w-full h-16 flex items-center text-gray-800 hover:bg-gray-400">
                     <p className="ml-4">{value.title}</p>
                   </span>
                 </Link>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { validateInput } from '../../helpers/validation';
@@ -50,7 +50,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   };
 
   const tagsArray = tags.map((tag, index) => (
-    <div className="flex items-center bg-red-500 rounded-full px-3 py-1 mx-1 my-1">
+    <div key={index} className="flex items-center bg-red-500 rounded-full px-3 py-1 mx-1 my-1">
       {tag}
       <button className="pl-1" onClick={() => deleteTag(index)}>
         <svg
