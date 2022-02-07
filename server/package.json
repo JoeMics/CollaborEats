@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.ts",
+    "production": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --project ./",
     "db:reset": "ts-node ./seeds/index.ts"
@@ -15,6 +16,7 @@
   "dependencies": {
     "@types/cors": "^2.8.12",
     "@types/express-session": "^1.17.4",
+    "connect-mongodb-session": "^3.1.1",
     "cors": "^2.8.5",
     "dotenv": "^12.0.3",
     "express": "^4.17.2",

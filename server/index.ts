@@ -3,7 +3,6 @@ dotenv.config();
 
 import express, { application } from 'express';
 import cors from 'cors';
-import { initializeApp, applicationDefault } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 
 import User from './models/user';
@@ -19,6 +18,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+const admin = require('firebase-admin');
 // for deleting photos @JoeMics
 // const methodOverride = require('method-override');
 
@@ -29,8 +29,8 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 //Initialize firebase admin sdk
-initializeApp({
-  credential: applicationDefault(),
+admin.initializeApp({
+  credential: admin.credential.cert(JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS!)),
 });
 
 // Middleware
@@ -43,7 +43,16 @@ app.use(
 );
 
 // Add origin, and credentials to receive session from client
-app.use(cors({ origin: process.env.WEB_APP_URL, credentials: true }));
+app.use(
+  cors({
+    // uncomment to work in dev environment
+    // origin: 'http://localhost:3000',
+    origin: 'https://vibrant-cray-95d891.netlify.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Reqested-With', 'Accept'],
+    preflightContinue: true,
+  })
+);
 // app.use(methodOverride('_method'));
 
 // Use declaration merging to add user and userId
