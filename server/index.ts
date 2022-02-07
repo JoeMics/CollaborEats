@@ -3,7 +3,6 @@ dotenv.config();
 
 import express, { application } from 'express';
 import cors from 'cors';
-import { initializeApp, applicationDefault } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 
 import User from './models/user';
@@ -19,6 +18,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+const admin = require('firebase-admin');
 // for deleting photos @JoeMics
 // const methodOverride = require('method-override');
 
@@ -29,8 +29,8 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 //Initialize firebase admin sdk
-initializeApp({
-  credential: applicationDefault(),
+admin.initializeApp({
+  credential: admin.credential.cert(JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS!)),
 });
 
 // Middleware
@@ -45,8 +45,8 @@ app.use(
 // Add origin, and credentials to receive session from client
 app.use(
   cors({
-    origin: 'https://vibrant-cray-95d891.netlify.app',
-    // origin: 'http://localhost:3000localhost:',
+    // origin: 'https://vibrant-cray-95d891.netlify.app',
+    origin: 'http://localhost:3000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Reqested-With', 'Accept'],
     preflightContinue: true,
@@ -65,14 +65,6 @@ declare module 'express-serve-static-core' {
 // update Users collection on every request
 // the User data is accessible on every endpoint as "req.user"
 app.use(async (req, res, next) => {
-  // Prevent cors
-  // res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  // res.header(
-  //   'Access-Control-Allow-Headers',
-  //   'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  // );
-
   // Check for access token in header
   // Token must be of authorization type, and must include "Bearer"
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
