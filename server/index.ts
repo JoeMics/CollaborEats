@@ -59,7 +59,7 @@ declare module 'express-serve-static-core' {
 // the User data is accessible on every endpoint as "req.user"
 app.use(async (req, res, next) => {
   // Prevent cors
-  res.header('Access-Control-Allow-Origin', 'https://vibrant-cray-95d891.netlify.app/');
+  res.header('Access-Control-Allow-Origin', 'https://vibrant-cray-95d891.netlify.app');
   res.header('Access-Control-Allow-Methods', 'POST');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
