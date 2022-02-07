@@ -44,7 +44,23 @@ app.use(
 
 // Add origin, and credentials to receive session from client
 // disable cors
-app.use(cors({ origin: false }));
+const options: cors.CorsOptions = {
+  allowedHeaders: [
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'X-Access-Token',
+    'Authorization',
+  ],
+  credentials: true,
+  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+  origin: process.env.WEB_APP_URL,
+  preflightContinue: false,
+};
+app.use(cors(options));
+// @ts-ignore:next-line
+app.options('*', cors(options));
 // app.use(methodOverride('_method'));
 
 // Use declaration merging to add user and userId
@@ -59,8 +75,8 @@ declare module 'express-serve-static-core' {
 // the User data is accessible on every endpoint as "req.user"
 app.use(async (req, res, next) => {
   // Prevent cors
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
   // Check for access token in header
   // Token must be of authorization type, and must include "Bearer"
