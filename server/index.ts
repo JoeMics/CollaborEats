@@ -56,7 +56,7 @@ const options: cors.CorsOptions = {
   credentials: true,
   methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
   origin: process.env.WEB_APP_URL,
-  preflightContinue: false,
+  preflightContinue: true,
 };
 app.use(cors(options));
 // @ts-ignore:next-line
