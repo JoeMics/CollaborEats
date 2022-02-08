@@ -33,7 +33,6 @@ export async function getAllImages() {
 
 export async function getSignedURL() {
   const { data } = await axios.get('/s3upload');
-  console.log('API URL: ', data);
   return data;
 }
 
