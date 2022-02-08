@@ -40,10 +40,10 @@ const Comments = ({ recipeId }) => {
   const commentComponents = comments.map(({ _id, ownerId, content, createdAt }, index) => (
     <Comment
       key={_id || index}
-      name={ownerId.name}
+      name={user.name}
       content={content}
       createdAt={createdAt}
-      picture={ownerId.picture}
+      picture={user.picture}
     />
   ));
 
