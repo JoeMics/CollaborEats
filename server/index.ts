@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
+import { initializeApp, applicationDefault } from 'firebase-admin/app';
 import express, { application } from 'express';
 import cors from 'cors';
 import { getAuth } from 'firebase-admin/auth';
@@ -10,6 +10,8 @@ import Recipe from './models/recipe';
 import Comment from './models/comment';
 import userRoutes from './routes/user';
 import recipeRoutes from './routes/recipe';
+
+import { generateUploadURL } from './s3';
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -30,7 +32,7 @@ const app = express();
 
 //Initialize firebase admin sdk
 admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS!)),
+  credential: applicationDefault(),
 });
 
 // Middleware
@@ -46,8 +48,8 @@ app.use(
 app.use(
   cors({
     // uncomment to work in dev environment
-    // origin: 'http://localhost:3000',
-    origin: 'https://vibrant-cray-95d891.netlify.app',
+    origin: 'http://localhost:3000',
+    // origin: 'https://vibrant-cray-95d891.netlify.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Reqested-With', 'Accept'],
     preflightContinue: true,
@@ -178,6 +180,12 @@ app.get('/files', (req, res) => {
     }
     return res.json(files);
   });
+});
+
+app.get('/s3upload', async (req, res) => {
+  const url = await generateUploadURL();
+  res.send(url);
+  console.log('signed: ', url);
 });
 
 app.get('/files/:filename', (req, res) => {
