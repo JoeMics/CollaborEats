@@ -42,7 +42,7 @@ export default function RecipeComponent({ recipeId }) {
                 className="w-full object-cover"
                 src={
                   recipe.photo
-                    ? `http://localhost:8080/image/${recipe.photo}`
+                    ? `${process.env.REACT_APP_API_URL}/image/${recipe.photo}`
                     : '/demo/default_image.jpg'
                 }
                 alt={recipe.title}

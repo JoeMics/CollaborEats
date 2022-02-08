@@ -3,6 +3,7 @@
 ## Table Of Contents
 
 - [Summary](#summary)
+  - [Web App Link](#web-app-link)
   - [Features](#features)
   - [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
@@ -24,6 +25,11 @@
 CollaborEats is a **Single-Page Web Application (SPA)** built using the **MERN** stack.
 
 CollaborEats allows you to create new versions of yours, or other people's recipes by "Forking" them. Every recipe is stored in a tree structure with the original recipe as the root, allowing you to make mistakes, and experiment without losing track of what you have done in the past.
+
+## Web App Link
+
+**The website can be found here:**
+https://vibrant-cray-95d891.netlify.app/
 
 ## Features
 

@@ -146,7 +146,6 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
         return setShowModal(false);
       }
 
-      console.log(user);
       const result = await addRecipe(user._id, newRecipe);
       history.push(`/recipe/${result.data._id}`);
       return setShowModal(false);
