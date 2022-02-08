@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { getAllImages } from '../services/api';
+import { getAllImages, getSignedURL, uploadS3Img } from '../services/api';
 
 const ImageUpload = () => {
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [imgurl, setImgurl] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', file);
-    try {
-      const response = await axios({
-        method: 'post',
-        url: 'http://localhost:8080/upload',
-        data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      console.log('the file name: ', response.data.file.filename);
-    } catch (error) {
-      console.log(error);
-    }
+    setLoading(true);
+    const url = await getSignedURL();
+    const newUrl = await uploadS3Img(file, url);
+    setImgurl(newUrl);
+    setLoading(false);
+    // const formData = new FormData();
+    // formData.append('file', file);
+    // try {
+    //   const response = await axios({
+    //     method: 'post',
+    //     url: 'http://localhost:8080/upload',
+    //     data: formData,
+    //     headers: { 'Content-Type': 'multipart/form-data' },
+    //   });
+    //   console.log('the file name: ', response.data.file.filename);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const handleFileSelect = (e) => {
@@ -51,6 +58,8 @@ const ImageUpload = () => {
           <button type="button" onClick={handleFetch}>
             get all images
           </button>
+          <h3>THE IMAGE</h3>
+          {!loading && <img src={imgurl} alt="asdf" />}
         </div>
       </div>
     </div>
