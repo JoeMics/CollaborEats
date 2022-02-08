@@ -13,6 +13,7 @@ import recipeRoutes from './routes/recipe';
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+import { generateUploadURL } from './s3';
 const path = require('path');
 const crypto = require('crypto');
 const multer = require('multer');
@@ -143,6 +144,12 @@ const storage = new GridFsStorage({
   },
 });
 const upload = multer({ storage });
+
+app.get('/s3upload', async (req, res) => {
+  const url = await generateUploadURL();
+  res.send(url);
+  console.log('signed: ', url);
+});
 
 app.get('/upload', (req, res) => {
   // @ts-ignore:next-line
