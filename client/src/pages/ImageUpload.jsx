@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { getAllImages } from '../services/api';
+import { getAllImages, getSignedURL, uploadS3Img } from '../services/api';
 
 const ImageUpload = () => {
   const [file, setFile] = useState(null);
+  const [imgUrl, setImgUrl] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', file);
-    try {
-      const response = await axios({
-        method: 'post',
-        url: 'http://localhost:8080/upload',
-        data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      console.log('the file name: ', response.data.file.filename);
-    } catch (error) {
-      console.log(error);
-    }
+    const url = await getSignedURL();
+    const newUrl = await uploadS3Img(file, url);
   };
 
   const handleFileSelect = (e) => {
@@ -51,6 +41,11 @@ const ImageUpload = () => {
           <button type="button" onClick={handleFetch}>
             get all images
           </button>
+          <h3>THE IMAGE</h3>
+          <img
+            src="https://collaboreats-s3-bucket.s3.us-west-1.amazonaws.com/02dc685b6e51563fe4d00a13dd50539e"
+            alt="asdf"
+          />
         </div>
       </div>
     </div>
