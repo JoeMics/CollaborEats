@@ -9,6 +9,7 @@ interface User {
 }
 
 const userSchema = new Schema<User>({
+  _id: Schema.Types.ObjectId,
   email: { type: String, unique: true, trim: true, required: true },
   name: String,
   picture: String,
