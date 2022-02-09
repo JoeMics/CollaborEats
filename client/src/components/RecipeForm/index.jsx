@@ -295,6 +295,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
               type="file"
               name="file"
               id="file"
+              accept="image/png, image/jpeg"
               onChange={handleFileSelect}
             />
           </div>
