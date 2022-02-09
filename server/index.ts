@@ -21,7 +21,9 @@ import userRoutes from './routes/user';
 import recipeRoutes from './routes/recipe';
 import imageRoutes from './routes/image';
 
-const mongoose = require('mongoose');
+// connect to DB
+import './lib/mongoose';
+
 const morgan = require('morgan');
 const admin = require('firebase-admin');
 
@@ -92,16 +94,5 @@ app.use(async (req, res, next) => {
 app.use('/recipes', recipeRoutes);
 app.use('/users', userRoutes);
 app.use('/images', imageRoutes);
-
-// connect to db
-mongoose
-  .connect(`${process.env.DB_URI}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log('Connected to DB successfully!');
-  })
-  .catch((err: any) => console.log(`Could not connect due to ${err}`));
 
 app.listen(PORT, () => console.log(`API server running on port: ${PORT}`));
