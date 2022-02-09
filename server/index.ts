@@ -6,27 +6,29 @@ declare module 'express-serve-static-core' {
   interface Request {
     user: any;
   }
+
+  interface ParamsDictionary {
+    recipeId: string;
+  }
 }
 
 // Constants
-const PORT = process.env.PORT || 8080;
+const { WEB_APP_URL, PORT } = process.env;
 
 import express from 'express';
 import cors from 'cors';
-import { getAuth } from 'firebase-admin/auth';
+const morgan = require('morgan');
 
-import User from './models/user';
 import userRoutes from './routes/user';
 import recipeRoutes from './routes/recipe';
 import imageRoutes from './routes/image';
+import verifyAndUpdateUser from './lib/firebase-auth-middleware';
 
 // connect to DB
 import './lib/mongoose';
 
 // initialize firebase SDK
 import './services/firebase';
-
-const morgan = require('morgan');
 
 // Server
 const app = express();
@@ -43,52 +45,18 @@ app.use(
 // Add origin, and credentials to receive session from client
 app.use(
   cors({
-    // uncomment to work in dev environment
-    origin: 'http://localhost:3000',
-    // origin: 'https://vibrant-cray-95d891.netlify.app',
+    origin: WEB_APP_URL,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Reqested-With', 'Accept'],
     preflightContinue: true,
   })
 );
 
-// middleware to check current user on every request
-// update Users collection on every request
-// the User data is accessible on every endpoint as "req.user"
-app.use(async (req, res, next) => {
-  // Check for access token in header
-  // Token must be of authorization type, and must include "Bearer"
-  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-    const idToken = req.headers.authorization?.split(' ')[1];
-
-    if (idToken) {
-      // Verify token
-      const decodedToken = await getAuth().verifyIdToken(idToken);
-      const { uid } = decodedToken;
-
-      // Get user info from firebase
-      const userRecord = await getAuth().getUser(uid);
-      const { email, displayName, photoURL } = userRecord;
-
-      // User info to query for and update user info
-      // This allows us to always have the most updated version of the user
-      const user = await User.findOneAndUpdate(
-        { email },
-        { name: displayName, picture: photoURL },
-        { upsert: true, new: true }
-      );
-
-      // allows all routes to access the user on every request
-      req.user = user;
-      return next();
-    }
-  }
-  next();
-});
+app.use(verifyAndUpdateUser);
 
 //Routes
 app.use('/recipes', recipeRoutes);
 app.use('/users', userRoutes);
 app.use('/images', imageRoutes);
 
-app.listen(PORT, () => console.log(`API server running on port: ${PORT}`));
+app.listen(PORT || 8080, () => console.log(`API server running on port: ${PORT}`));
