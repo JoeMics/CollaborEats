@@ -59,7 +59,7 @@ export default [
     ],
     instructions:
       '1. With a serrated knife cut the top off the extra bun half, leaving about a 3/4-inch-thick slice. This will be the middle bun of your sandwich\n\n2. Place the three buns on a hot pan or griddle, face down, and toast them to a light brown. Set aside, but keep the pan hot.\n\n3. Divide the ground beef in half and form it into two thin patties slightly larger than the bun.\n\n4. Cook the patties in the hot pan over medium heat for 1 to 2 minutes on each side. Salt and pepper lightly.\n\n5. Build the burger in the following stacking order from the bottom up:\n\nbottom bun -> special sauce -> onions -> lettuce -> american cheese -> beef patty -> middle bun -> special sauce -> onion -> lettuce -> pickles -> beef patty -> top bun\n\nOptional if you want more than just thousand island dressing make the following sauce:\n\n1/2 cup mayonnaise\n\n2 tablespoons french dressing\n\n4 teaspoons sweet pickle relish\n\n1 tablespoon finely minced white onion\n\n1 teaspoon granulated sugar\n\n1/8 teaspoon salt',
-    photo: 'big-mac.jpg',
+    photo: '/demo/big-mac.jpg',
     createdAt: '2022-01-24T01:24:54.008Z',
     updatedAt: '2022-01-24T01:24:54.008Z',
     __v: 0,
@@ -106,7 +106,7 @@ export default [
     ],
     instructions:
       'Sushi rice:\n\n*Note: Feel free to scale up the measurements for more rice!\n\n1. rinse the rice, place the rice in a fine-mesh strainer and give it a long rinse with cold water until the water runs clear.\n\n2.  cook the rice, easiest would be to use a rice cooker but an instant pot or stovetop will work as well.\n\n3. make sushi vinegar, while the rice is cooking heat the rice vinegar, sugar, and salt together in a small saucepan over medium-high heat until the mixture nearly simmers. Once it reaches this point remove it from the heat and whisk until the sugar has dissolved.\n\n4. Season the rice, once the rice is cooked transfer the rice to a large mixing bowl and evenly pour the sushi vinegar. Gently fold the rice with the vinegar until mixed evenly.\n\n5. Let the rice cool, cover the mixing bowl with a damp towel so that it is touching the surface of the rice to help prevent the rice from drying out. Let it cool until room temperature.\n\n6. Use it immediately or store it in an airtight food container for up to 3 days in a refrigerator.\n\nChirashi Don:\n\n1. Prepare the fish/toppings by slicing them into pieces or into bite-size pieces.\n\n2. Spoon however much rice you want into a bowl\n\n3. Place the prepared fish and toppings on top of the rice\n\n4. Enjoy!',
-    photo: 'chirashi2.jpg',
+    photo: '/demo/chirashi2.jpg',
     createdAt: '2022-01-24T22:39:29.650Z',
     updatedAt: '2022-01-24T22:39:29.650Z',
     __v: 0,
@@ -159,7 +159,7 @@ export default [
     ],
     instructions:
       'Sushi rice:\n\n*Note: Feel free to scale up the measurements for more rice!\n\n1. rinse the rice, place the rice in a fine-mesh strainer and give it a long rinse with cold water until the water runs clear.\n\n2.  cook the rice, easiest would be to use a rice cooker but an instant pot or stovetop will work as well. Put in the Kombu square with the rice and water into the rice cooker!\n\n3. make sushi vinegar, while the rice is cooking heat the rice vinegar, sugar, and salt together in a small saucepan over medium-high heat until the mixture nearly simmers. Once it reaches this point remove it from the heat and whisk until the sugar has dissolved.\n\n4. Season the rice, once the rice is cooked transfer the rice to a large mixing bowl and evenly pour the sushi vinegar. Gently fold the rice with the vinegar until mixed evenly.\n\n5. Let the rice cool, cover the mixing bowl with a damp towel so that it is touching the surface of the rice to help prevent the rice from drying out. Let it cool until room temperature.\n\n6. Use it immediately or store it in an airtight food container for up to 3 days in a refrigerator.\n\nChirashi Don:\n\n1. Prepare the fish/toppings by slicing them into pieces or into bite-size pieces.\n\n2. Spoon however much rice you want into a bowl\n\n3. Place the prepared fish and toppings on top of the rice\n\n4. Enjoy!',
-    photo: 'chirashi.jpg',
+    photo: '/demo/chirashi.jpg',
     createdAt: '2022-01-24T22:44:10.593Z',
     updatedAt: '2022-01-24T22:44:10.593Z',
     __v: 0,
@@ -193,7 +193,7 @@ export default [
     ],
     instructions:
       "In a wide bowl, crush strawberries in batches until you have 4 cups of mashed berry. In a heavy-bottomed saucepan, mix together the strawberries, sugar, and lemon juice. Stir over low heat until the sugar is dissolved. Increase heat to high, and bring the mixture to a full rolling boil. Boil, stirring often, until the mixture reaches 220 degrees F (105 degrees C). Transfer to hot sterile jars, leaving 1/4 to 1/2 inch headspace, and seal. Process in a water bath. If the jam is going to be eaten right away, don't bother with processing, and just refrigerate.",
-    photo: 'strawberry_jam.jpg',
+    photo: '/demo/strawberry_jam.jpg',
     createdAt: '2022-01-25T02:50:55.914Z',
     updatedAt: '2022-01-25T02:50:55.914Z',
     __v: 0,
@@ -210,7 +210,7 @@ export default [
       { ingredient: 'butter', amount: 1, unitOfMeasure: 'cup' },
     ],
     instructions: 'Add butter to pan on low heat. Beat the eggs, and cook until done!!!',
-    photo: 'omelette.jpg',
+    photo: '/demo/omelette.jpg',
   },
   {
     _id: '61e6098028a24ac228581008',
@@ -224,7 +224,7 @@ export default [
       { ingredient: 'butter', amount: 1, unitOfMeasure: 'cup' },
     ],
     instructions: 'Add butter to pan on low heat. Beat the eggs, and cook until done!!!',
-    photo: 'omelette.jpg',
+    photo: '/demo/omelette.jpg',
   },
   {
     _id: '61e6099628a24ac22858100a',
@@ -238,7 +238,7 @@ export default [
       { ingredient: 'butter', amount: 1, unitOfMeasure: 'cup' },
     ],
     instructions: 'Add butter to pan on low heat. Beat the eggs, and cook until done!!!',
-    photo: 'omelette.jpg',
+    photo: '/demo/omelette.jpg',
   },
   {
     _id: '61ef4c0abaa9c6dd37fbc8ea',
@@ -323,7 +323,7 @@ export default [
     ],
     instructions:
       '1. Slice chicken thighs in half. Marinate chicken in cooking wine, salt, garlic powder, curry powder. Marinade with 1 tsp cooking wine, 1/4 tsp salt, 1/2 tsp garlic powder and 1/2 tsp curry powder.\n\n2. Peel and dice potatoes. Then boil in hot water for 5 minutes until fork tender. Strain and set aside.\n\n3. In a large pan over medium-high heat, add 2 tbsp cooking oil and cooked rice. Break rice apart. Then add soy sauce and eggs. Mix everything together until eggs are cooked. Transfer the rice into a 9x13 baking dish and spread it out evenly.\n\n4. preheat oven to 500 degrees F.\n\n5. In the same cooking pan over high heat, add 1 tbsp cooking oil and diced onions. Followed by marinated chicken thighs. Brown chicken on each side for 5 minutes. Next add cooked potatoes, coconut milk, turmeric, curry powder, and salt. Mix well.\n\n6. Spoon chicken and sauce over fried rice and spread out evenly. Sprinkle cheese over top. Broil for 5-10 minutes until cheese has melted and browns slightly. Enjoy!',
-    photo: 'Baked-Portuguese-Chicken-Rice-3.jpg',
+    photo: '/demo/Baked-Portuguese-Chicken-Rice-3.jpg',
     createdAt: '2022-01-25T01:02:02.425Z',
     updatedAt: '2022-01-25T01:02:02.425Z',
     __v: 0,
@@ -400,7 +400,7 @@ export default [
     ],
     instructions:
       '1. Slice chicken thighs in half. Marinate chicken in cooking wine, salt, garlic powder, curry powder. Marinade with 1 tsp cooking wine, 1/4 tsp salt, 1/2 tsp garlic powder and 1/2 tsp curry powder.\n\n2. Peel and dice potatoes. Then boil in hot water for 5 minutes until fork tender. Strain and set aside.\n\n3. Boil water in a saucepan and cook spaghetti. Transfer the spaghetti into a 9x13 baking dish and spread it out evenly.\n\n4. preheat oven to 500 degrees F.\n\n5. In the same cooking pan over high heat, add 1 tbsp cooking oil and diced onions. Followed by marinated chicken thighs. Brown chicken on each side for 5 minutes. Next add cooked potatoes, coconut milk, turmeric, curry powder, and salt. Mix well.\n\n6. Spoon chicken and sauce over fried rice and spread out evenly. Sprinkle cheese over top. Broil for 5-10 minutes until cheese has melted and browns slightly. Enjoy!',
-    photo: 'Baked-Portuguese-Chicken-Rice-3.jpg',
+    photo: '/demo/Baked-Portuguese-Chicken-Rice-3.jpg',
     createdAt: '2022-01-25T02:09:52.717Z',
     updatedAt: '2022-01-25T02:09:52.717Z',
     __v: 0,
@@ -507,7 +507,7 @@ export default [
     ],
     instructions:
       'Pork Chop\n\n1. Tenderize meat by pounding it with the back of a cleaver then marinate it in a mixture of Chinese wine, garlic, salt, freshly ground black pepper for at least 15 minutes.\n\n2. Place flour on a plate and beat eggs on another plate.\n\n3. Prepare a deep fryer and heat oil to 180C.\n\n4. Dip cutlet in egg and then in flour making sure it is coated well. Gently place each pork cutlet and cook until golden brown, once cooked transfer into a paper towel-lined wire rack.\n\nEgg Fried Rice\n\n1. Using a wok heat up the oil until it nearly reaches its smoking point.\n\n2. Add rice and salt and stir fry for a minute.\n\n3. Make a well in the middle of the wok then pour in beaten eggs, once cooked mix in together with the rice.\n\n4.  Remove from heat then set aside.\n\nTangy Tomato Sauce\n\n1. In a wok sauté the garlic and onions are in oil, once the onions turn transparent add the chopped tomatoes. Continue to sauté until tomatoes begin to soften.\n\n2. In a mixing bowl mix together tomato ketchup, salt, pepper, Worcestershire sauce, chicken stock, and cornstarch. Pour into the wok then simmer for 15 minutes.\n\nBaked Pork Chop and Rice\n\n1. Place fried rice in a large ovenproof dish or casserole\n\n2. Place fried pork chop on top of the rice.\n\n3. Pour the sauce on top of the pork chop.\n\n4. Add grated cheese on top of the sauce.\n\n5. Bake in a 220C preheated oven for 15-20 minutes or until the cheese it completely melted.',
-    photo: 'Hong-Kong-Syle-Baked-Pork-Chop-Rice-13.jpg',
+    photo: '/demo/Hong-Kong-Syle-Baked-Pork-Chop-Rice-13.jpg',
     createdAt: '2022-01-25T02:19:43.048Z',
     updatedAt: '2022-01-25T02:19:43.048Z',
     __v: 0,
@@ -601,7 +601,7 @@ export default [
     ],
     instructions:
       'Pork Chop\n\n1. Tenderize meat by pounding it with the back of a cleaver then marinate it in a mixture of Chinese wine, garlic, salt, freshly ground black pepper for at least 15 minutes.\n\n2. Place flour on a plate and beat eggs on another plate.\n\n3. Prepare a deep fryer and heat oil to 180C.\n\n4. Dip cutlet in egg and then in flour making sure it is coated well. Gently place each pork cutlet and cook until golden brown, once cooked transfer into a paper towel-lined wire rack.\n\nSpaghetti\n\n1. Cook the spaghetti in a saucepan of boiling water\n\nTangy Tomato Sauce\n\n1. In a wok sauté the garlic and onions are in oil, once the onions turn transparent add the chopped tomatoes. Continue to sauté until tomatoes begin to soften.\n\n2. In a mixing bowl mix together tomato ketchup, salt, pepper, Worcestershire sauce, chicken stock, and cornstarch. Pour into the wok then simmer for 15 minutes.\n\nBaked Pork Chop and Rice\n\n1. Place spaghetti in a large ovenproof dish or casserole\n\n2. Place fried pork chop on top of the spaghetti.\n\n3. Pour the sauce on top of the pork chop.\n\n4. Add grated cheese on top of the sauce.\n\n5. Bake in a 220C preheated oven for 15-20 minutes or until the cheese is completely melted.',
-    photo: 'Hong-Kong-Syle-Baked-Pork-Chop-Rice-13.jpg',
+    photo: '/demo/Hong-Kong-Syle-Baked-Pork-Chop-Rice-13.jpg',
     createdAt: '2022-01-25T02:22:50.656Z',
     updatedAt: '2022-01-25T02:22:50.656Z',
     __v: 0,
@@ -619,7 +619,7 @@ export default [
     ],
     instructions:
       'Put butter into a small sauce pan on a medium to low flame. Once the butter has melted pour in the heavy cream and allow to simmer. Gently stir to avoid over boiling.',
-    photo: 'alfredo.jpg',
+    photo: '/demo/alfredo.jpg',
   },
   {
     _id: '61e608607f04825b4c4cd517',
@@ -636,7 +636,7 @@ export default [
     ],
     instructions:
       'Put butter into a small sauce pan on a medium to low flame. Once the butter has melted pour in the heavy cream and allow to simmer. Gently stir to avoid over boiling. Add the black pepper to the sauce and stir well to evenly distribute the pepper in the sauce',
-    photo: 'alfredo.jpg',
+    photo: '/demo/alfredo.jpg',
   },
 
   {
@@ -655,7 +655,7 @@ export default [
     ],
     instructions:
       'Finely chop or mince garlic cloves. Put butter into a small sauce pan on a medium to low flame. Once the butter has melted add the garlic and leave until fragrent. Once the garlic is fragrent, pour in the heavy cream and allow to simmer. Gently stir to avoid over boiling. Add the black pepper to the sauce and stir well to evenly distribute the pepper in the sauce',
-    photo: 'alfredo.jpg',
+    photo: '/demo/alfredo.jpg',
   },
   {
     _id: '61e60945bda713dc8a3f7427',
@@ -674,7 +674,7 @@ export default [
     ],
     instructions:
       "Finely chop or mince garlic cloves. Put butter into a small sauce pan on a medium to low flame. Once the butter has melted add the garlic and leave until fragrent. Once the garlic is fragrent, pour in the heavy cream and allow to simmer. Gently stir to avoid over boiling. Add the black pepper to the sauce and stir well to evenly distribute the pepper in the sauce. Finally add the cheese into the sauce and stir until melted. Don't forget to save some for garnish!",
-    photo: 'alfredo.jpg',
+    photo: '/demo/alfredo.jpg',
   },
 
   {
@@ -730,7 +730,7 @@ export default [
     ],
     instructions:
       "Combine the cocoa, sugar and pinch of salt in a saucepan. Blend in the boiling water. Bring this mixture to an easy boil while you stir. Simmer and stir for about 2 minutes. Watch that it doesn't scorch. Stir in 3 1/2 cups of milk and heat until very hot, but do not boil! Remove from heat and add vanilla. Divide between 4 mugs. Add the cream to the mugs of cocoa to cool it to drinking temperature.",
-    photo: 'hot-chocolate.jpg',
+    photo: '/demo/hot-chocolate.jpg',
     createdAt: '2022-01-23T23:14:33.759Z',
     updatedAt: '2022-01-23T23:14:33.759Z',
     __v: 0,
@@ -837,7 +837,7 @@ export default [
     ],
     instructions:
       '1. Mix the 1tbsp of brown sugar,  paprika, 1 tsp of onion powder, garlic powder, cumin, 1 tsp of mustard powder, 1 tsp of salt, and 1 tsp black pepper to create the rub.\nRub the seasoning rub onto the brisket and if you have time leave it for at least 30 minutes and up to 24 hours in the fridge.\n2. Put the rest of the minced garlic, apple cider vinegar, ketchup, brown sugar, black pepper, onion powder, mustard powder, cayenne pepper, and Worcestershire sauce into the slow cooker. Mix well and then place the brisket into the slow cooker, feel free to squish it in.\n3. Cook for 8 (1.5kg/3lbs) - 10 hours (2kg/4lbs).\n4. Once done remove brisket onto a tray.\n5. Pour the leftover liquid into a saucepan, simmer over medium-high heat and reduce until it thickens to a syrup consistency.\n6. Meanwhile, drizzle brisket with oil then roast in a 200C/390F oven for 15 minutes until brown spots appear. Remove then baste generously with sauce, then return to oven for 5 minutes. Remove and baste again, then return to oven for 5 - 10 minutes until it caramelizes.\n7. Enjoy the brisket sliced thinly across the grain!',
-    photo: 'brisket.jpg',
+    photo: '/demo/brisket.jpg',
     createdAt: '2022-01-24T20:29:15.447Z',
     updatedAt: '2022-01-24T20:29:15.447Z',
     __v: 0,
@@ -931,7 +931,7 @@ export default [
     ],
     instructions:
       '1. Preheat the oven to 325 degrees F.\n\n2. On a cutting board, mash the garlic and 1/2 teaspoon of the salt together with the flat-side of a knife into a paste. Add the rosemary and continue to mash until incorporated. Put the garlic-rosemary paste in a small bowl and add 2 tablespoons of olive oil; stir to combine. \n\n3. Season both sides of the brisket with a fair amount of kosher salt and ground black pepper. Place a large roasting pan or Dutch oven over medium-high flame and coat with the remaining olive oil. Put the brisket in the roasting pan and sear to form a nice brown crust on both sides. Lay the vegetables all around the brisket and pour the rosemary paste over the whole thing. Add the wine and tomatoes; toss in the parsley and bay leaves. Cover the pan tightly with aluminum foil and transfer to the oven. Bake for about 3 to 4 hours, basting every 30 minutes with the pan juices until the beef is fork-tender. \n\n4. Remove the brisket to a cutting board and let it rest for 15 minutes. Scoop the vegetables out of the roasting pan and onto a platter, cover to keep warm. Pour out some of the excess fat, and put the roasting pan with the pan juices on the stove over medium-high heat. Boil and stir for 5 minutes until the sauce is reduced by 1/2. (If you want a thicker sauce, mix 1 tablespoon of flour with 2 tablespoons of wine or water and blend into the gravy). \n\n5. Slice the brisket across the grain (the muscle lines) at a slight diagonal and serve!',
-    photo: 'brisket.jpg',
+    photo: '/demo/brisket.jpg',
     createdAt: '2022-01-24T21:01:00.967Z',
     updatedAt: '2022-01-24T21:01:00.967Z',
     __v: 0,
@@ -977,7 +977,7 @@ export default [
     ],
     instructions:
       '1. Preheat the oven to 325 degrees F (165 degrees C).\n\n2. Season the brisket on all sides with salt and pepper, and place in a glass baking dish. Cover with a layer of sliced onions. In a medium bowl, mix together the beer, chili sauce, and brown sugar. Pour over the roast. Cover the dish tightly with aluminum foil.\n\n3. Bake for 3 hours in the preheated oven. Remove the aluminum foil, and bake for an additional 30 minutes. Let the brisket rest and cool slightly before slicing and returning to the dish. Reheat in the oven with the sauce spooned over the sliced meat.',
-    photo: 'brisket.jpg',
+    photo: '/demo/brisket.jpg',
     createdAt: '2022-01-24T21:07:52.870Z',
     updatedAt: '2022-01-24T21:07:52.870Z',
     __v: 0,
@@ -1065,7 +1065,7 @@ export default [
     ],
     instructions:
       '1. Mix paprika, pepper, salt, brown sugar, chili powder, and cumin together in a bowl; rub evenly over the surface of the brisket. Put brisket in a large, resealable plastic bag; refrigerate 30 minutes to overnight.\n\n2. Stir barbeque sauce, water, Worcestershire sauce, and liquid smoke together in the bottom of a slow cooker. Lay brisket into the sauce mixture. Arrange onions atop the brisket.\n\n3. Cook on Low until brisket is very tender, 6 to 7 hours. Rest brisket 10 minutes before slicing or shredding; serve with sauce from the slow cooker.',
-    photo: 'brisket.jpg',
+    photo: '/demo/brisket.jpg',
     createdAt: '2022-01-24T21:20:47.725Z',
     updatedAt: '2022-01-24T21:20:47.725Z',
     __v: 0,
