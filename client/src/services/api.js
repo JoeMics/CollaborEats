@@ -32,11 +32,11 @@ export async function getAllImages() {
 }
 
 export async function getSignedURL() {
-  const { data } = await axios.get('/s3upload');
+  const { data } = await axios.get('/api/images/s3upload');
   return data;
 }
 
-export async function uploadS3Img(file, url) {
+export async function imageUpload(file, url) {
   try {
     await awsAxios(url, {
       method: 'PUT',
@@ -47,23 +47,6 @@ export async function uploadS3Img(file, url) {
     });
     const imageUrl = url.split('?')[0];
     return imageUrl;
-  } catch (error) {
-    return error;
-  }
-}
-
-export async function uploadImage(file) {
-  const formData = new FormData();
-  formData.append('file', file);
-  try {
-    const response = await axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}/upload`,
-      data: formData,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-    console.log('the file name: ', response.data.file.filename);
-    return response.data.file.filename;
   } catch (error) {
     return error;
   }
