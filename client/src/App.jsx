@@ -5,9 +5,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Recipe from './pages/Recipe';
 import Versions from './pages/Versions';
-import Navbar from './components/Navbar';
 import RecipeMaster from './pages/RecipeMaster';
-import ImageUpload from './pages/ImageUpload';
 import Footer from './components/Footer';
 
 function App() {
@@ -21,7 +19,6 @@ function App() {
         <Route path={ROUTES.USERRECIPE} component={Recipe} exact />
         <Route path={ROUTES.VERSIONS} component={Versions} exact />
         <Route path={ROUTES.VERSIONS_PAGE} component={Versions} exact />
-        <Route path={ROUTES.IMAGE_UPLOAD} component={ImageUpload} exact />
       </Switch>
       <Footer />
     </Router>
