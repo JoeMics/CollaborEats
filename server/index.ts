@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Use declaration merging to add user and userId
+// Declaration merging for TS types
 declare module 'express-serve-static-core' {
   interface Request {
     user: any;
