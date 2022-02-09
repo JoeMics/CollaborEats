@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { getAllImages } from '../services/api';
+import { getAllImages, getSignedURL, uploadS3Img } from '../services/api';
 
 const ImageUpload = () => {
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [imgurl, setImgurl] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', file);
-    try {
-      const response = await axios({
-        method: 'post',
-        url: 'http://localhost:8080/upload',
-        data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      console.log('the file name: ', response.data.file.filename);
-    } catch (error) {
-      console.log(error);
+    setLoading(true);
+    if (!file.name.match(/.(jpg|jpeg|png)$/i)) {
+      setError('NOT AN IMAGE');
+    }
+    if (file.size < 5 * 1024 * 1024) {
+      setLoading(true);
+      const url = await getSignedURL();
+      const newUrl = await uploadS3Img(file, url);
+      setImgurl(newUrl);
+      setLoading(false);
+    } else {
+      setError('file size exceeded');
     }
   };
 
@@ -43,7 +46,13 @@ const ImageUpload = () => {
           <h1 className="font-bold text-xl text-center my-4">Upload Files</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <input type="file" name="file" id="file" onChange={handleFileSelect} />
+              <input
+                type="file"
+                name="file"
+                id="file"
+                onChange={handleFileSelect}
+                accept="image/png, image/jpeg"
+              />
               <label htmlFor="for">Choose File</label>
             </div>
             <input type="submit" value="Submit" className="px-3 bg-blue-400" />
@@ -51,6 +60,9 @@ const ImageUpload = () => {
           <button type="button" onClick={handleFetch}>
             get all images
           </button>
+          {error && <span>{error}</span>}
+          <h3>THE IMAGE</h3>
+          {!loading && <img src={imgurl} alt="asdf" />}
         </div>
       </div>
     </div>

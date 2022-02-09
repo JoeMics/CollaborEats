@@ -1,5 +1,5 @@
 import axios from '../lib/api';
-
+import awsAxios from 'axios';
 // Comments
 
 export async function addComment(ownerId, recipeId, content) {
@@ -29,6 +29,27 @@ export async function getRecipe(recipeId) {
 
 export async function getAllImages() {
   return await axios.get(`/upload`);
+}
+
+export async function getSignedURL() {
+  const { data } = await axios.get('/s3upload');
+  return data;
+}
+
+export async function uploadS3Img(file, url) {
+  try {
+    await awsAxios(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      data: file,
+    });
+    const imageUrl = url.split('?')[0];
+    return imageUrl;
+  } catch (error) {
+    return error;
+  }
 }
 
 export async function uploadImage(file) {
