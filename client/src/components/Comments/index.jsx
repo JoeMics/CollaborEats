@@ -37,13 +37,13 @@ const Comments = ({ recipeId }) => {
     }
   };
 
-  const commentComponents = comments.map(({ _id, content, createdAt }, index) => (
+  const commentComponents = comments.map(({ _id, content, createdAt, ownerId }, index) => (
     <Comment
       key={_id || index}
-      name={user.name}
+      name={ownerId.name}
       content={content}
       createdAt={createdAt}
-      picture={user.picture}
+      picture={ownerId.picture}
     />
   ));
 
