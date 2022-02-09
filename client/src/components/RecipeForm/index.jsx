@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { validateInput } from '../../helpers/validation';
-import { addFork, addRecipe, uploadImage } from '../../services/api';
+import { addFork, addRecipe, imageUpload, getSignedURL } from '../../services/api';
 import IngredientInput from './IngredientInput';
 
 const RecipeForm = ({ title, recipe, setShowModal }) => {
@@ -135,8 +135,9 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
     // POST request after validations
     try {
       // only upload image when form validated
-      if (file) {
-        newRecipe.photo = await uploadImage(file);
+      if (file && !file.name.match(/.(jpg|jpeg|png)$/i && file.size < 5 * 1024 * 1024)) {
+        const signedUrl = await getSignedURL();
+        newRecipe.photo = await imageUpload(file, signedUrl);
       }
 
       // Only on fork
