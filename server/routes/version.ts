@@ -1,16 +1,12 @@
-import express from 'express';
+import express, { Request } from 'express';
 import Recipe from '../models/recipe';
 const router = express.Router({ mergeParams: true });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res) => {
   try {
     const { ownerId, title, description, ingredients, instructions, photo } = req.body;
-    console.log(title);
-    // TS does not know recipeId exists
-    // @ts-ignore:next-line
     const { recipeId } = req.params;
 
-    // TODO: OwnerId needs to be retrieved from cookies
     const parentRecipe = await Recipe.findOne({ _id: recipeId });
 
     const recipe = new Recipe({
