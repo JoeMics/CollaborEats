@@ -32,7 +32,7 @@ export async function getAllImages() {
 }
 
 export async function getSignedURL() {
-  const { data } = await axios.get('/api/images/s3upload');
+  const { data } = await axios.get('/images/s3upload');
   return data;
 }
 
