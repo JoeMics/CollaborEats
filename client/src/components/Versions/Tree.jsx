@@ -77,7 +77,6 @@ export default function OrgChartTree({ treeId }) {
   );
 
   const handleFork = (selectedRecipe) => {
-    console.log('THE RECIPE IS SELECTED: ', selectedRecipe);
     setRecipe(selectedRecipe);
     setShowModal(true);
   };
