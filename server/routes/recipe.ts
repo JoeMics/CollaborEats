@@ -102,8 +102,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-export default router;
-
 router.post('/search', async (req, res) => {
   try {
     const recipes = await Recipe.find({
@@ -121,3 +119,5 @@ router.post('/search', async (req, res) => {
     res.status(500).json({ err: err });
   }
 });
+
+export default router;
