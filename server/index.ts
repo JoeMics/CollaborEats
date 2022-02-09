@@ -10,7 +10,6 @@ declare module 'express-serve-static-core' {
 
 // Constants
 const PORT = process.env.PORT || 8080;
-const { GOOGLE_APPLICATION_CREDENTIALS } = process.env;
 
 import express from 'express';
 import cors from 'cors';
@@ -24,16 +23,13 @@ import imageRoutes from './routes/image';
 // connect to DB
 import './lib/mongoose';
 
+// initialize firebase SDK
+import './services/firebase';
+
 const morgan = require('morgan');
-const admin = require('firebase-admin');
 
 // Server
 const app = express();
-
-//Initialize firebase admin sdk
-admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(GOOGLE_APPLICATION_CREDENTIALS!)),
-});
 
 // Middleware
 app.use(morgan('tiny'));
