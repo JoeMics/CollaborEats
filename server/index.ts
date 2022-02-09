@@ -12,14 +12,14 @@ declare module 'express-serve-static-core' {
 const PORT = process.env.PORT || 8080;
 const { GOOGLE_APPLICATION_CREDENTIALS } = process.env;
 
-import express, { application } from 'express';
+import express from 'express';
 import cors from 'cors';
 import { getAuth } from 'firebase-admin/auth';
-import { generateUploadURL } from './s3';
 
 import User from './models/user';
 import userRoutes from './routes/user';
 import recipeRoutes from './routes/recipe';
+import imageRoutes from './routes/image';
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -91,6 +91,7 @@ app.use(async (req, res, next) => {
 //Routes
 app.use('/recipes', recipeRoutes);
 app.use('/users', userRoutes);
+app.use('/images', imageRoutes);
 
 // connect to db
 mongoose
@@ -102,11 +103,5 @@ mongoose
     console.log('Connected to DB successfully!');
   })
   .catch((err: any) => console.log(`Could not connect due to ${err}`));
-
-app.get('/s3upload', async (req, res) => {
-  const url = await generateUploadURL();
-  res.send(url);
-  console.log('signed: ', url);
-});
 
 app.listen(PORT, () => console.log(`API server running on port: ${PORT}`));
