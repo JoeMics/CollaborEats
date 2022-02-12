@@ -40,11 +40,7 @@ export default function RecipeComponent({ recipeId }) {
             <div className="h-80 w-full rounded-t-md overflow-hidden overflow-y-scroll mt-6 scrollable-image hide-scrollbar">
               <img
                 className="w-full object-cover"
-                src={
-                  recipe.photo
-                    ? `${process.env.REACT_APP_API_URL}/image/${recipe.photo}`
-                    : '/demo/default_image.jpg'
-                }
+                src={recipe.photo || '/demo/default_image.jpg'}
                 alt={recipe.title}
               />
             </div>
