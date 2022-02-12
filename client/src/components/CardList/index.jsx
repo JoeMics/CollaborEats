@@ -13,7 +13,7 @@ const CardList = ({ recipes }) => {
   return (
     <Masonry
       className="my-masonry-grid container mx-auto mb-16"
-      columnClassName="my-masonry-grid_column"
+      columnClassName="my-masonry-grid_column px-2"
       breakpointCols={breakpointColumbsObj}
     >
       {recipes &&
