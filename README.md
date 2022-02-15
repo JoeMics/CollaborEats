@@ -28,8 +28,12 @@ CollaborEats allows you to create new versions of yours, or other people's recip
 
 ## Web App Link
 
+**Site status**
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/91158c64-0755-43ce-804f-c25a90a68c78/deploy-status)](https://app.netlify.com/sites/vibrant-cray-95d891/deploys)
+
 **The website can be found here:**
-https://vibrant-cray-95d891.netlify.app/
+https://collaboreats.ca/
 
 ## Features
 
