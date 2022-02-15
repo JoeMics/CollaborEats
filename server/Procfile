@@ -1,1 +1,2 @@
 web: npm run production
+worker: node index.js
