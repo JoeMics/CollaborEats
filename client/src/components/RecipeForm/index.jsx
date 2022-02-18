@@ -52,7 +52,7 @@ const RecipeForm = ({ title, recipe, setShowModal }) => {
   const tagsArray = tags.map((tag, index) => (
     <div key={index} className="flex items-center bg-red-500 rounded-full px-3 py-1 mx-1 my-1">
       {tag}
-      <button className="pl-1" onClick={() => deleteTag(index)}>
+      <button type="button" className="pl-1" onClick={() => deleteTag(index)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
