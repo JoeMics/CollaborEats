@@ -138,6 +138,7 @@ npm run db:reset
 - mongoose: ^6.1.6
 - typescript: ^4.5.4
 - ts-node: ^10.4.0
+- aws-sdk: ^2.1071.0
 
 # About
 
